@@ -1,3 +1,5 @@
+import { ClassType } from "./class";
+
 export type LessonType = {
 	_id: string;
 	name: string;
@@ -7,7 +9,7 @@ export type LessonType = {
 	description: string;
 	questions: QuestionType[];
 	allCriteriaRating: number;
-    classes: ClassType[];
+	classes: ClassType[];
 };
 
 export type QuestionType = {
