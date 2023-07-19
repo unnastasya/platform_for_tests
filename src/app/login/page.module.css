@@ -1,0 +1,48 @@
+.container {
+	width: 100vw;
+	height: 100vh;
+	padding-top: 100px;
+}
+
+.login__block {
+	margin: 0 auto;
+	width: 600px;
+	padding: 30px;
+	padding-top: 50px;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+}
+
+.login__block::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	height: 15px;
+	width: 100%;
+	background: #82b1ff;
+	background-position: center center;
+	border-radius: 5px 5px 0 0;
+	background: #2979ff;
+}
+
+.login__form {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 30px;
+}
+
+.login__h1 {
+	font-size: "32px";
+	line-height: "100%";
+	margin: 0;
+}
+
+.form__button {
+	background: #2979ff;
+}
