@@ -1,0 +1,14 @@
+.classesPage {
+	width: 1200px;
+	display: flex;
+	/* justify-content: space-between; */
+	flex-wrap: wrap;
+}
+
+.classes_conteiner {
+	width: 1200px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+    
+}
