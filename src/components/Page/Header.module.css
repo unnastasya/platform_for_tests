@@ -1,0 +1,25 @@
+.header_root {
+	padding: 10px 0;
+	border-bottom: 1px solid #e0e0e0;
+	margin-bottom: 30px;
+	position: fixed;
+	width: 100vw;
+	z-index: 10;
+	background: #ffffff;
+}
+
+.header_inner {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 1200px;
+}
+
+.header__text {
+	border: 1px solid #2979ff;
+	border-radius: 5px;
+	padding: 10px;
+	margin: 0;
+	line-height: 30px;
+	font-weight: 600;
+}
