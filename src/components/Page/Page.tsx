@@ -1,6 +1,8 @@
 import React from "react";
 import { Container } from "@mui/material";
 import Header from "./Header";
+import { ThemeProvider } from "@emotion/react";
+import { theme } from "../../theme";
 
 import styles from "./Page.module.css";
 
@@ -13,11 +15,13 @@ const user = {
 
 export function Page({ children }: any) {
 	return (
-		<div className={styles.page}>
-			<Header activeUser={user} />
-			<div className={styles.page_content}>
-				<Container maxWidth="lg">{children}</Container>
+		<ThemeProvider theme={theme}>
+			<div className={styles.page}>
+				<Header activeUser={user} />
+				<div className={styles.page_content}>
+					<Container maxWidth="lg">{children}</Container>
+				</div>
 			</div>
-		</div>
+		</ThemeProvider>
 	);
 }
