@@ -7,3 +7,13 @@ export const getLessons = () => {
 		.get(`${API_BASE_URL}/lesson`)
 		.then((response) => response.data);
 };
+
+export const getOneLesson = (id: any) => {
+	return axios
+		.get(`${API_BASE_URL}/lesson/${id}`)
+		.then((response) => response.data);
+};
+
+export const deleteLesson = (id: any) => {
+	return axios.delete(`${API_BASE_URL}/lesson/${id}`);
+};
