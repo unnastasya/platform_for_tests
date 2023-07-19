@@ -1,0 +1,53 @@
+.oneTest__block {
+	width: 290px;
+	padding: 30px;
+	padding-top: 50px;
+	border-radius: 5px;
+	position: relative;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.oneTest__block::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	height: 15px;
+	width: 100%;
+	background-position: center center;
+	border-radius: 5px 5px 0 0;
+	background: #2979ff;
+}
+
+.oneTest__infoBlock {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+	margin-bottom: 30px;
+}
+.oneTest__lessonName {
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 100%;
+	margin: 0;
+}
+
+.oneTest__classesBlock {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.oneTest__text {
+	font-size: 16px;
+	line-height: 100%;
+}
+
+.oneTest__textCount {
+	text-decoration: 3px underline solid #2979ff;
+}
