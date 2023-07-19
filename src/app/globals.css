@@ -19,3 +19,11 @@ a {
 body {
 	background: #ebf2ff;
 }
+
+p {
+    font-size: 16px;
+	line-height: 100%;
+	margin: 0;
+}
+
+

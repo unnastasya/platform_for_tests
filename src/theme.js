@@ -30,5 +30,13 @@ export const theme = createTheme({
 				},
 			},
 		},
+        MuiButton: {
+            styleOverrides: {
+                root: {
+                    height: "50px",
+                    fontSize: "16px"
+                }
+            }
+        }
 	},
 });
