@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { getLessons } from "@/api/lessons";
 import OneTestBlock from "@/components/OneTestBlock/OneTestBlock";
