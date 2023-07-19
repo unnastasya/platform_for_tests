@@ -1,0 +1,16 @@
+.questionCriteria__list {
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.questionCriteria__container {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.questionCriteria__textHeader {
+	text-decoration: 3px underline solid #2979ff;
+}

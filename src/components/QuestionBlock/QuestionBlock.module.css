@@ -1,0 +1,26 @@
+.questionBlock__container {
+	width: 1200px;
+	padding: 30px;
+	padding-top: 50px;
+	margin-bottom: 30px;
+	/* background: #dcdcdc; */
+	border-radius: 10px;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+.questionBlock_questionText {
+	font-size: 24px;
+
+}
+
+.questionBlock__infoBlock {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.questionBlock__infoBlock_questionNumber {
+	text-decoration: 3px underline solid #2979ff;
+}
