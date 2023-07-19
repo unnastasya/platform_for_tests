@@ -3,18 +3,17 @@ import { ClassType } from "./class";
 export type LessonType = {
 	_id: string;
 	name: string;
-	school: string;
-	class: string;
-	doneCount: number;
 	description: string;
-	questions: QuestionType[];
+	doneCount: number;
 	allCriteriaRating: number;
+	questions: QuestionType[];
 	classes: ClassType[];
 };
 
 export type QuestionType = {
 	_id: string;
-	question: string;
+	questionText: string;
+	description: string;
 	criteria: CriteriaType[];
 	criteriaRating: number;
 };
