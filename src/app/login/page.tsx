@@ -35,7 +35,7 @@ export default function Page() {
 		login(data)
 			.then((res: any) => {
 				if (res.status === 200) {
-					router.push("/testsPage");
+					router.push("/lessonsPage");
 				} else if (res.status === 401) {
 					setLoginError(res.errorMessage);
 				}
@@ -83,7 +83,6 @@ export default function Page() {
 						)}
 						<Button
 							className={styles.form__button}
-							sx={{ height: "50px" }}
 							variant="contained"
 							fullWidth
 							type="submit"
