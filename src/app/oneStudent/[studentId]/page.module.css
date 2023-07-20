@@ -1,0 +1,38 @@
+.oneTest__questionBlock {
+	width: 1200px;
+	padding: 30px;
+	padding-top: 50px;
+	margin-bottom: 30px;
+	border-radius: 10px;
+	position: relative;
+}
+
+.oneTest__questionBlock::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	height: 15px;
+	width: 100%;
+	background: #82b1ff;
+	background-position: center center;
+	border-radius: 5px 5px 0 0;
+	background: #2979ff;
+}
+
+.oneTest__header {
+	font-size: 32px;
+	line-height: 100%;
+	margin: 0;
+	padding-bottom: 20px;
+}
+
+.doneWorks__page {
+	width: 1200px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	margin: 0 5px;
+}
