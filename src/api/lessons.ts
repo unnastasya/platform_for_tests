@@ -20,6 +20,6 @@ export const deleteLesson = (id: any) => {
 
 export const addLesson = (object: any) => {
 	return axios
-		.post(`${API_BASE_URL}/lesson`, qs.stringify(object))
+		.post(`${API_BASE_URL}/lesson`, object)
 		.then((response) => response.data);
 };
