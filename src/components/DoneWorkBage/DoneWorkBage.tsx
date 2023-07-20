@@ -21,7 +21,7 @@ export default function DoneWorkBage({ work }: DoneWorkBageProps) {
 
 	const toOneWorkPage = (id: string, workIsVerified: boolean) => {
 		if (workIsVerified) {
-			router.push(`/resultTest/${id}`);
+			router.push(`/resultLesson/${id}`);
 		} else {
 			router.push(`/checkLesson/${id}`);
 		}

@@ -52,7 +52,7 @@ export default function CheckLesson({ params }: CheckLessonProps) {
 			rating: ratingValue,
 			comment: comment,
 		});
-		router.push(`/resultTest/${doneWorkId}`);
+		router.push(`/resultLesson/${doneWorkId}`);
 	};
 
 	return (
