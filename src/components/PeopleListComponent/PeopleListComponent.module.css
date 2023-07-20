@@ -1,4 +1,4 @@
-.oneStudent__block {
+.peopleList__oneStusent {
 	width: 100%;
 	display: flex;
 	padding: 5px 10px;
@@ -8,7 +8,7 @@
 	transition: 0.3s linear;
 }
 
-.oneStudent__block:not(:last-child)::after {
+.peopleList__oneStusent:not(:last-child)::after {
 	content: "";
 	position: absolute;
 	left: 0;
@@ -19,6 +19,6 @@
 	/* background-position: center center; */
 }
 
-.oneStudent__block:hover {
+.peopleList__oneStusent:hover {
 	background: rgba(184, 184, 184, 0.3);
 }

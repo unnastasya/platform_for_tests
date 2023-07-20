@@ -17,7 +17,7 @@ export default function LessonsPage() {
 	return (
 		<>
 			<Page>
-				<div className={styles.testsPage__container}>
+				<div className={styles.lessonsPage__container}>
 					{lessons.map((lesson) => (
 						<OneTestBlock key={lesson._id} lesson={lesson} />
 					))}

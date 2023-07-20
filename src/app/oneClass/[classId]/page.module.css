@@ -1,4 +1,4 @@
-.questionBlock1 {
+.oneClass__container {
 	width: 1200px;
 	padding: 30px;
 	padding-top: 50px;
@@ -10,7 +10,7 @@
 	gap: 30px;
 }
 
-.questionBlock1::before {
+.oneClass__container::before {
 	content: "";
 	position: absolute;
 	left: 0;

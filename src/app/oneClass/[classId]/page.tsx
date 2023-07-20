@@ -43,7 +43,7 @@ export default function OneClass({ params }: OneClassProps) {
 
 	return (
 		<Page>
-			<Paper className={styles.questionBlock1}>
+			<Paper className={styles.oneClass__container}>
 				<OneClassHeader classData={classData} classId={classId} />
 				<PeopleListComponent people={classStudents} />
 			</Paper>

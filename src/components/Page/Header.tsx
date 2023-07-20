@@ -17,9 +17,9 @@ const Header = ({ activeUser }: HeaderProps) => {
 	const router = useRouter();
 
 	return (
-		<div className={styles.header_root}>
+		<div className={styles.header__root}>
 			<Container>
-				<div className={styles.header_inner}>
+				<div className={styles.header__inner}>
 					<p className={styles.header__text}>
 						{activeUser.lastName} {activeUser.name}
 					</p>

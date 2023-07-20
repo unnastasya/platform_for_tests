@@ -79,11 +79,9 @@ export default function OneLessonPage({ params }: OneLessonPageProps) {
 		<Page>
 			<div>
 				<form onSubmit={handleSubmit(onSubmit)}>
-					<Paper className={styles.oneTest__questionInfoBlock}>
+					<Paper className={styles.oneLesson__infoBlock}>
 						<div
-							className={
-								styles.oneTest__questionInfoBlock_deleteButton
-							}
+							className={styles.oneLesson__infoBlock_deleteButton}
 						>
 							<Button
 								onClick={deleteLessonFunction}
@@ -93,9 +91,7 @@ export default function OneLessonPage({ params }: OneLessonPageProps) {
 								<DeleteIcon />
 							</Button>
 						</div>
-						<h1
-							className={styles.oneTest__questionInfoBlock_header}
-						>
+						<h1 className={styles.oneLesson__infoBlock_header}>
 							{lesson.name}
 						</h1>
 						<p>{lesson.description}</p>

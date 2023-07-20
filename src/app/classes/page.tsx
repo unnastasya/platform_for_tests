@@ -24,7 +24,7 @@ export default function Classes() {
 	};
 	return (
 		<Page>
-			<div className={styles.classes_conteiner}>
+			<div className={styles.classes__container}>
 				<Button
 					variant="contained"
 					onClick={navigateToAddClass}
@@ -32,7 +32,7 @@ export default function Classes() {
 				>
 					Добавить класс
 				</Button>
-				<div className={styles.classesPage}>
+				<div className={styles.classes__classesList}>
 					{classes.map((oneClass: ClassType) => (
 						<ClassBage key={oneClass._id} oneClass={oneClass} />
 					))}

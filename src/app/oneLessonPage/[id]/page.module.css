@@ -1,4 +1,4 @@
-.oneTest__questionInfoBlock {
+.oneLesson__infoBlock {
 	width: 1200px;
 	padding: 30px;
 	padding-top: 50px;
@@ -8,7 +8,7 @@
 	position: relative;
 }
 
-.oneTest__questionInfoBlock::after {
+.oneLesson__infoBlock::after {
 	content: "";
 	position: absolute;
 	left: 0;
@@ -23,31 +23,16 @@
 	background: #2979ff;
 }
 
-.oneTest__questionInfoBlock_deleteButton {
+.oneLesson__infoBlock_deleteButton {
 	position: absolute;
 	top: 50px;
 	right: 30px;
 }
 
-.oneTest__questionInfoBlock_header {
+.oneLesson__infoBlock_header {
 	font-size: 32px;
 	font-weight: 500;
 	line-height: 100%;
 	margin: 0;
 	padding-bottom: 20px;
-}
-
-.oneTest__text {
-	font-size: 16px;
-	line-height: 100%;
-	margin: 0;
-}
-
-.hrrrr {
-	width: 100%;
-	border: none;
-	backgroundcolor: "green";
-	color: "green";
-	height: 1px;
-	/* marginbottom: 30px; */
 }

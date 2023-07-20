@@ -37,7 +37,7 @@ export default function OneClassHeader({
 	};
 
 	return (
-		<div className={styles.questionBlock__container}>
+		<div className={styles.oneClassHeader__container}>
 			<p className={styles.oneClassHeader__textHeader}>
 				{classData.school}, {classData.class}
 			</p>

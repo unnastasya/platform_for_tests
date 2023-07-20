@@ -1,14 +1,12 @@
-.classesPage {
+.classes__classesList {
 	width: 1200px;
 	display: flex;
-	/* justify-content: space-between; */
 	flex-wrap: wrap;
 }
 
-.classes_conteiner {
+.classes__container {
 	width: 1200px;
 	display: flex;
 	flex-wrap: wrap;
 	gap: 10px;
-    
 }

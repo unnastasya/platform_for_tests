@@ -1,4 +1,4 @@
-.classPage__block {
+.classBage__container {
 	width: 290px;
 	padding: 30px;
 	padding-top: 50px;
@@ -7,7 +7,7 @@
 	margin: 5px;
 }
 
-.classPage__block::after {
+.classBage__container::after {
 	content: "";
 	position: absolute;
 	left: 0;
@@ -16,13 +16,12 @@
 	bottom: 0;
 	height: 15px;
 	width: 100%;
-	/* background: #82b1ff; */
 	background-position: center center;
 	border-radius: 5px 5px 0 0;
 	background: #2979ff;
 }
 
-.classPage__text {
+.classBage__container_text {
 	font-size: 16px;
 	line-height: 100%;
 	font-weight: bold;
@@ -30,6 +29,6 @@
 	margin-bottom: 20px;
 }
 
-.classPage__ctudentsCountText {
-    	text-decoration: 3px underline solid #2979ff;
+.classBage__container_studentsCountText {
+	text-decoration: 3px underline solid #2979ff;
 }

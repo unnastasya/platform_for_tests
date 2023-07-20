@@ -46,7 +46,7 @@ export default function Page() {
 	};
 	return (
 		<ThemeProvider theme={theme}>
-			<div className={styles.container}>
+			<div className={styles.login__container}>
 				<Paper className={styles.login__block}>
 					<form
 						className={styles.login__form}
@@ -81,12 +81,7 @@ export default function Page() {
 								{loginError}
 							</Alert>
 						)}
-						<Button
-							className={styles.form__button}
-							variant="contained"
-							fullWidth
-							type="submit"
-						>
+						<Button variant="contained" fullWidth type="submit">
 							Войти
 						</Button>
 					</form>

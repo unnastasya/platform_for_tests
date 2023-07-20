@@ -1,4 +1,4 @@
-.oneTest__block {
+.oneTest__container {
 	width: 290px;
 	padding: 30px;
 	padding-top: 50px;
@@ -10,7 +10,7 @@
 	justify-content: space-between;
 }
 
-.oneTest__block::after {
+.oneTest__container::after {
 	content: "";
 	position: absolute;
 	left: 0;
@@ -30,6 +30,7 @@
 	gap: 30px;
 	margin-bottom: 30px;
 }
+
 .oneTest__lessonName {
 	font-size: 16px;
 	font-weight: 600;

@@ -1,4 +1,4 @@
-.container {
+.login__container {
 	width: 100vw;
 	height: 100vh;
 	padding-top: 100px;
@@ -41,8 +41,4 @@
 	font-size: "32px";
 	line-height: "100%";
 	margin: 0;
-}
-
-.form__button {
-	background: #2979ff;
 }

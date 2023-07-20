@@ -20,7 +20,7 @@ export default function PeopleListComponent({
 	return (
 		<div>
 			{people.map((person: User) => (
-				<div key={person._id} className={styles.oneStudent__block}>
+				<div key={person._id} className={styles.peopleList__oneStusent}>
 					<p>{person.name}</p>
 					<Button
 						onClick={() => navigateOneStudentPage(person._id)}

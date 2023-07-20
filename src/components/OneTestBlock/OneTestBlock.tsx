@@ -17,7 +17,7 @@ export default function OneTestBlock({ lesson }: OneTestBlockProps) {
 
 	return (
 		<div>
-			<Paper onClick={linkToTest} className={styles.oneTest__block}>
+			<Paper onClick={linkToTest} className={styles.oneTest__container}>
 				<div className={styles.oneTest__infoBlock}>
 					<p className={styles.oneTest__lessonName}>{lesson.name}</p>
 					<div className={styles.oneTest__classesBlock}>

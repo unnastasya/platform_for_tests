@@ -18,11 +18,10 @@ export default function ClassBage({ oneClass }: ClassBageProps) {
 	};
 
 	return (
-		<Paper onClick={toClassPage} className={styles.classPage__block}>
-			<div className={styles.classPage__block__border} />
-			<p className={styles.classPage__text}>{oneClass.school}</p>
-			<p className={styles.classPage__text}>{oneClass.class}</p>
-			<p className={styles.classPage__ctudentsCountText}>
+		<Paper onClick={toClassPage} className={styles.classBage__container}>
+			<p className={styles.classBage__container_text}>{oneClass.school}</p>
+			<p className={styles.classBage__container_text}>{oneClass.class}</p>
+			<p className={styles.classBage__container_studentsCountText}>
 				Учеников: {oneClass.studentsCount}{" "}
 			</p>
 		</Paper>

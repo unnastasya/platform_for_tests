@@ -16,9 +16,9 @@ const user = {
 export function Page({ children }: any) {
 	return (
 		<ThemeProvider theme={theme}>
-			<div className={styles.page}>
+			<div className={styles.page__container}>
 				<Header activeUser={user} />
-				<div className={styles.page_content}>
+				<div className={styles.page__content}>
 					<Container maxWidth="lg">{children}</Container>
 				</div>
 			</div>
