@@ -9,9 +9,13 @@ export const getOneClass = (id: string) => {
 		.catch((error) => error);
 };
 
-export const getClasses = () => {
+export const getAllClasses = () => {
 	return axios
 		.get(`${API_BASE_URL}/class`)
 		.then((response) => response.data)
 		.catch((error) => error);
+};
+
+export const deleteOneClass = (id: string) => {
+	return axios.delete(`${API_BASE_URL}/class/${id}`);
 };
