@@ -19,3 +19,13 @@ export const getDoneWorks = () => {
 		.get(`${API_BASE_URL}/doneWork`)
 		.then((response) => response.data);
 };
+
+export const getOneDoneWork = (id: any) => {
+	return axios
+		.get(`${API_BASE_URL}/doneWork/${id}`)
+		.then((response) => response.data);
+};
+
+export const changeOneDoneWork = (id: any, object: any) => {
+	return axios.put(`${API_BASE_URL}/doneWork/${id}`, object);
+};
