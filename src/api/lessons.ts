@@ -24,7 +24,6 @@ export const addLesson = (object: any) => {
 		.then((response) => response.data);
 };
 
-
 export const addLessonToClass = (id: any, obj: any) => {
 	return axios.post(`${API_BASE_URL}/classes/${id}/addLesson`, obj);
 };
