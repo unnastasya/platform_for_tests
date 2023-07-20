@@ -7,3 +7,9 @@ export const addDoneWork = (data: any) => {
 		.post(`${API_BASE_URL}/doneWork`, data)
 		.then((response) => response.data);
 };
+
+export const getOneStudentWorks = (studentId: string) => {
+	return axios
+		.get(`${API_BASE_URL}/doneWorkByStudentId/${studentId}`)
+		.then((response) => response.data);
+};
