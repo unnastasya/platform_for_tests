@@ -71,7 +71,7 @@ const Header = ({ activeUser }: HeaderProps) => {
 							<Button
 								variant="contained"
 								endIcon={<PersonIcon />}
-								onClick={() => router.push("/doneWorks")}
+								onClick={() => router.push("/myWorks")}
 							>
 								Мои работы
 							</Button>
