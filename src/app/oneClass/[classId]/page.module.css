@@ -1,0 +1,26 @@
+.questionBlock1 {
+	width: 1200px;
+	padding: 30px;
+	padding-top: 50px;
+
+	border-radius: 10px;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.questionBlock1::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	height: 15px;
+	width: 100%;
+	background: #82b1ff;
+	background-position: center center;
+	border-radius: 5px 5px 0 0;
+	background: #2979ff;
+}
