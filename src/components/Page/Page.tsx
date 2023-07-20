@@ -10,7 +10,7 @@ const user = {
 	id: "64b4f8e069e2dae2470ff33d",
 	name: "Анастасия",
 	surname: "Прокопьева",
-	role: "student",
+	role: "teacher",
 };
 
 export function Page({ children }: any) {

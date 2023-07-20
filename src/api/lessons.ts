@@ -27,3 +27,9 @@ export const addLesson = (object: any) => {
 export const addLessonToClass = (id: any, obj: any) => {
 	return axios.post(`${API_BASE_URL}/classes/${id}/addLesson`, obj);
 };
+
+export const getOneStudentLessons = (id: any) => {
+	return axios
+		.get(`${API_BASE_URL}/oneSudentsLessons/${id}`)
+		.then((response) => response.data);
+};
