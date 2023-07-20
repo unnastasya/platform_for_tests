@@ -26,7 +26,7 @@ function getTotal(payload: any) {
 	return total;
 }
 
-export function AddCriteria({ register, indexQuestion, control }: any) {
+export default function AddCriteria({ register, indexQuestion, control }: any) {
 	const { fields, append, remove } = useFieldArray({
 		name: `questions.${indexQuestion}.criteria`,
 		control,

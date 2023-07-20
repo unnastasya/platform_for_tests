@@ -1,0 +1,9 @@
+.addClass__nameBlock {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.addStudent__textHeader {
+	text-decoration: 3px underline solid #2979ff;
+}

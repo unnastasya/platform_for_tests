@@ -1,0 +1,22 @@
+.addStudent__oneSrudent {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	gap: 20px;
+	align-items: center;
+}
+
+.addStudents__buttonsBlock {
+	display: flex;
+	gap: 20px;
+}
+
+.addStudent__textHeader {
+	text-decoration: 3px underline solid #2979ff;
+}
+
+.addStudent__container {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
