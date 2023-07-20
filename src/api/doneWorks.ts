@@ -13,3 +13,9 @@ export const getOneStudentWorks = (studentId: string) => {
 		.get(`${API_BASE_URL}/doneWorkByStudentId/${studentId}`)
 		.then((response) => response.data);
 };
+
+export const getDoneWorks = () => {
+	return axios
+		.get(`${API_BASE_URL}/doneWork`)
+		.then((response) => response.data);
+};
