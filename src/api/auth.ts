@@ -17,3 +17,9 @@ export const getUsersByClassId = (id: string) => {
 		.get(`${API_BASE_URL}/userByClassId/${id}`)
 		.then((response) => response.data);
 };
+
+export const getOneUser = (id: string) => {
+	return axios
+		.get(`${API_BASE_URL}/user/${id}`)
+		.then((response) => response.data);
+};
