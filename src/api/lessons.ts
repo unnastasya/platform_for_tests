@@ -17,3 +17,9 @@ export const getOneLesson = (id: any) => {
 export const deleteLesson = (id: any) => {
 	return axios.delete(`${API_BASE_URL}/lesson/${id}`);
 };
+
+export const addLesson = (object: any) => {
+	return axios
+		.post(`${API_BASE_URL}/lesson`, qs.stringify(object))
+		.then((response) => response.data);
+};
