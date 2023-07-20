@@ -29,3 +29,7 @@
 	margin: 0;
 	margin-bottom: 20px;
 }
+
+.classPage__ctudentsCountText {
+    	text-decoration: 3px underline solid #2979ff;
+}

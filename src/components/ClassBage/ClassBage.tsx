@@ -21,8 +21,10 @@ export default function ClassBage({ oneClass }: ClassBageProps) {
 		<Paper onClick={toClassPage} className={styles.classPage__block}>
 			<div className={styles.classPage__block__border} />
 			<p className={styles.classPage__text}>{oneClass.school}</p>
-			<p className={styles.classPage__text}>{oneClass.class} класс</p>
-			<p>Учеников: {oneClass.studentsCount} </p>
+			<p className={styles.classPage__text}>{oneClass.class}</p>
+			<p className={styles.classPage__ctudentsCountText}>
+				Учеников: {oneClass.studentsCount}{" "}
+			</p>
 		</Paper>
 	);
 }

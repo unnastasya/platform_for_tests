@@ -1,0 +1,24 @@
+.oneStudent__block {
+	width: 100%;
+	display: flex;
+	padding: 5px 10px;
+	justify-content: space-between;
+	align-items: center;
+	position: relative;
+	transition: 0.3s linear;
+}
+
+.oneStudent__block:not(:last-child)::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	height: 1px;
+	width: 100%;
+	background: gray;
+	/* background-position: center center; */
+}
+
+.oneStudent__block:hover {
+	background: rgba(184, 184, 184, 0.3);
+}
