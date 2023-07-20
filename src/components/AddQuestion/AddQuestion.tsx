@@ -1,7 +1,7 @@
 import { useFieldArray } from "react-hook-form";
 import { Button, Divider, FormControl, Paper, TextField } from "@mui/material";
-import { AddCriteria } from "../AddCriteria/AddCriteria";
 import DeleteIcon from "@mui/icons-material/Delete";
+import AddCriteria from "../AddCriteria/AddCriteria";
 
 import styles from "./AddQuestion.module.css";
 
