@@ -19,8 +19,6 @@ interface DoneWorkBageProps {
 export default function DoneWorkBage({ work }: DoneWorkBageProps) {
 	const router = useRouter();
 
-	console.log(work);
-
 	const toOneWorkPage = (id: string, workIsVerified: boolean) => {
 		if (workIsVerified) {
 			router.push(`/resultTest/${id}`);
