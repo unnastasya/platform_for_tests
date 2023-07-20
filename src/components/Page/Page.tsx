@@ -9,7 +9,7 @@ import styles from "./Page.module.css";
 const user = {
 	id: "64b4f8e069e2dae2470ff33d",
 	name: "Анастасия",
-	lastName: "Прокопьева",
+	surname: "Прокопьева",
 	role: "teacher",
 };
 

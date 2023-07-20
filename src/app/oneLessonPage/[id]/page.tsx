@@ -64,6 +64,7 @@ export default function OneLessonPage({ params }: OneLessonPageProps) {
 			isVerified: false,
 			school: "4 средняя школа",
 			class: "9a",
+			allCriteriaRating: lesson.allCriteriaRating,
 		};
 
 		const doneWorkId = await addDoneWork(data);

@@ -21,7 +21,7 @@ export default function PeopleListComponent({
 		<div>
 			{people.map((person: User) => (
 				<div key={person._id} className={styles.peopleList__oneStusent}>
-					<p>{person.name}</p>
+					<p>{person.name} {person.surname}</p>
 					<Button
 						onClick={() => navigateOneStudentPage(person._id)}
 						variant="contained"

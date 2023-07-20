@@ -21,7 +21,7 @@ const Header = ({ activeUser }: HeaderProps) => {
 			<Container>
 				<div className={styles.header__inner}>
 					<p className={styles.header__text}>
-						{activeUser.lastName} {activeUser.name}
+						{activeUser.surname} {activeUser.name}
 					</p>
 					{activeUser.role === "teacher" && (
 						<Stack direction="row" spacing={2}>
