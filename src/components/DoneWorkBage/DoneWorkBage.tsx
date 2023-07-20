@@ -23,7 +23,7 @@ export default function DoneWorkBage({ work }: DoneWorkBageProps) {
 		if (workIsVerified) {
 			router.push(`/resultTest/${id}`);
 		} else {
-			router.push(`/checkTestPage/${id}`);
+			router.push(`/checkLesson/${id}`);
 		}
 	};
 

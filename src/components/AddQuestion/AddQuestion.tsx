@@ -1,5 +1,5 @@
 import { useFieldArray } from "react-hook-form";
-import { Button, FormControl, Paper, TextField } from "@mui/material";
+import { Button, Divider, FormControl, Paper, TextField } from "@mui/material";
 import { AddCriteria } from "../AddCriteria/AddCriteria";
 import DeleteIcon from "@mui/icons-material/Delete";
 
@@ -62,15 +62,7 @@ export default function AddQuestion({ control, register }: any) {
 							</FormControl>
 						</div>
 
-						<hr
-							style={{
-								width: "100%",
-								border: "none",
-								backgroundColor: "#A3A3A3",
-								color: "#A3A3A3",
-								height: "1px",
-							}}
-						/>
+						<Divider />
 
 						<AddCriteria
 							indexQuestion={index}

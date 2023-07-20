@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-import { Button, Paper } from "@mui/material";
+import { Button, Divider, Paper } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import QuestionBlock from "@/components/QuestionBlock/QuestionBlock";
@@ -69,7 +69,7 @@ export default function OneLessonPage({ params }: OneLessonPageProps) {
 
 		const doneWorkId = await addDoneWork(data);
 
-		router.push(`/checkTestPage/${doneWorkId}`);
+		router.push(`/checkLesson/${doneWorkId}`);
 	};
 
 	const onSubmit = (data: any) => {
@@ -108,15 +108,7 @@ export default function OneLessonPage({ params }: OneLessonPageProps) {
 									index={index}
 									register={register}
 								/>
-								<hr
-									style={{
-										width: "100%",
-										border: "none",
-										backgroundColor: "#A3A3A3",
-										color: "#A3A3A3",
-										height: "1px",
-									}}
-								/>
+								<Divider />
 								<QuestionCriteria question={question} />
 							</QuestionBlock>
 						))}

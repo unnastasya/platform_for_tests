@@ -1,7 +1,7 @@
 import { useRouter } from "next/navigation";
 import styles from "./AddClassBlock.module.css";
 import { useForm } from "react-hook-form";
-import { Paper } from "@mui/material";
+import { Divider, Paper } from "@mui/material";
 import { addClass } from "@/api/classes";
 import AddClassHeader from "../AddClassHeader/AddClassHeader";
 import AddStudents from "../AddStudents/AddStudents";
@@ -42,15 +42,7 @@ export default function AddClassBlock() {
 			>
 				<AddClassHeader register={register} />
 
-				<hr
-					style={{
-						width: "100%",
-						border: "none",
-						backgroundColor: "#A3A3A3",
-						color: "#A3A3A3",
-						height: "1px",
-					}}
-				/>
+				<Divider />
 				<AddStudents control={control} register={register} />
 			</form>
 		</Paper>
