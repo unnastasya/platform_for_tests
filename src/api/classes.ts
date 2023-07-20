@@ -19,3 +19,11 @@ export const getAllClasses = () => {
 export const deleteOneClass = (id: string) => {
 	return axios.delete(`${API_BASE_URL}/class/${id}`);
 };
+
+export const addClass = (data: any): Promise<any> => {
+	console.log(data);
+	return axios
+		.post(`${API_BASE_URL}/class`, data)
+		.then((response) => console.log(response.data))
+		.catch((error) => console.log(error));
+};
