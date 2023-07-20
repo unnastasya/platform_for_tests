@@ -1,0 +1,33 @@
+.addCriteria__oneCriteria {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	gap: 20px;
+	align-items: center;
+}
+
+.grade__question {
+	border: 1px solid gray;
+	border-radius: 2px;
+	display: inline-block;
+	padding: 5px 10px;
+}
+
+.addCriteria__headerText {
+	text-decoration: 3px underline solid #2979ff;
+}
+
+.addCriteria__container {
+	display: flex;
+	align-items: start;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.addCriteria__totalGrade {
+	border: 1px solid gray;
+	border-radius: 5px;
+	display: inline-block;
+	padding: 10px 15px;
+	margin-left: 20px;
+}
