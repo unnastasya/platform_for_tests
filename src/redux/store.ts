@@ -8,6 +8,7 @@ import storage from "redux-persist/lib/storage";
 import { ClassesReducer } from "./Classes";
 import { OneClassReducer } from "./OneClass";
 import { AddClassReducer } from "./AddClass";
+import { DoneWorksReducer } from "./DoneWorks";
 
 const persistConfig = {
 	key: "root",
@@ -17,7 +18,8 @@ const persistConfig = {
 const rootReducer = combineReducers({
 	classes: ClassesReducer,
 	oneClass: OneClassReducer,
-    addClass : AddClassReducer
+    addClass : AddClassReducer,
+    doneWorks : DoneWorksReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
