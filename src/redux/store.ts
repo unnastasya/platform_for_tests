@@ -7,6 +7,7 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { ClassesReducer } from "./Classes";
 import { OneClassReducer } from "./OneClass";
+import { AddClassReducer } from "./AddClass";
 
 const persistConfig = {
 	key: "root",
@@ -16,6 +17,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
 	classes: ClassesReducer,
 	oneClass: OneClassReducer,
+    addClass : AddClassReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

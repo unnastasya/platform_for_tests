@@ -3,7 +3,6 @@
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { Button, CircularProgress } from "@mui/material";
-import { getAllClasses } from "@/api/classes";
 import AddIcon from "@mui/icons-material/Add";
 import ClassBage from "@/components/ClassBage/ClassBage";
 import { Page } from "@/components/Page/Page";
@@ -13,13 +12,13 @@ import styles from "./page.module.css";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import {
 	ClassesActions,
+	classesDataSelector,
 	classesIsLoadingSelector,
-	classesSelector,
 } from "@/redux/Classes";
 
 export default function Classes() {
 	const router = useRouter();
-	const classes: ClassType[] = useAppSelector(classesSelector);
+	const classes: ClassType[] = useAppSelector(classesDataSelector);
 	const classesIsLoading: boolean = useAppSelector(classesIsLoadingSelector);
 	const dispatch = useAppDispatch();
 

@@ -18,7 +18,7 @@ const initialState: oneClassStateType = {
 	requestClassId: "",
 };
 
-const NAME = "classes";
+const NAME = "oneClass";
 
 const requestOneClass: CaseReducer<oneClassStateType> = (state) => {
 	state.oneClassIsLoading = true;
