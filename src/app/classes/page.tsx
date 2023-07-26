@@ -15,7 +15,7 @@ import {
 	ClassesActions,
 	classesIsLoadingSelector,
 	classesSelector,
-} from "@/redux/Class";
+} from "@/redux/Classes";
 
 export default function Classes() {
 	const router = useRouter();
