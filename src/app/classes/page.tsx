@@ -1,8 +1,8 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { Button } from "@mui/material";
+import { useCallback, useEffect, useState } from "react";
+import { Button, CircularProgress } from "@mui/material";
 import { getAllClasses } from "@/api/classes";
 import AddIcon from "@mui/icons-material/Add";
 import ClassBage from "@/components/ClassBage/ClassBage";
@@ -10,18 +10,41 @@ import { Page } from "@/components/Page/Page";
 import { ClassType } from "@/types/class";
 
 import styles from "./page.module.css";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
+import {
+	ClassesActions,
+	classesIsLoadingSelector,
+	classesSelector,
+} from "@/redux/Class";
 
 export default function Classes() {
 	const router = useRouter();
-	const [classes, setClasses] = useState<ClassType[]>([]);
+	const classes: ClassType[] = useAppSelector(classesSelector);
+	const classesIsLoading: boolean = useAppSelector(classesIsLoadingSelector);
+	const dispatch = useAppDispatch();
+
+	const fetchClasses = useCallback(() => {
+		dispatch(ClassesActions.requestClasses());
+	}, [dispatch]);
 
 	useEffect(() => {
-		getAllClasses().then((response) => setClasses(response));
-	}, []);
+		fetchClasses();
+	}, [dispatch, fetchClasses]);
 
 	const navigateToAddClass = () => {
 		router.push("/addClass");
 	};
+
+	if (classesIsLoading) {
+		return (
+			<Page>
+				<div className={styles.classes__loadingContainer}>
+					<CircularProgress />
+				</div>
+			</Page>
+		);
+	}
+
 	return (
 		<Page>
 			<div className={styles.classes__container}>

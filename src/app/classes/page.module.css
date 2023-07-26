@@ -10,3 +10,9 @@
 	flex-wrap: wrap;
 	gap: 10px;
 }
+
+.classes__loadingContainer {
+	padding-top: 150px;
+	display: flex;
+	justify-content: center;
+}
