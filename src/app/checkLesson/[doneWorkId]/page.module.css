@@ -64,3 +64,9 @@
 	font-size: 22px;
 	line-height: 100%;
 }
+
+.oneTest__loadingContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 150px;
+}

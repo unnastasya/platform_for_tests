@@ -27,10 +27,10 @@ export default function QuestionBlock({
 
 				{question.images.length > 0 && (
 					<div className={styles.questionBlock__imagesBlock}>
-						{question.images.map((image) => (
+						{question.images.map((image, index) => (
 							<img
-                            className={styles.questionBlock__image}
-								key={image.public_id}
+								className={styles.questionBlock__image}
+								key={index}
 								src={image.url}
 							/>
 						))}

@@ -35,8 +35,8 @@ export default function CheckBlock({
 			</p>
 			{question.images.length > 0 && (
 				<div className={styles.checkBlock__imagesBlock}>
-					{question.images.map((image) => (
-						<img style={{ width: "600px" }} src={image.url} />
+					{question.images.map((image, index) => (
+						<img key={index} style={{ width: "600px" }} src={image.url} />
 					))}
 				</div>
 			)}

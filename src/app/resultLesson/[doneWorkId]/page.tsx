@@ -1,13 +1,15 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import styles from "./page.module.css";
 import { getOneDoneWork } from "@/api/doneWorks";
 import { getOneLesson } from "@/api/lessons";
-import { Alert, Divider, FormControl, Paper, TextField } from "@mui/material";
+import { Alert, CircularProgress, Divider, FormControl, Paper, TextField } from "@mui/material";
 import QuestionBlock from "@/components/QuestionBlock/QuestionBlock";
 import QuestionCriteria from "@/components/QuestionCriteria/QuestionCriteria";
 import { Page } from "@/components/Page/Page";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
+import { OneDoneWorkActions, oneDoneWorkDataSelector, oneDoneWorkIsLoadingSelector } from "@/redux/OneDoneWork";
 
 const whatColor = (value: number, allCriteriaRating: number) => {
 	const percentage = (value / allCriteriaRating) * 100;
@@ -24,23 +26,51 @@ interface ResultLessonProps {
 }
 
 export default function ResultLesson({ params }: ResultLessonProps) {
+	const dispatch = useAppDispatch();
+
 	const { doneWorkId } = params;
 	const [lesson, setLesson] = useState<any>({});
-	const [doneWork, setDoneWork] = useState<any>({});
+	// const [doneWork, setDoneWork] = useState<any>({});
+
+    const doneWork = useAppSelector(oneDoneWorkDataSelector);
+	const isLoadingDoneWork = useAppSelector(oneDoneWorkIsLoadingSelector);
+
+	const changeDoneWorkId = () => {
+		dispatch(OneDoneWorkActions.changeRequestDoneWorkId(doneWorkId));
+	};
+
+	const fetchOneDoneWork = useCallback(() => {
+		dispatch(OneDoneWorkActions.requestOneDoneWork());
+	}, [dispatch]);
+
+	useEffect(() => {
+		changeDoneWorkId();
+		fetchOneDoneWork();
+	}, [dispatch, fetchOneDoneWork, doneWorkId]);
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const oneDoneWorkData = await getOneDoneWork(doneWorkId);
+			// const oneDoneWorkData = await getOneDoneWork(doneWorkId);
 			const lessonData = await getOneLesson(
-				oneDoneWorkData.lessonId
+				doneWork.lessonId
 			).then((res: any) => res);
 
-			setDoneWork(oneDoneWorkData);
+			// setDoneWork(oneDoneWorkData);
 			setLesson(lessonData);
 		};
 		// getOneDoneWork(id).then((res) => setLesson(res));
 		fetchData();
 	}, [doneWorkId]);
+
+    if (isLoadingDoneWork) {
+		return (
+			<Page>
+				<div className={styles.resultLesson__loadingContainer}>
+					<CircularProgress />
+				</div>
+			</Page>
+		);
+	}
 
 	return (
 		<Page>
@@ -57,9 +87,9 @@ export default function ResultLesson({ params }: ResultLessonProps) {
 				)}
 
 				<p className={styles.resultLesson__header}>{lesson.name}</p>
-				<p>{doneWork.studentName}</p>
-				<p>{lesson.school}</p>
-				<p>{lesson.class}</p>
+				<p>{doneWork.student.name} {doneWork.student.surname}</p>
+                
+				<p>{doneWork.school}, {doneWork.class}</p>
 				<Alert severity="success">
 					Проверено
 				</Alert>
@@ -74,7 +104,7 @@ export default function ResultLesson({ params }: ResultLessonProps) {
 				lesson.questions.map((question: any, index: any) => (
 					<QuestionBlock
 						index={index}
-						key={question.id}
+						key={question._id}
 						question={question}
 					>
 						<FormControl fullWidth>

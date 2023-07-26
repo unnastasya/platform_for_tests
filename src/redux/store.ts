@@ -9,6 +9,7 @@ import { ClassesReducer } from "./Classes";
 import { OneClassReducer } from "./OneClass";
 import { AddClassReducer } from "./AddClass";
 import { DoneWorksReducer } from "./DoneWorks";
+import { OneDoneWorkReducer } from "./OneDoneWork";
 
 const persistConfig = {
 	key: "root",
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
 	oneClass: OneClassReducer,
     addClass : AddClassReducer,
     doneWorks : DoneWorksReducer,
+    oneDoneWork : OneDoneWorkReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

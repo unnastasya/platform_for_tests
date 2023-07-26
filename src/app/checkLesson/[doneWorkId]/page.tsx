@@ -2,15 +2,21 @@
 
 import { changeOneDoneWork, getOneDoneWork } from "@/api/doneWorks";
 import { getOneLesson } from "@/api/lessons";
-import { Alert, Button, Paper } from "@mui/material";
+import { Alert, Button, CircularProgress, Paper } from "@mui/material";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import DoneIcon from "@mui/icons-material/Done";
 import { Page } from "@/components/Page/Page";
 import CheckBlock from "@/components/CheckBlock/CheckBlock";
 import AddComent from "@/components/AddComent/AddComent";
 
 import styles from "./page.module.css";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
+import {
+	OneDoneWorkActions,
+	oneDoneWorkDataSelector,
+	oneDoneWorkIsLoadingSelector,
+} from "@/redux/OneDoneWork";
 
 const whatColor = (value: number, allCriteriaRating: number) => {
 	const percentage = (value / allCriteriaRating) * 100;
@@ -27,19 +33,37 @@ interface CheckLessonProps {
 }
 
 export default function CheckLesson({ params }: CheckLessonProps) {
+	const dispatch = useAppDispatch();
+
 	const { doneWorkId } = params;
 	const router = useRouter();
 	const [lesson, setLesson] = useState<any>({});
-	const [doneWork, setDoneWork] = useState<any>({});
+	// const [doneWork, setDoneWork] = useState<any>({});
 	const [comment, setComment] = useState<string>("");
 	const [ratingValue, setRaitingValue] = useState<number>(0);
 
+	const doneWork = useAppSelector(oneDoneWorkDataSelector);
+	const isLoadingDoneWork = useAppSelector(oneDoneWorkIsLoadingSelector);
+
+	const changeDoneWorkId = () => {
+		dispatch(OneDoneWorkActions.changeRequestDoneWorkId(doneWorkId));
+	};
+
+	const fetchOneDoneWork = useCallback(() => {
+		dispatch(OneDoneWorkActions.requestOneDoneWork());
+	}, [dispatch]);
+
+	useEffect(() => {
+		changeDoneWorkId();
+		fetchOneDoneWork();
+	}, [dispatch, fetchOneDoneWork, doneWorkId]);
+
 	useEffect(() => {
 		const fetchData = async () => {
-			const oneDoneWorkData = await getOneDoneWork(doneWorkId);
-			const lessonData = await getOneLesson(oneDoneWorkData.lessonId);
+			// const oneDoneWorkData = await getOneDoneWork(doneWorkId);
+			const lessonData = await getOneLesson(doneWork.lessonId);
 
-			setDoneWork(oneDoneWorkData);
+			// setDoneWork(oneDoneWorkData);
 			setLesson(lessonData);
 		};
 
@@ -55,6 +79,16 @@ export default function CheckLesson({ params }: CheckLessonProps) {
 		router.push(`/resultLesson/${doneWorkId}`);
 	};
 
+	if (isLoadingDoneWork) {
+		return (
+			<Page>
+				<div className={styles.oneTest__loadingContainer}>
+					<CircularProgress />
+				</div>
+			</Page>
+		);
+	}
+
 	return (
 		<Page>
 			<div
@@ -67,9 +101,7 @@ export default function CheckLesson({ params }: CheckLessonProps) {
 			</div>
 			<Paper className={styles.oneTest__questionBlock}>
 				<p className={styles.oneTest__headerText}>{lesson.name}</p>
-				<p className={styles.oneTest__headerText}>
-					{doneWork.studentName}
-				</p>
+				<p className={styles.oneTest__headerText}>{doneWork.student.name} {doneWork.student.surname}</p>
 				<p>
 					{lesson.school}, {lesson.class}
 				</p>
@@ -80,7 +112,7 @@ export default function CheckLesson({ params }: CheckLessonProps) {
 				lesson.questions.map((question: any, index: any) => (
 					<CheckBlock
 						setRaitingValue={setRaitingValue}
-						key={question.id}
+						key={question._id}
 						question={question}
 						answer={doneWork.answers[index]}
 					/>

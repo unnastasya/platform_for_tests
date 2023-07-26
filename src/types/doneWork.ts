@@ -7,6 +7,6 @@ export type DoneWorkType = {
 	class: string;
 	rating?: number;
 	comment?: string;
-	student: string;
+	student: any;
     allCriteriaRating: number;
 };
