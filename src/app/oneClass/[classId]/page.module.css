@@ -24,3 +24,9 @@
 	border-radius: 5px 5px 0 0;
 	background: #2979ff;
 }
+
+.oneClass__loadingContainer {
+	padding-top: 150px;
+	display: flex;
+	justify-content: center;
+}

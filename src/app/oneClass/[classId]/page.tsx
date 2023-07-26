@@ -1,16 +1,19 @@
 "use client";
 
 import { Page } from "@/components/Page/Page";
-import { Paper } from "@mui/material";
-import { useEffect, useState } from "react";
-import { getOneClass } from "@/api/classes";
-import { ClassType } from "@/types/class";
-import { getUsersByClassId } from "@/api/auth";
+import { CircularProgress, Paper } from "@mui/material";
+import { useCallback, useEffect, useState } from "react";
 import OneClassHeader from "@/components/OneClassHeader/OneClassHeader";
-import { User } from "@/types/user";
 import PeopleListComponent from "@/components/PeopleListComponent/PeopleListComponent";
 
 import styles from "./page.module.css";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
+import {
+	OneClassActions,
+	oneClassDataSelector,
+	oneClassIsLoadingSelector,
+	oneClassStudentsSelector,
+} from "@/redux/OneClass";
 
 interface OneClassProps {
 	params: {
@@ -19,27 +22,36 @@ interface OneClassProps {
 }
 
 export default function OneClass({ params }: OneClassProps) {
+	const dispatch = useAppDispatch();
+
 	const classId = params.classId;
-	const [classData, setClass] = useState<ClassType>({
-		_id: 0,
-		school: "",
-		class: "",
-		studentsCount: 0,
-		lessons: [],
-	});
-	const [classStudents, setClassStudents] = useState<User[]>([]);
+
+	const classData = useAppSelector(oneClassDataSelector);
+	const classStudents = useAppSelector(oneClassStudentsSelector);
+	const classIsLoading = useAppSelector(oneClassIsLoadingSelector);
+
+	const changeClassId = () => {
+		dispatch(OneClassActions.changeRequestClassId(classId || ""));
+	};
+
+	const fetchOneClass = useCallback(() => {
+		dispatch(OneClassActions.requestOneClass());
+	}, [dispatch]);
 
 	useEffect(() => {
-		const fetchData = async () => {
-			const classData = await getOneClass(classId);
-			setClass(classData);
+		changeClassId();
+		fetchOneClass();
+	}, [dispatch, fetchOneClass]);
 
-			const classStudentsData = await getUsersByClassId(classId);
-			setClassStudents(classStudentsData);
-		};
-
-		fetchData();
-	}, [classId]);
+	if (classIsLoading) {
+		return (
+			<Page>
+				<div className={styles.oneClass__loadingContainer}>
+					<CircularProgress />
+				</div>
+			</Page>
+		);
+	}
 
 	return (
 		<Page>
