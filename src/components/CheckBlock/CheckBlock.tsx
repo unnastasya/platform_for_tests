@@ -33,6 +33,13 @@ export default function CheckBlock({
 			<p className={styles.checkBlock__container_text}>
 				{question.description}
 			</p>
+			{question.images.length > 0 && (
+				<div className={styles.checkBlock__imagesBlock}>
+					{question.images.map((image) => (
+						<img style={{ width: "600px" }} src={image.url} />
+					))}
+				</div>
+			)}
 			<FormControl fullWidth>
 				<TextField multiline label="Ответ ученика" value={answer} />
 			</FormControl>

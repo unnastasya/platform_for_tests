@@ -1,11 +1,14 @@
+"use client";
 import { useFieldArray } from "react-hook-form";
 import { Button, Divider, FormControl, Paper, TextField } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddCriteria from "../AddCriteria/AddCriteria";
 
 import styles from "./AddQuestion.module.css";
+import AddImage from "../AddImage/AddImage";
+import { useState } from "react";
 
-export default function AddQuestion({ control, register }: any) {
+export default function AddQuestion({ control, register, setValue }: any) {
 	const { fields, append, remove } = useFieldArray({
 		name: "questions",
 		control,
@@ -51,6 +54,12 @@ export default function AddQuestion({ control, register }: any) {
 								multiline
 								label="Описание задания"
 							/>
+							{/* <AddImage
+								setValue={setValue}
+								control={control}
+								register={register}
+								questionIndex={index}
+							/> */}
 							<FormControl fullWidth>
 								<TextField
 									sx={{ marginBottom: "20px" }}
@@ -75,6 +84,7 @@ export default function AddQuestion({ control, register }: any) {
 			<Button
 				onClick={() => {
 					append({
+						images: [],
 						id: Number(Date.now()),
 						question: "",
 						description: "",

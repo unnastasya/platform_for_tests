@@ -20,6 +20,7 @@ export default function AddLesson() {
 		register,
 		formState: { errors },
 		handleSubmit,
+		setValue,
 		control,
 	} = useForm({
 		defaultValues: {
@@ -28,6 +29,7 @@ export default function AddLesson() {
 			doneCount: 0,
 			questions: [
 				{
+					images: [],
 					questionText: "",
 					description: "",
 					criteria: [{ text: "", value: 0 }],
@@ -64,7 +66,11 @@ export default function AddLesson() {
 					classesData={classesData}
 				/>
 
-				<AddQuestion control={control} register={register} />
+				<AddQuestion
+					setValue={setValue}
+					control={control}
+					register={register}
+				/>
 
 				<Button
 					variant="contained"

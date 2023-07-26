@@ -21,9 +21,8 @@ export const deleteOneClass = (id: string) => {
 };
 
 export const addClass = (data: any): Promise<any> => {
-	console.log(data);
 	return axios
 		.post(`${API_BASE_URL}/class`, data)
-		.then((response) => console.log(response.data))
-		.catch((error) => console.log(error));
+		.then((response) => response.data)
+		.catch((error) => error);
 };

@@ -24,6 +24,18 @@ export default function QuestionBlock({
 					{question.questionText}
 				</p>
 				<p>{question.description}</p>
+
+				{question.images.length > 0 && (
+					<div className={styles.questionBlock__imagesBlock}>
+						{question.images.map((image) => (
+							<img
+                            className={styles.questionBlock__image}
+								key={image.public_id}
+								src={image.url}
+							/>
+						))}
+					</div>
+				)}
 			</div>
 			{children}
 		</Paper>

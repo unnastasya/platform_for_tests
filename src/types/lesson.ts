@@ -16,6 +16,7 @@ export type QuestionType = {
 	description: string;
 	criteria: CriteriaType[];
 	criteriaRating: number;
+	images: any[];
 };
 
 export type CriteriaType = {

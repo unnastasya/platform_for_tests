@@ -59,7 +59,7 @@ export default function OneLessonPage({ params }: OneLessonPageProps) {
 	const addOneDoneWork = async (data: any) => {
 		data = {
 			...data,
-			lessonId: "64b0f16eaea50b66282bfe59",
+			lessonId: id,
 			student: "64aff81d9313c2a053c6b321",
 			isVerified: false,
 			school: "4 средняя школа",
@@ -68,8 +68,7 @@ export default function OneLessonPage({ params }: OneLessonPageProps) {
 		};
 
 		const doneWorkId = await addDoneWork(data);
-
-		router.push(`/checkLesson/${doneWorkId}`);
+		router.push(`/checkLesson/${doneWorkId.id}`);
 	};
 
 	const onSubmit = (data: any) => {

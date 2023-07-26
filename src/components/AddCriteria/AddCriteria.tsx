@@ -52,7 +52,10 @@ export default function AddCriteria({ register, indexQuestion, control }: any) {
 			<p className={styles.addCriteria__headerText}>Добавьте критерии</p>
 			{fields.map((field, index) => {
 				return (
-					<div className={styles.addCriteria__oneCriteria}>
+					<div
+						key={field.id}
+						className={styles.addCriteria__oneCriteria}
+					>
 						<FormControl sx={styleInput}>
 							<TextField
 								{...register(
