@@ -23,6 +23,16 @@ import {
 	addDoneWorkIsLoadingSelector,
 } from "@/redux/DoneWork/AddDoneWork";
 import { doneWorksIsLoadingSelector } from "@/redux/DoneWork/DoneWorks";
+import {
+	LessonsActions,
+	lessonsDataSelector,
+	lessonsIsLoadingSelector,
+} from "@/redux/Lesson/Lessons";
+import {
+	OneLessonActions,
+	oneLessonDataSelector,
+	oneLessonIsLoadingSelector,
+} from "@/redux/Lesson/OneLesson";
 
 interface OneLessonPageProps {
 	params: {
@@ -35,11 +45,14 @@ export default function OneLessonPage({ params }: OneLessonPageProps) {
 
 	const id = params.id;
 	const router = useRouter();
-	const [lesson, setLesson] = useState<any>({});
+	// const [lesson, setLesson] = useState<any>({});
 
 	const isAddedDoneWork = useAppSelector(addDoneWorkIsAddedSelector);
 	const isLoading = useAppSelector(addDoneWorkIsLoadingSelector);
 	const doneWorkId = useAppSelector(addDoneWorkIdSelector);
+
+	const lesson = useAppSelector(oneLessonDataSelector);
+	const isLoadingLesson = useAppSelector(oneLessonIsLoadingSelector);
 
 	const changeRequestData = (data: any) => {
 		dispatch(AddDoneWorkActions.changeRequestData(data));
@@ -49,13 +62,13 @@ export default function OneLessonPage({ params }: OneLessonPageProps) {
 		dispatch(AddDoneWorkActions.addDoneWork());
 	}, [dispatch]);
 
-	useEffect(() => {
-		const fetchData = async () => {
-			const data = await getOneLesson(id);
-			setLesson(data);
-		};
+	const fetchLesson = useCallback(() => {
+		dispatch(OneLessonActions.requestOneLesson());
+	}, [dispatch]);
 
-		fetchData();
+	useEffect(() => {
+		dispatch(OneLessonActions.changeRequestLessonId(id));
+		fetchLesson();
 	}, [id]);
 
 	const deleteLessonFunction = () => {
@@ -99,7 +112,7 @@ export default function OneLessonPage({ params }: OneLessonPageProps) {
 		addOneDoneWork(data);
 	};
 
-	if (isLoading) {
+	if (isLoading || isLoadingLesson) {
 		return (
 			<Page>
 				<div className={styles.oneLesson__loadingContainer}>
