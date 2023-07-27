@@ -1,6 +1,6 @@
 "use client";
 
-import { changeOneDoneWork, getOneDoneWork } from "@/api/doneWorks";
+import { changeOneDoneWork } from "@/api/doneWorks";
 import { getOneLesson } from "@/api/lessons";
 import { Alert, Button, CircularProgress, Paper } from "@mui/material";
 import { useRouter } from "next/navigation";

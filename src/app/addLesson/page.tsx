@@ -1,9 +1,9 @@
 "use client";
 
-import { addLesson, addLessonToClass } from "@/api/lessons";
-import { Button } from "@mui/material";
+import { addLessonToClass } from "@/api/lessons";
+import { Button, CircularProgress } from "@mui/material";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import DoneIcon from "@mui/icons-material/Done";
 import AddQuestion from "@/components/AddQuestion/AddQuestion";
@@ -11,10 +11,23 @@ import { Page } from "@/components/Page/Page";
 import { AddLessonHeader } from "@/components/AddLessonHeader/AddLessonHeader";
 import { allCriteriaValue } from "@/utils/allCritariaValue";
 import { ClassType } from "@/types/class";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
+import {
+	AddLessonActions,
+	addLessonIdSelector,
+	addLessonIsLoadingSelector,
+} from "@/redux/Lesson/AddLesson";
+
+import styles from "./page.module.css";
 
 export default function AddLesson() {
+	const dispatch = useAppDispatch();
+
 	const [classesData, setClassesData] = useState<ClassType[]>([]);
 	const [checkedClass, setCheckedClass] = useState<any[]>([]);
+
+	const lessonDataId = useAppSelector(addLessonIdSelector);
+	const isLoading: boolean = useAppSelector(addLessonIsLoadingSelector);
 
 	const {
 		register,
@@ -42,11 +55,22 @@ export default function AddLesson() {
 
 	const router = useRouter();
 
+	const changeRequestData = (data: any) => {
+		dispatch(AddLessonActions.changeRequestData(data));
+	};
+
+	const fetchAddLesson = useCallback(() => {
+		dispatch(AddLessonActions.addLesson());
+	}, [dispatch]);
+
 	const onSubmit = async (data: any) => {
 		data.allCriteriaRating = allCriteriaValue(data.questions);
 		data.classes = classesData;
 
-		const lessonDataId = await addLesson(data);
+		changeRequestData(data);
+		fetchAddLesson();
+
+		// const lessonDataId = await addLesson(data);
 
 		for (const oneClass of checkedClass) {
 			addLessonToClass(oneClass._id, { lessonId: lessonDataId });
@@ -54,6 +78,16 @@ export default function AddLesson() {
 
 		router.push("/lessonsPage");
 	};
+
+	if (isLoading) {
+		return (
+			<Page>
+				<div className={styles.addLesson__loadingContainer}>
+					<CircularProgress />
+				</div>
+			</Page>
+		);
+	}
 
 	return (
 		<Page>

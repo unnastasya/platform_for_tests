@@ -58,7 +58,7 @@ export default function OneLessonPage({ params }: OneLessonPageProps) {
 		dispatch(AddDoneWorkActions.changeRequestData(data));
 	};
 
-	const fetchAddClass = useCallback(() => {
+	const fetchAddDoneWork = useCallback(() => {
 		dispatch(AddDoneWorkActions.addDoneWork());
 	}, [dispatch]);
 
@@ -103,7 +103,7 @@ export default function OneLessonPage({ params }: OneLessonPageProps) {
 		};
 
 		changeRequestData(data);
-		await fetchAddClass();
+		await fetchAddDoneWork();
 
 		router.push(`/checkLesson/${doneWorkId}`);
 	};

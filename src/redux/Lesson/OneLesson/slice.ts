@@ -1,4 +1,3 @@
-import { DoneWorkType } from "@/types/doneWork";
 import { LessonType } from "@/types/lesson";
 import { CaseReducer, PayloadAction, createSlice } from "@reduxjs/toolkit";
 
