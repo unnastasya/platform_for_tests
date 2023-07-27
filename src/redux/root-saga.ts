@@ -1,9 +1,10 @@
 import { fork } from "redux-saga/effects";
-import { watchGetClassesSaga } from "./Classes/sagas";
-import { watchGetOneClassSaga } from "./OneClass/sagas";
-import { watchPostOneClassSaga } from "./AddClass/sagas";
-import { watchGetDoneWorksSaga } from "./DoneWorks/sagas";
-import { watchGetOneDoneWorksSaga } from "./OneDoneWork/sagas";
+import { watchGetClassesSaga } from "./Class/Classes/sagas";
+import { watchGetOneClassSaga } from "./Class/OneClass/sagas";
+import { watchPostOneClassSaga } from "./Class/AddClass/sagas";
+import { watchGetDoneWorksSaga } from "./DoneWork/DoneWorks/sagas";
+import { watchGetOneDoneWorksSaga } from "./DoneWork/OneDoneWork/sagas";
+import { watchPostDoneWorkSaga } from "./DoneWork/AddDoneWork/sagas";
 
 export function* rootSaga() {
 	yield fork(watchGetClassesSaga);
@@ -11,4 +12,5 @@ export function* rootSaga() {
 	yield fork(watchPostOneClassSaga);
 	yield fork(watchGetDoneWorksSaga);
 	yield fork(watchGetOneDoneWorksSaga);
+	yield fork(watchPostDoneWorkSaga);
 }

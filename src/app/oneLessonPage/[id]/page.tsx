@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-import { Button, Divider, Paper } from "@mui/material";
+import { Button, CircularProgress, Divider, Paper } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import QuestionBlock from "@/components/QuestionBlock/QuestionBlock";
@@ -15,6 +15,14 @@ import { Page } from "@/components/Page/Page";
 import { DataDoneWork } from "@/types/dataDoneWork";
 
 import styles from "./page.module.css";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
+import {
+	AddDoneWorkActions,
+	addDoneWorkIdSelector,
+	addDoneWorkIsAddedSelector,
+	addDoneWorkIsLoadingSelector,
+} from "@/redux/DoneWork/AddDoneWork";
+import { doneWorksIsLoadingSelector } from "@/redux/DoneWork/DoneWorks";
 
 interface OneLessonPageProps {
 	params: {
@@ -23,9 +31,23 @@ interface OneLessonPageProps {
 }
 
 export default function OneLessonPage({ params }: OneLessonPageProps) {
+	const dispatch = useAppDispatch();
+
 	const id = params.id;
 	const router = useRouter();
 	const [lesson, setLesson] = useState<any>({});
+
+	const isAddedDoneWork = useAppSelector(addDoneWorkIsAddedSelector);
+	const isLoading = useAppSelector(addDoneWorkIsLoadingSelector);
+	const doneWorkId = useAppSelector(addDoneWorkIdSelector);
+
+	const changeRequestData = (data: any) => {
+		dispatch(AddDoneWorkActions.changeRequestData(data));
+	};
+
+	const fetchAddClass = useCallback(() => {
+		dispatch(AddDoneWorkActions.addDoneWork());
+	}, [dispatch]);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -67,13 +89,25 @@ export default function OneLessonPage({ params }: OneLessonPageProps) {
 			allCriteriaRating: lesson.allCriteriaRating,
 		};
 
-		const doneWorkId = await addDoneWork(data);
-		router.push(`/checkLesson/${doneWorkId.id}`);
+		changeRequestData(data);
+		await fetchAddClass();
+
+		router.push(`/checkLesson/${doneWorkId}`);
 	};
 
 	const onSubmit = (data: any) => {
 		addOneDoneWork(data);
 	};
+
+	if (isLoading) {
+		return (
+			<Page>
+				<div className={styles.oneLesson__loadingContainer}>
+					<CircularProgress />
+				</div>
+			</Page>
+		);
+	}
 
 	return (
 		<Page>

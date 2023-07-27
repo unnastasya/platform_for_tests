@@ -12,7 +12,7 @@ import {
 	addClassIsLoadingSelector,
 	addClassUsersDataSelector,
 	classIsAddedSelector,
-} from "@/redux/AddClass";
+} from "@/redux/Class/AddClass";
 
 export default function AddClassBlock() {
 	const dispatch = useAppDispatch();

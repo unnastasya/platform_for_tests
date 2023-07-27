@@ -1,4 +1,4 @@
-import { ApplicationState } from "../store";
+import { ApplicationState } from "../../store";
 
 export const doneWorksSelector = (state: ApplicationState) => state.doneWorks;
 

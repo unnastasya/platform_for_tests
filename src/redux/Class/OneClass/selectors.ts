@@ -1,4 +1,4 @@
-import { ApplicationState } from "../store";
+import { ApplicationState } from "../../store";
 
 export const oneClassSelector = (state: ApplicationState) => state.oneClass;
 

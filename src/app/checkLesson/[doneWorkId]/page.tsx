@@ -16,7 +16,7 @@ import {
 	OneDoneWorkActions,
 	oneDoneWorkDataSelector,
 	oneDoneWorkIsLoadingSelector,
-} from "@/redux/OneDoneWork";
+} from "@/redux/DoneWork/OneDoneWork";
 
 const whatColor = (value: number, allCriteriaRating: number) => {
 	const percentage = (value / allCriteriaRating) * 100;

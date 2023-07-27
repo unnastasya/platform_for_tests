@@ -11,7 +11,7 @@ import {
 	DoneWorksActions,
 	doneWorksDataSelector,
 	doneWorksIsLoadingSelector,
-} from "@/redux/DoneWorks";
+} from "@/redux/DoneWork/DoneWorks";
 import { CircularProgress } from "@mui/material";
 
 export default function DoneWorks() {

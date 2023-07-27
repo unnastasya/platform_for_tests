@@ -5,11 +5,12 @@ import createSagaMiddleware from "redux-saga";
 
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import { ClassesReducer } from "./Classes";
-import { OneClassReducer } from "./OneClass";
-import { AddClassReducer } from "./AddClass";
-import { DoneWorksReducer } from "./DoneWorks";
-import { OneDoneWorkReducer } from "./OneDoneWork";
+import { ClassesReducer } from "./Class/Classes";
+import { OneClassReducer } from "./Class/OneClass";
+import { AddClassReducer } from "./Class/AddClass";
+import { DoneWorksReducer } from "./DoneWork/DoneWorks";
+import { OneDoneWorkReducer } from "./DoneWork/OneDoneWork";
+import { AddDoneWorkReducer } from "./DoneWork/AddDoneWork";
 
 const persistConfig = {
 	key: "root",
@@ -19,9 +20,10 @@ const persistConfig = {
 const rootReducer = combineReducers({
 	classes: ClassesReducer,
 	oneClass: OneClassReducer,
-    addClass : AddClassReducer,
-    doneWorks : DoneWorksReducer,
-    oneDoneWork : OneDoneWorkReducer,
+	addClass: AddClassReducer,
+	doneWorks: DoneWorksReducer,
+	oneDoneWork: OneDoneWorkReducer,
+	addDoneWork: AddDoneWorkReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

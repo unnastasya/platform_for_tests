@@ -13,7 +13,7 @@ import {
 	oneClassDataSelector,
 	oneClassIsLoadingSelector,
 	oneClassStudentsSelector,
-} from "@/redux/OneClass";
+} from "@/redux/Class/OneClass";
 
 interface OneClassProps {
 	params: {
