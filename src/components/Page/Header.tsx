@@ -8,6 +8,8 @@ import PersonIcon from "@mui/icons-material/Person";
 
 import styles from "./Header.module.css";
 import { useRouter } from "next/navigation";
+import { useAppDispatch } from "@/redux/store";
+import { AuthActions } from "@/redux/Auth";
 
 interface HeaderProps {
 	activeUser: any;
@@ -15,14 +17,15 @@ interface HeaderProps {
 
 const Header = ({ activeUser }: HeaderProps) => {
 	const router = useRouter();
+	const dispatch = useAppDispatch();
+
+	const logout = () => [dispatch(AuthActions.logout())];
 
 	return (
 		<div className={styles.header__root}>
 			<Container>
 				<div className={styles.header__inner}>
-					<p className={styles.header__text}>
-						{activeUser.surname} {activeUser.name}
-					</p>
+					<p className={styles.header__text}>{activeUser.fullName}</p>
 					{activeUser.role === "teacher" && (
 						<Stack direction="row" spacing={2}>
 							<Button
@@ -77,6 +80,13 @@ const Header = ({ activeUser }: HeaderProps) => {
 							</Button>
 						</Stack>
 					)}
+					<Button
+						variant="contained"
+						endIcon={<InsertDriveFileIcon />}
+						onClick={() => logout()}
+					>
+						Выйти
+					</Button>
 				</div>
 			</Container>
 		</div>

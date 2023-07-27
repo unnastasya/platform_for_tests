@@ -5,6 +5,7 @@ import { watchPostOneClassSaga } from "./Class/AddClass/sagas";
 import { watchGetDoneWorksSaga } from "./DoneWork/DoneWorks/sagas";
 import { watchGetOneDoneWorksSaga } from "./DoneWork/OneDoneWork/sagas";
 import { watchPostDoneWorkSaga } from "./DoneWork/AddDoneWork/sagas";
+import { watchLoginSaga } from "./Auth/sagas";
 
 export function* rootSaga() {
 	yield fork(watchGetClassesSaga);
@@ -13,4 +14,5 @@ export function* rootSaga() {
 	yield fork(watchGetDoneWorksSaga);
 	yield fork(watchGetOneDoneWorksSaga);
 	yield fork(watchPostDoneWorkSaga);
+	yield fork(watchLoginSaga);
 }

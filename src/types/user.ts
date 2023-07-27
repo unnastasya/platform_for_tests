@@ -10,3 +10,15 @@ export type AddUserType = {
 	login: string;
 	password: string;
 };
+
+export type LoginUserType = {
+	login: string;
+	password: string;
+};
+
+
+export type UserType = {
+    userId: string,
+    fullName:  string,
+    role: "teacher" | "student";
+}

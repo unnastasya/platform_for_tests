@@ -1,7 +1,14 @@
 "use client";
 
 import styles from "./page.module.css";
-import { Alert, Button, Paper, TextField, ThemeProvider } from "@mui/material";
+import {
+	Alert,
+	Button,
+	CircularProgress,
+	Paper,
+	TextField,
+	ThemeProvider,
+} from "@mui/material";
 import { useForm } from "react-hook-form";
 import { theme } from "../../theme.js";
 import { useRouter } from "next/navigation";
@@ -9,10 +16,21 @@ import { login } from "@/api/auth";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
+import {
+	AuthActions,
+	isAuthUserSelector,
+	isLoadingLoginUserDataSelector,
+} from "@/redux/Auth";
+import { LoginUserType } from "@/types/user";
 
 export default function Page() {
+	const dispatch = useAppDispatch();
 	const router = useRouter();
 	const [loginError, setLoginError] = useState<string>("");
+
+	const isAuthUser = useAppSelector(isAuthUserSelector);
+	const isLoading = useAppSelector(isLoadingLoginUserDataSelector);
 
 	const LogiSchema = Yup.object().shape({
 		login: Yup.string().required("Пожалуйста, введите логин"),
@@ -23,7 +41,7 @@ export default function Page() {
 		register,
 		formState: { errors },
 		handleSubmit,
-	} = useForm({
+	} = useForm<LoginUserType>({
 		defaultValues: {
 			login: "",
 			password: "",
@@ -31,19 +49,37 @@ export default function Page() {
 		resolver: yupResolver(LogiSchema),
 	});
 
-	const onSubmit = (data: any) => {
-		login(data)
-			.then((res: any) => {
-				if (res.status === 200) {
-					router.push("/lessonsPage");
-				} else if (res.status === 401) {
-					setLoginError(res.errorMessage);
-				}
-			})
-			.catch((error) => {
-				setLoginError("Произошла ошибка. Попробуйте еще раз.");
-			});
+	const onSubmit = async (data: any) => {
+		await dispatch(AuthActions.changeRequestLoginData(data));
+		await dispatch(AuthActions.requestLogin());
+
+		// login(data)
+		// 	.then((res: any) => {
+		// 		if (res.status === 200) {
+		// 			router.push("/lessonsPage");
+		// 		} else if (res.status === 401) {
+		// 			setLoginError(res.errorMessage);
+		// 		}
+		// 	})
+		// 	.catch((error) => {
+		// 		setLoginError("Произошла ошибка. Попробуйте еще раз.");
+		// 	});
 	};
+
+	if (isAuthUser) {
+		router.push("/lessonsPage");
+	}
+
+	if (isLoading) {
+		<ThemeProvider theme={theme}>
+			<div className={styles.login__container}>
+				<Paper className={styles.login__block}>
+					<CircularProgress />
+				</Paper>
+			</div>
+		</ThemeProvider>;
+	}
+
 	return (
 		<ThemeProvider theme={theme}>
 			<div className={styles.login__container}>

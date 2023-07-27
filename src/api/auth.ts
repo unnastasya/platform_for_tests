@@ -1,11 +1,11 @@
 import axios from "axios";
 
-const API_BASE_URL = "https://platform-for-tests-backend.vercel.app";
+const API_BASE_URL = "http://localhost:8080";
 
 export const login = (data: any) => {
 	return axios
 		.post(`${API_BASE_URL}/auth/login`, data)
-		.then((response) => response)
+		.then((response) => response.data.user)
 		.catch((error) => ({
 			status: error.response.status,
 			errorMessage: error.response.data.error,

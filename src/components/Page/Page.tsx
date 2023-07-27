@@ -5,6 +5,9 @@ import { ThemeProvider } from "@emotion/react";
 import { theme } from "../../theme";
 
 import styles from "./Page.module.css";
+import { useAppSelector } from "@/redux/store";
+import { activeUserSelector, isAuthUserSelector } from "@/redux/Auth";
+import { useRouter } from "next/navigation";
 
 const user = {
 	id: "64b4f8e069e2dae2470ff33d",
@@ -14,6 +17,14 @@ const user = {
 };
 
 export function Page({ children }: any) {
+	const user = useAppSelector(activeUserSelector);
+	const router = useRouter();
+	const isAuthUser = useAppSelector(isAuthUserSelector);
+
+	if (!isAuthUser) {
+		router.push(`/login`);
+	}
+
 	return (
 		<ThemeProvider theme={theme}>
 			<div className={styles.page__container}>
