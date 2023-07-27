@@ -1,11 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { getLessons } from "@/api/lessons";
 import OneTestBlock from "@/components/OneTestBlock/OneTestBlock";
 import { Page } from "@/components/Page/Page";
-
-import styles from "./page.module.css";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import {
 	LessonsActions,
@@ -14,6 +11,8 @@ import {
 } from "@/redux/Lesson/Lessons";
 import { CircularProgress } from "@mui/material";
 import { LessonType } from "@/types/lesson";
+
+import styles from "./page.module.css";
 
 export default function LessonsPage() {
 	const dispatch = useAppDispatch();
@@ -31,9 +30,9 @@ export default function LessonsPage() {
 	if (isLoading) {
 		return (
 			<Page>
-                <div className={styles.lessonsPage__loadingContainer}>
-				<CircularProgress />
-                </div>
+				<div className={styles.lessonsPage__loadingContainer}>
+					<CircularProgress />
+				</div>
 			</Page>
 		);
 	}

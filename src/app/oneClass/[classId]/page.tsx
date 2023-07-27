@@ -2,7 +2,7 @@
 
 import { Page } from "@/components/Page/Page";
 import { CircularProgress, Paper } from "@mui/material";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect } from "react";
 import OneClassHeader from "@/components/OneClassHeader/OneClassHeader";
 import PeopleListComponent from "@/components/PeopleListComponent/PeopleListComponent";
 

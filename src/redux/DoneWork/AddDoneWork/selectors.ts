@@ -11,5 +11,5 @@ export const addDoneWorkIsAddedSelector = (state: ApplicationState) =>
 	addDoneWorkSelector(state).doneWorkIsAdded;
 export const addDoneWorkIsLoadingSelector = (state: ApplicationState) =>
 	addDoneWorkSelector(state).isLoading;
-    export const addDoneWorkIdSelector = (state: ApplicationState) =>
+export const addDoneWorkIdSelector = (state: ApplicationState) =>
 	addDoneWorkSelector(state).doneWorkId;

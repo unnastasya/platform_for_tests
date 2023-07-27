@@ -21,7 +21,7 @@ const requestLessons: CaseReducer<DoneWorksStateType> = (state) => {
 };
 
 const successLessons: CaseReducer<
-DoneWorksStateType,
+	DoneWorksStateType,
 	PayloadAction<LessonType[]>
 > = (state, { payload }) => {
 	state.lessonsIsLoading = false;
@@ -34,7 +34,7 @@ const failureLessons: CaseReducer<DoneWorksStateType> = (state) => {
 	state.lessonsHasError = true;
 };
 
-export const { reducer: LessonsReducer, actions:LessonsActions } = createSlice(
+export const { reducer: LessonsReducer, actions: LessonsActions } = createSlice(
 	{
 		name: NAME,
 		initialState,

@@ -1,8 +1,8 @@
 import { Alert, Paper } from "@mui/material";
 import { useRouter } from "next/navigation";
+import { DoneWorkType } from "@/types/doneWork";
 
 import styles from "./DoneWorkBage.module.css";
-import { DoneWorkType } from "@/types/doneWork";
 
 const whatColor = (value: number, allCriteriaRating: number) => {
 	const percentage = (value / allCriteriaRating) * 100;

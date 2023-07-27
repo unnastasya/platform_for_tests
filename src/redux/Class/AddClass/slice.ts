@@ -30,7 +30,6 @@ const changeRequestData: CaseReducer<AddClassStateType, PayloadAction<any>> = (
 const addClass: CaseReducer<AddClassStateType> = (state) => {
 	state.classIsAdded = false;
 	state.isLoading = true;
-
 };
 
 const successAddClass: CaseReducer<
@@ -41,7 +40,6 @@ const successAddClass: CaseReducer<
 	state.usersData = payload.usersData;
 	state.message = payload.message;
 	state.isLoading = false;
-
 };
 
 const failureAddClass: CaseReducer<AddClassStateType> = (state) => {
@@ -49,7 +47,6 @@ const failureAddClass: CaseReducer<AddClassStateType> = (state) => {
 	state.usersData = [];
 	state.message = "Не удалось добавить класс";
 	state.isLoading = false;
-
 };
 
 export const { reducer: AddClassReducer, actions: AddClassActions } =

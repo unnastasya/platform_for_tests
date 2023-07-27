@@ -1,11 +1,8 @@
 "use client";
 
-import { getDoneWorks } from "@/api/doneWorks";
 import DoneWorkBage from "@/components/DoneWorkBage/DoneWorkBage";
 import { useCallback, useEffect, useState } from "react";
 import { Page } from "@/components/Page/Page";
-
-import styles from "./page.module.css";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import {
 	DoneWorksActions,
@@ -14,8 +11,9 @@ import {
 } from "@/redux/DoneWork/DoneWorks";
 import { CircularProgress } from "@mui/material";
 
+import styles from "./page.module.css";
+
 export default function DoneWorks() {
-	// const [works, setWorks] = useState<any[]>([]);
 	const works = useAppSelector(doneWorksDataSelector);
 	const worksIsLoading: boolean = useAppSelector(doneWorksIsLoadingSelector);
 
@@ -28,10 +26,6 @@ export default function DoneWorks() {
 	useEffect(() => {
 		fetchDoneWorks();
 	}, [dispatch, fetchDoneWorks]);
-
-	// useEffect(() => {
-	// 	getDoneWorks().then((res) => setWorks(res));
-	// }, []);
 
 	if (worksIsLoading) {
 		return (

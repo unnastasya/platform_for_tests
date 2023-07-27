@@ -6,7 +6,7 @@ import { OneLessonActions } from "./slice";
 
 function* getOneLessonSaga() {
 	try {
-        const lessonId: string = yield select(oneLessonRequestIdSelector);
+		const lessonId: string = yield select(oneLessonRequestIdSelector);
 
 		const lesson: LessonType = yield call(getOneLesson, lessonId);
 		yield put(OneLessonActions.successOneLesson(lesson));

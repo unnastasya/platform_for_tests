@@ -16,9 +16,8 @@ export type LoginUserType = {
 	password: string;
 };
 
-
 export type UserType = {
-    userId: string,
-    fullName:  string,
-    role: "teacher" | "student";
-}
+	userId: string;
+	fullName: string;
+	role: "teacher" | "student";
+};

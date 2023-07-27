@@ -1,7 +1,6 @@
 "use client";
 
 import { Dispatch, SetStateAction, useState } from "react";
-import styles from "./CheckBlock.module.css";
 import {
 	Divider,
 	FormControl,
@@ -11,6 +10,8 @@ import {
 } from "@mui/material";
 import SelectComponent from "../SelectComponent/SelectComponent";
 import { QuestionType } from "@/types/lesson";
+
+import styles from "./CheckBlock.module.css";
 
 interface CheckBlockProps {
 	question: QuestionType;
@@ -36,7 +37,11 @@ export default function CheckBlock({
 			{question.images.length > 0 && (
 				<div className={styles.checkBlock__imagesBlock}>
 					{question.images.map((image, index) => (
-						<img key={index} style={{ width: "600px" }} src={image.url} />
+						<img
+							key={index}
+							style={{ width: "600px" }}
+							src={image.url}
+						/>
 					))}
 				</div>
 			)}

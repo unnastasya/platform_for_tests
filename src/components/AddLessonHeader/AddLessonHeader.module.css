@@ -4,9 +4,9 @@
 	margin: 25px 0;
 	position: relative;
 	border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
 }
 
 .addLessonHeader__container:first-child::after {
@@ -26,7 +26,7 @@
 
 .addLessonHeader__nameBlock {
 	width: 100%;
-     display: flex;
-    flex-direction: column;
-    gap: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
 }

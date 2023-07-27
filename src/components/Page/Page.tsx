@@ -3,18 +3,11 @@ import { Container } from "@mui/material";
 import Header from "./Header";
 import { ThemeProvider } from "@emotion/react";
 import { theme } from "../../theme";
-
-import styles from "./Page.module.css";
 import { useAppSelector } from "@/redux/store";
 import { activeUserSelector, isAuthUserSelector } from "@/redux/Auth";
 import { useRouter } from "next/navigation";
 
-const user = {
-	id: "64b4f8e069e2dae2470ff33d",
-	name: "Анастасия",
-	surname: "Прокопьева",
-	role: "teacher",
-};
+import styles from "./Page.module.css";
 
 export function Page({ children }: any) {
 	const user = useAppSelector(activeUserSelector);

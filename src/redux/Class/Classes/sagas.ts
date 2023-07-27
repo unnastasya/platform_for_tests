@@ -1,5 +1,5 @@
 import { getAllClasses } from "@/api/classes";
-import { takeLatest, call, put, select } from "redux-saga/effects";
+import { takeLatest, call, put } from "redux-saga/effects";
 import { ClassType } from "@/types/class";
 import { ClassesActions } from "./slice";
 

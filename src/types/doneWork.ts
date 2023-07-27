@@ -8,5 +8,5 @@ export type DoneWorkType = {
 	rating?: number;
 	comment?: string;
 	student: any;
-    allCriteriaRating: number;
+	allCriteriaRating: number;
 };

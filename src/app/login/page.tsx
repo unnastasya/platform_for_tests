@@ -12,7 +12,6 @@ import {
 import { useForm } from "react-hook-form";
 import { theme } from "../../theme.js";
 import { useRouter } from "next/navigation";
-import { login } from "@/api/auth";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
@@ -49,21 +48,9 @@ export default function Page() {
 		resolver: yupResolver(LogiSchema),
 	});
 
-	const onSubmit = async (data: any) => {
-		await dispatch(AuthActions.changeRequestLoginData(data));
-		await dispatch(AuthActions.requestLogin());
-
-		// login(data)
-		// 	.then((res: any) => {
-		// 		if (res.status === 200) {
-		// 			router.push("/lessonsPage");
-		// 		} else if (res.status === 401) {
-		// 			setLoginError(res.errorMessage);
-		// 		}
-		// 	})
-		// 	.catch((error) => {
-		// 		setLoginError("Произошла ошибка. Попробуйте еще раз.");
-		// 	});
+	const onSubmit = (data: any) => {
+		dispatch(AuthActions.changeRequestLoginData(data));
+		dispatch(AuthActions.requestLogin());
 	};
 
 	if (isAuthUser) {

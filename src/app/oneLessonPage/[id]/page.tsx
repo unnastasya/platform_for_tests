@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { Button, CircularProgress, Divider, Paper } from "@mui/material";
@@ -9,12 +9,9 @@ import AddIcon from "@mui/icons-material/Add";
 import QuestionBlock from "@/components/QuestionBlock/QuestionBlock";
 import QuestionInput from "@/components/QuestionInput/QuestionInput";
 import QuestionCriteria from "@/components/QuestionCriteria/QuestionCriteria";
-import { deleteLesson, getOneLesson } from "@/api/lessons";
-import { addDoneWork } from "@/api/doneWorks";
+import { deleteLesson } from "@/api/lessons";
 import { Page } from "@/components/Page/Page";
 import { DataDoneWork } from "@/types/dataDoneWork";
-
-import styles from "./page.module.css";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import {
 	AddDoneWorkActions,
@@ -22,17 +19,13 @@ import {
 	addDoneWorkIsAddedSelector,
 	addDoneWorkIsLoadingSelector,
 } from "@/redux/DoneWork/AddDoneWork";
-import { doneWorksIsLoadingSelector } from "@/redux/DoneWork/DoneWorks";
-import {
-	LessonsActions,
-	lessonsDataSelector,
-	lessonsIsLoadingSelector,
-} from "@/redux/Lesson/Lessons";
 import {
 	OneLessonActions,
 	oneLessonDataSelector,
 	oneLessonIsLoadingSelector,
 } from "@/redux/Lesson/OneLesson";
+
+import styles from "./page.module.css";
 
 interface OneLessonPageProps {
 	params: {
@@ -45,7 +38,6 @@ export default function OneLessonPage({ params }: OneLessonPageProps) {
 
 	const id = params.id;
 	const router = useRouter();
-	// const [lesson, setLesson] = useState<any>({});
 
 	const isAddedDoneWork = useAppSelector(addDoneWorkIsAddedSelector);
 	const isLoading = useAppSelector(addDoneWorkIsLoadingSelector);

@@ -10,9 +10,8 @@ function* loginSaga() {
 			requestLoginUserDataSelector
 		);
 		const data: UserType = yield call(login, requestData);
-		
+
 		yield put(AuthActions.successLogin(data));
-		// yield put(AuthActions.successUser(data));
 	} catch (e: any) {
 		yield put(AuthActions.failureLogin(e.message));
 	}

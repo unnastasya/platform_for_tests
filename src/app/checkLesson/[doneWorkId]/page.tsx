@@ -38,7 +38,6 @@ export default function CheckLesson({ params }: CheckLessonProps) {
 	const { doneWorkId } = params;
 	const router = useRouter();
 	const [lesson, setLesson] = useState<any>({});
-	// const [doneWork, setDoneWork] = useState<any>({});
 	const [comment, setComment] = useState<string>("");
 	const [ratingValue, setRaitingValue] = useState<number>(0);
 
@@ -60,10 +59,8 @@ export default function CheckLesson({ params }: CheckLessonProps) {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			// const oneDoneWorkData = await getOneDoneWork(doneWorkId);
 			const lessonData = await getOneLesson(doneWork.lessonId);
 
-			// setDoneWork(oneDoneWorkData);
 			setLesson(lessonData);
 		};
 
@@ -101,7 +98,9 @@ export default function CheckLesson({ params }: CheckLessonProps) {
 			</div>
 			<Paper className={styles.oneTest__questionBlock}>
 				<p className={styles.oneTest__headerText}>{lesson.name}</p>
-				<p className={styles.oneTest__headerText}>{doneWork.student.name} {doneWork.student.surname}</p>
+				<p className={styles.oneTest__headerText}>
+					{doneWork.student.name} {doneWork.student.surname}
+				</p>
 				<p>
 					{lesson.school}, {lesson.class}
 				</p>

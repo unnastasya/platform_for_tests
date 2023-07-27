@@ -6,10 +6,10 @@ import { OneDoneWorkActions } from "./slice";
 
 function* getOneDoneWorkSaga() {
 	try {
-        const workId: string = yield select(oneDoneWorkRequestIdSelector);
+		const workId: string = yield select(oneDoneWorkRequestIdSelector);
 
 		const doneWork: DoneWorkType = yield call(getOneDoneWork, workId);
-        console.log("doneWork", doneWork)
+		console.log("doneWork", doneWork);
 		yield put(OneDoneWorkActions.successOneDoneWork(doneWork));
 	} catch (e: any) {
 		yield put(OneDoneWorkActions.failureOneDoneWork());
@@ -17,5 +17,8 @@ function* getOneDoneWorkSaga() {
 }
 
 export function* watchGetOneDoneWorksSaga() {
-	yield takeLatest(OneDoneWorkActions.requestOneDoneWork.type, getOneDoneWorkSaga);
+	yield takeLatest(
+		OneDoneWorkActions.requestOneDoneWork.type,
+		getOneDoneWorkSaga
+	);
 }

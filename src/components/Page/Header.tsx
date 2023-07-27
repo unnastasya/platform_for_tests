@@ -5,11 +5,11 @@ import FileCopyIcon from "@mui/icons-material/FileCopy";
 import PeopleIcon from "@mui/icons-material/People";
 import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
 import PersonIcon from "@mui/icons-material/Person";
-
-import styles from "./Header.module.css";
 import { useRouter } from "next/navigation";
 import { useAppDispatch } from "@/redux/store";
 import { AuthActions } from "@/redux/Auth";
+
+import styles from "./Header.module.css";
 
 interface HeaderProps {
 	activeUser: any;

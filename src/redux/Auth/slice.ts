@@ -58,7 +58,7 @@ const failureLogin: CaseReducer<AuthStateType, PayloadAction<string>> = (
 
 const logout: CaseReducer<AuthStateType> = (state) => {
 	state.activeUser = { userId: "", fullName: "", role: "student" };
-    state.isAuthUser = false;
+	state.isAuthUser = false;
 };
 
 export const { reducer: AuthReducer, actions: AuthActions } = createSlice({
@@ -69,6 +69,6 @@ export const { reducer: AuthReducer, actions: AuthActions } = createSlice({
 		requestLogin,
 		successLogin,
 		failureLogin,
-        logout
+		logout,
 	},
 });

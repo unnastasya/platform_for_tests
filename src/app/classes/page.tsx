@@ -7,14 +7,14 @@ import AddIcon from "@mui/icons-material/Add";
 import ClassBage from "@/components/ClassBage/ClassBage";
 import { Page } from "@/components/Page/Page";
 import { ClassType } from "@/types/class";
-
-import styles from "./page.module.css";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import {
 	ClassesActions,
 	classesDataSelector,
 	classesIsLoadingSelector,
 } from "@/redux/Class/Classes";
+
+import styles from "./page.module.css";
 
 export default function Classes() {
 	const router = useRouter();

@@ -21,7 +21,7 @@ const requestDoneWorks: CaseReducer<DoneWorksStateType> = (state) => {
 };
 
 const successDoneWorks: CaseReducer<
-DoneWorksStateType,
+	DoneWorksStateType,
 	PayloadAction<DoneWorkType[]>
 > = (state, { payload }) => {
 	state.doneWorksIsLoading = false;
@@ -34,8 +34,8 @@ const failureDoneWorks: CaseReducer<DoneWorksStateType> = (state) => {
 	state.doneWorksIsError = true;
 };
 
-export const { reducer: DoneWorksReducer, actions:DoneWorksActions } = createSlice(
-	{
+export const { reducer: DoneWorksReducer, actions: DoneWorksActions } =
+	createSlice({
 		name: NAME,
 		initialState,
 		reducers: {
@@ -43,5 +43,4 @@ export const { reducer: DoneWorksReducer, actions:DoneWorksActions } = createSli
 			successDoneWorks,
 			failureDoneWorks,
 		},
-	}
-);
+	});

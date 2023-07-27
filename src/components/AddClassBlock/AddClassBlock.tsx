@@ -1,8 +1,6 @@
 import { useRouter } from "next/navigation";
-import styles from "./AddClassBlock.module.css";
 import { useForm } from "react-hook-form";
 import { Button, CircularProgress, Divider, Paper } from "@mui/material";
-import { addClass } from "@/api/classes";
 import AddClassHeader from "../AddClassHeader/AddClassHeader";
 import AddStudents from "../AddStudents/AddStudents";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
@@ -13,6 +11,8 @@ import {
 	addClassUsersDataSelector,
 	classIsAddedSelector,
 } from "@/redux/Class/AddClass";
+
+import styles from "./AddClassBlock.module.css";
 
 export default function AddClassBlock() {
 	const dispatch = useAppDispatch();

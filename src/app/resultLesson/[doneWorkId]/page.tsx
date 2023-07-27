@@ -2,7 +2,6 @@
 import { useCallback, useEffect, useState } from "react";
 
 import styles from "./page.module.css";
-import { getOneDoneWork } from "@/api/doneWorks";
 import { getOneLesson } from "@/api/lessons";
 import {
 	Alert,
@@ -41,7 +40,6 @@ export default function ResultLesson({ params }: ResultLessonProps) {
 
 	const { doneWorkId } = params;
 	const [lesson, setLesson] = useState<any>({});
-	// const [doneWork, setDoneWork] = useState<any>({});
 
 	const doneWork = useAppSelector(oneDoneWorkDataSelector);
 	const isLoadingDoneWork = useAppSelector(oneDoneWorkIsLoadingSelector);
@@ -61,15 +59,12 @@ export default function ResultLesson({ params }: ResultLessonProps) {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			// const oneDoneWorkData = await getOneDoneWork(doneWorkId);
 			const lessonData = await getOneLesson(doneWork.lessonId).then(
 				(res: any) => res
 			);
 
-			// setDoneWork(oneDoneWorkData);
 			setLesson(lessonData);
 		};
-		// getOneDoneWork(id).then((res) => setLesson(res));
 		fetchData();
 	}, [doneWorkId]);
 

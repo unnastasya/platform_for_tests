@@ -70,8 +70,6 @@ export default function AddLesson() {
 		changeRequestData(data);
 		fetchAddLesson();
 
-		// const lessonDataId = await addLesson(data);
-
 		for (const oneClass of checkedClass) {
 			addLessonToClass(oneClass._id, { lessonId: lessonDataId });
 		}

@@ -12,10 +12,10 @@ import {
 } from "@mui/material";
 import { Dispatch, SetStateAction, useEffect } from "react";
 import { getAllClasses } from "@/api/classes";
-
-import styles from "./AddLessonHeader.module.css";
 import { ClassType } from "@/types/class";
 import { UseFormRegister } from "react-hook-form";
+
+import styles from "./AddLessonHeader.module.css";
 
 interface AddLessonHeaderProps {
 	register: UseFormRegister<any>;

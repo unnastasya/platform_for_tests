@@ -1,5 +1,4 @@
-import { takeLatest, call, put, select } from "redux-saga/effects";
-import { getDoneWorks } from "@/api/doneWorks";
+import { takeLatest, call, put } from "redux-saga/effects";
 import { LessonType } from "@/types/lesson";
 import { LessonsActions } from "./slice";
 import { getLessons } from "@/api/lessons";

@@ -32,7 +32,7 @@ const requestOneDoneWork: CaseReducer<OneDoneWorkStateType> = (state) => {
 };
 
 const successOneDoneWork: CaseReducer<
-OneDoneWorkStateType,
+	OneDoneWorkStateType,
 	PayloadAction<DoneWorkType>
 > = (state, { payload }) => {
 	state.oneDoneWorkIsLoading = false;
@@ -46,7 +46,7 @@ const failureOneDoneWork: CaseReducer<OneDoneWorkStateType> = (state) => {
 };
 
 const changeRequestDoneWorkId: CaseReducer<
-OneDoneWorkStateType,
+	OneDoneWorkStateType,
 	PayloadAction<string>
 > = (state, { payload }) => {
 	state.requestDoneWorkId = payload;
@@ -60,6 +60,6 @@ export const { reducer: OneDoneWorkReducer, actions: OneDoneWorkActions } =
 			requestOneDoneWork,
 			successOneDoneWork,
 			failureOneDoneWork,
-            changeRequestDoneWorkId
+			changeRequestDoneWorkId,
 		},
 	});
