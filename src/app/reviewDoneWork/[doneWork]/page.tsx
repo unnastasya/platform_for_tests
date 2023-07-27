@@ -1,51 +1,34 @@
 "use client";
 
-import { changeOneDoneWork } from "@/api/doneWorks";
 import { getOneLesson } from "@/api/lessons";
-import { Alert, Button, CircularProgress, Paper } from "@mui/material";
-import { useRouter } from "next/navigation";
+import { Alert, CircularProgress, Paper } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
-import DoneIcon from "@mui/icons-material/Done";
 import { Page } from "@/components/Page/Page";
 import CheckBlock from "@/components/CheckBlock/CheckBlock";
-import AddComent from "@/components/AddComent/AddComent";
-
-import styles from "./page.module.css";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import {
 	OneDoneWorkActions,
 	oneDoneWorkDataSelector,
 	oneDoneWorkIsLoadingSelector,
 } from "@/redux/DoneWork/OneDoneWork";
-import { activeUserSelector } from "@/redux/Auth";
 
-const whatColor = (value: number, allCriteriaRating: number) => {
-	const percentage = (value / allCriteriaRating) * 100;
+import styles from "./page.module.css";
 
-	if (percentage < 20) return styles.rating__question__red;
-	else if (percentage < 60) return styles.rating__question__yellow;
-	else return styles.rating__question__green;
-};
-
-interface CheckLessonProps {
+interface reviewDoneWorkProps {
 	params: {
 		doneWorkId: string;
 	};
 }
 
-export default function CheckLesson({ params }: CheckLessonProps) {
+export default function reviewDoneWork({ params }: reviewDoneWorkProps) {
 	const dispatch = useAppDispatch();
 
 	const { doneWorkId } = params;
-	const router = useRouter();
 	const [lesson, setLesson] = useState<any>({});
-	const [comment, setComment] = useState<string>("");
 	const [ratingValue, setRaitingValue] = useState<number>(0);
 
 	const doneWork = useAppSelector(oneDoneWorkDataSelector);
 	const isLoadingDoneWork = useAppSelector(oneDoneWorkIsLoadingSelector);
-
-	const activeUser = useAppSelector(activeUserSelector);
 
 	const changeDoneWorkId = () => {
 		dispatch(OneDoneWorkActions.changeRequestDoneWorkId(doneWorkId));
@@ -71,25 +54,6 @@ export default function CheckLesson({ params }: CheckLessonProps) {
 		fetchData();
 	}, [doneWorkId]);
 
-	const handleClick = () => {
-		changeOneDoneWork(doneWork._id, {
-			isVerified: true,
-			rating: ratingValue,
-			comment: comment,
-		});
-		router.push(`/resultLesson/${doneWorkId}`);
-	};
-
-	if ((activeUser.role = "student")) {
-		return (
-			<Page>
-				<div className={styles.oneTest__loadingContainer}>
-					<p>Нет доступа</p>
-				</div>
-			</Page>
-		);
-	}
-
 	if (isLoadingDoneWork) {
 		return (
 			<Page>
@@ -102,14 +66,6 @@ export default function CheckLesson({ params }: CheckLessonProps) {
 
 	return (
 		<Page>
-			<div
-				className={`${styles.countRating__question} ${whatColor(
-					ratingValue,
-					lesson.allCriteriaRating
-				)}`}
-			>
-				<p>{ratingValue}</p>
-			</div>
 			<Paper className={styles.oneTest__questionBlock}>
 				<p className={styles.oneTest__headerText}>{lesson.name}</p>
 				<p className={styles.oneTest__headerText}>
@@ -118,8 +74,11 @@ export default function CheckLesson({ params }: CheckLessonProps) {
 				<p>
 					{doneWork.school}, {doneWork.class}
 				</p>
-
-				<Alert severity="warning">Ожидает проверки</Alert>
+				{doneWork.isVerified ? (
+					<Alert>Проверено</Alert>
+				) : (
+					<Alert severity="warning">Ожидает проверки</Alert>
+				)}
 			</Paper>
 			{lesson.questions &&
 				lesson.questions.map((question: any, index: any) => (
@@ -130,14 +89,6 @@ export default function CheckLesson({ params }: CheckLessonProps) {
 						answer={doneWork.answers[index]}
 					/>
 				))}
-			<AddComent comment={comment} setComment={setComment} />
-			<Button
-				onClick={handleClick}
-				variant="contained"
-				endIcon={<DoneIcon />}
-			>
-				Выставить оценку
-			</Button>
 		</Page>
 	);
 }

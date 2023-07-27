@@ -12,6 +12,8 @@ import SelectComponent from "../SelectComponent/SelectComponent";
 import { QuestionType } from "@/types/lesson";
 
 import styles from "./CheckBlock.module.css";
+import { activeUserSelector } from "@/redux/Auth";
+import { useAppSelector } from "@/redux/store";
 
 interface CheckBlockProps {
 	question: QuestionType;
@@ -25,6 +27,8 @@ export default function CheckBlock({
 	answer,
 }: CheckBlockProps) {
 	const [count, setCount] = useState(0);
+
+	const activeUser = useAppSelector(activeUserSelector);
 
 	return (
 		<Paper className={styles.checkBlock__container}>
@@ -50,14 +54,19 @@ export default function CheckBlock({
 			</FormControl>
 			<Divider />
 			<FormGroup>
-				{question.criteria.map((criterion: any) => (
-					<SelectComponent
-						key={criterion._id}
-						setRaitingValue={setRaitingValue}
-						criterion={criterion}
-						setCount={setCount}
-					/>
-				))}
+				{activeUser.role == "teacher" &&
+					question.criteria.map((criterion: any) => (
+						<SelectComponent
+							key={criterion._id}
+							setRaitingValue={setRaitingValue}
+							criterion={criterion}
+							setCount={setCount}
+						/>
+					))}
+                    {activeUser.role == "student" &&
+					question.criteria.map((criterion: any) => (
+						<p>{criterion.text} - {criterion.value} балла</p>
+					))}
 			</FormGroup>
 			<Divider />
 			<div className={styles.checkBlock__badge}>

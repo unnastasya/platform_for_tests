@@ -26,6 +26,7 @@ import {
 } from "@/redux/Lesson/OneLesson";
 
 import styles from "./page.module.css";
+import { activeUserSelector } from "@/redux/Auth";
 
 interface OneLessonPageProps {
 	params: {
@@ -45,6 +46,8 @@ export default function OneLessonPage({ params }: OneLessonPageProps) {
 
 	const lesson = useAppSelector(oneLessonDataSelector);
 	const isLoadingLesson = useAppSelector(oneLessonIsLoadingSelector);
+
+	const activeUser = useAppSelector(activeUserSelector);
 
 	const changeRequestData = (data: any) => {
 		dispatch(AddDoneWorkActions.changeRequestData(data));
@@ -87,7 +90,7 @@ export default function OneLessonPage({ params }: OneLessonPageProps) {
 		data = {
 			...data,
 			lessonId: id,
-			student: "64aff81d9313c2a053c6b321",
+			student: activeUser.userId,
 			isVerified: false,
 			school: "4 средняя школа",
 			class: "9a",
@@ -97,7 +100,11 @@ export default function OneLessonPage({ params }: OneLessonPageProps) {
 		changeRequestData(data);
 		await fetchAddDoneWork();
 
-		router.push(`/checkLesson/${doneWorkId}`);
+		if (activeUser.role == "student") {
+			router.push(`/reviewDoneWork/${doneWorkId}`);
+		} else {
+			router.push(`/checkLesson/${doneWorkId}`);
+		}
 	};
 
 	const onSubmit = (data: any) => {
