@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:8080";
+const API_BASE_URL = "https://platform-for-tests-backend.vercel.app";
 
 export const login = (data: any) => {
 	return axios

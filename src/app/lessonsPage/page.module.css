@@ -6,3 +6,9 @@
 	gap: 10px;
 	align-items: stretch;
 }
+
+.lessonsPage__loadingContainer {
+	display: flex;
+	justify-content: center;
+	padding-top: 150px;
+}

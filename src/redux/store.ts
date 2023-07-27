@@ -12,6 +12,7 @@ import { DoneWorksReducer } from "./DoneWork/DoneWorks";
 import { OneDoneWorkReducer } from "./DoneWork/OneDoneWork";
 import { AddDoneWorkReducer } from "./DoneWork/AddDoneWork";
 import { AuthReducer } from "./Auth";
+import { LessonsActions, LessonsReducer } from "./Lesson/Lessons";
 
 const persistConfig = {
 	key: "root",
@@ -26,6 +27,7 @@ const rootReducer = combineReducers({
 	oneDoneWork: OneDoneWorkReducer,
 	addDoneWork: AddDoneWorkReducer,
 	auth: AuthReducer,
+	lessons: LessonsReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

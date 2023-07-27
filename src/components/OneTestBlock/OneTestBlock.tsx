@@ -21,7 +21,7 @@ export default function OneTestBlock({ lesson }: OneTestBlockProps) {
 				<div className={styles.oneTest__infoBlock}>
 					<p className={styles.oneTest__lessonName}>{lesson.name}</p>
 					<div className={styles.oneTest__classesBlock}>
-						{lesson.classes.map((les: any) => (
+						{lesson.classes && lesson.classes.map((les: any) => (
 							<p key={les._id} className={styles.oneTest__text}>
 								{les.school},{les.class}
 							</p>
