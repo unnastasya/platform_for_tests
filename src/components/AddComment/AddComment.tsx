@@ -4,7 +4,7 @@ import { FormControl, TextField } from "@mui/material";
 
 import styles from "./AddComment.module.css";
 
-export default function AddComent({ setComment, comment }: any) {
+export default function AddComment({ setComment, comment }: any) {
 	return (
 		<div className={styles.AddComment__container}>
 			<p>Комментарий к работе</p>

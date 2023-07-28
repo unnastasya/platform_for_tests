@@ -5,6 +5,8 @@ export type ClassesStateType = {
 	classes: ClassType[];
 	classesIsLoading: boolean;
 	classesIsError: boolean;
+
+	deleteClassRequestId?: string;
 };
 
 const initialState: ClassesStateType = {
@@ -34,6 +36,18 @@ const failureClasses: CaseReducer<ClassesStateType> = (state) => {
 	state.classesIsError = true;
 };
 
+const changeDeleteClassRequestId: CaseReducer<
+	ClassesStateType,
+	PayloadAction<string>
+> = (state, { payload }) => {
+	state.deleteClassRequestId = payload;
+};
+
+const deleteClass: CaseReducer<ClassesStateType> = (state) => {
+    state.classesIsLoading = true;
+	state.classesIsError = false;
+}
+
 export const { reducer: ClassesReducer, actions: ClassesActions } = createSlice(
 	{
 		name: NAME,
@@ -42,6 +56,8 @@ export const { reducer: ClassesReducer, actions: ClassesActions } = createSlice(
 			requestClasses,
 			successClasses,
 			failureClasses,
+            changeDeleteClassRequestId,
+            deleteClass
 		},
 	}
 );

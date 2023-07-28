@@ -1,16 +1,13 @@
 "use client";
 
 import { changeOneDoneWork } from "@/api/doneWorks";
-import { getOneLesson } from "@/api/lessons";
 import { Alert, Button, CircularProgress, Paper } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import DoneIcon from "@mui/icons-material/Done";
 import { Page } from "@/components/Page/Page";
 import CheckBlock from "@/components/CheckBlock/CheckBlock";
-import AddComent from "@/components/AddComent/AddComent";
-
-import styles from "./page.module.css";
+import AddComment from "@/components/AddComment/AddComment";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import {
 	OneDoneWorkActions,
@@ -19,6 +16,8 @@ import {
 	oneDoneWorksLessonSelector,
 } from "@/redux/DoneWork/OneDoneWork";
 import { activeUserSelector } from "@/redux/Auth";
+
+import styles from "./page.module.css";
 
 const whatColor = (value: number, allCriteriaRating: number) => {
 	const percentage = (value / allCriteriaRating) * 100;
@@ -120,7 +119,7 @@ export default function CheckLesson({ params }: CheckLessonProps) {
 						answer={doneWork.answers[index]}
 					/>
 				))}
-			<AddComent comment={comment} setComment={setComment} />
+			<AddComment comment={comment} setComment={setComment} />
 			<Button
 				onClick={handleClick}
 				variant="contained"

@@ -8,7 +8,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import { useRouter } from "next/navigation";
 import { useAppDispatch } from "@/redux/store";
 import { AuthActions } from "@/redux/Auth";
-import LogoutIcon from '@mui/icons-material/Logout';
+import LogoutIcon from "@mui/icons-material/Logout";
 
 import styles from "./Header.module.css";
 

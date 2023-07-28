@@ -10,8 +10,6 @@ import {
 	SelectChangeEvent,
 	TextField,
 } from "@mui/material";
-import { Dispatch, SetStateAction, useEffect } from "react";
-import { getAllClasses } from "@/api/classes";
 import { ClassType } from "@/types/class";
 import { UseFormRegister } from "react-hook-form";
 
@@ -30,7 +28,6 @@ export function AddLessonHeader({
 	checkedClass,
 	classesData,
 }: AddLessonHeaderProps) {
-
 	const handleChange = (event: SelectChangeEvent<any[]>) => {
 		const {
 			target: { value },

@@ -8,3 +8,5 @@ export const classesIsLoadingSelector = (state: ApplicationState) =>
 	classesSelector(state).classesIsLoading;
 export const classesIsErrorSelector = (state: ApplicationState) =>
 	classesSelector(state).classesIsError;
+export const deleteClassRequestIdSelector = (state: ApplicationState) =>
+	classesSelector(state).deleteClassRequestId;

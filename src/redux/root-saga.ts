@@ -1,5 +1,5 @@
 import { fork } from "redux-saga/effects";
-import { watchGetClassesSaga } from "./Class/Classes/sagas";
+import { watchDeleteClassSaga, watchGetClassesSaga } from "./Class/Classes/sagas";
 import { watchGetOneClassSaga } from "./Class/OneClass/sagas";
 import { watchPostOneClassSaga } from "./Class/AddClass/sagas";
 import {
@@ -31,4 +31,5 @@ export function* rootSaga() {
 	yield fork(watchGetActiveUsersDoneWorksSaga);
 	yield fork(watchGetActiveUsersLessonsSaga);
 	yield fork(watchGetOneUsersDoneWorksSaga);
+    yield fork(watchDeleteClassSaga)
 }

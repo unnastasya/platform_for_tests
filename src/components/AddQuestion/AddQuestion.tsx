@@ -3,10 +3,10 @@ import { useFieldArray } from "react-hook-form";
 import { Button, Divider, FormControl, Paper, TextField } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddCriteria from "../AddCriteria/AddCriteria";
+import AddImage from "../AddImage/AddImage";
 
 import styles from "./AddQuestion.module.css";
-import AddImage from "../AddImage/AddImage";
-import { useState } from "react";
+
 
 export default function AddQuestion({ control, register, setValue }: any) {
 	const { fields, append, remove } = useFieldArray({

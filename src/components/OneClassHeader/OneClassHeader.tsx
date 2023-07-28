@@ -7,12 +7,13 @@ import {
 	DialogContentText,
 	DialogTitle,
 } from "@mui/material";
-import { deleteOneClass } from "@/api/classes";
 import { ClassType } from "@/types/class";
 import { useRouter } from "next/navigation";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 import styles from "./OneClassHeader.module.css";
+import { useAppDispatch } from "@/redux/store";
+import { ClassesActions } from "@/redux/Class/Classes";
 
 interface OneClassHeaderProps {
 	classData: ClassType;
@@ -23,6 +24,8 @@ export default function OneClassHeader({
 	classData,
 	classId,
 }: OneClassHeaderProps) {
+	const dispatch = useAppDispatch();
+
 	const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false);
 	const router = useRouter();
 
@@ -31,7 +34,8 @@ export default function OneClassHeader({
 	};
 
 	const deleteClass = () => {
-		deleteOneClass(classId);
+		dispatch(ClassesActions.changeDeleteClassRequestId(classId));
+		dispatch(ClassesActions.deleteClass());
 		setIsConfirmDialogOpen(false);
 		router.push("/classes");
 	};

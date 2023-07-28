@@ -48,7 +48,7 @@ export default function AddClassBlock() {
 		},
 	});
 
-	const onSubmit = async (data: any) => {
+	const onSubmit = (data: any) => {
 		changeRequestData(data);
 		fetchAddClass();
 	};

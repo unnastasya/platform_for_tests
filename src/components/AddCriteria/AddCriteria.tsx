@@ -1,8 +1,9 @@
 import { useFieldArray, useWatch } from "react-hook-form";
-import styles from "./AddCriteria.module.css";
 import { Button, FormControl, TextField } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
+
+import styles from "./AddCriteria.module.css";
 
 const styleInput = {
 	width: "100%",
