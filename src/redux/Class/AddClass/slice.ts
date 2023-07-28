@@ -49,6 +49,13 @@ const failureAddClass: CaseReducer<AddClassStateType> = (state) => {
 	state.isLoading = false;
 };
 
+const changeIsAddedClass: CaseReducer<
+	AddClassStateType,
+	PayloadAction<boolean>
+> = (state, { payload }) => {
+	state.classIsAdded = payload;
+};
+
 export const { reducer: AddClassReducer, actions: AddClassActions } =
 	createSlice({
 		name: NAME,
@@ -58,5 +65,6 @@ export const { reducer: AddClassReducer, actions: AddClassActions } =
 			addClass,
 			successAddClass,
 			failureAddClass,
+            changeIsAddedClass
 		},
 	});

@@ -80,7 +80,7 @@ export default function CheckLesson({ params }: CheckLessonProps) {
 		router.push(`/resultLesson/${doneWorkId}`);
 	};
 
-	if ((activeUser.role = "student")) {
+	if ((activeUser.role == "student")) {
 		return (
 			<Page>
 				<div className={styles.oneTest__loadingContainer}>

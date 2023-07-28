@@ -54,6 +54,7 @@ export default function AddClassBlock() {
 	};
 
 	const routingToClasses = () => {
+		dispatch(AddClassActions.changeIsAddedClass(false));
 		router.push("/classes");
 	};
 

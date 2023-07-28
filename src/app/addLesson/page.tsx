@@ -65,7 +65,7 @@ export default function AddLesson() {
 
 	const onSubmit = async (data: any) => {
 		data.allCriteriaRating = allCriteriaValue(data.questions);
-		data.classes = classesData;
+		data.classes = checkedClass;
 
 		changeRequestData(data);
 		fetchAddLesson();
