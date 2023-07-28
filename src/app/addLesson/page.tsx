@@ -1,6 +1,6 @@
 "use client";
 
-import { addLessonToClass } from "@/api/lessons";
+import { addImage, addLessonToClass } from "@/api/lessons";
 import { Button, CircularProgress } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
@@ -66,6 +66,23 @@ export default function AddLesson() {
 	const onSubmit = async (data: any) => {
 		data.allCriteriaRating = allCriteriaValue(data.questions);
 		data.classes = checkedClass;
+
+		for (
+			let questionIndex = 0;
+			questionIndex < data.questions.length;
+			questionIndex++
+		) {
+			for (
+				let imageIndex = 0;
+				imageIndex < data.questions[questionIndex].images.length;
+				imageIndex++
+			) {
+				const imageData = await addImage(
+					data.questions[questionIndex].images[imageIndex]
+				).then((res) => res);
+				data.questions[questionIndex].images[imageIndex] = imageData;
+			}
+		}
 
 		changeRequestData(data);
 		fetchAddLesson();

@@ -9,7 +9,6 @@ function* getOneDoneWorkSaga() {
 		const workId: string = yield select(oneDoneWorkRequestIdSelector);
 
 		const doneWork: DoneWorkType = yield call(getOneDoneWork, workId);
-		console.log("doneWork", doneWork);
 		yield put(OneDoneWorkActions.successOneDoneWork(doneWork));
 	} catch (e: any) {
 		yield put(OneDoneWorkActions.failureOneDoneWork());

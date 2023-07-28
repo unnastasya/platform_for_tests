@@ -54,12 +54,12 @@ export default function AddQuestion({ control, register, setValue }: any) {
 								multiline
 								label="Описание задания"
 							/>
-							{/* <AddImage
+							<AddImage
 								setValue={setValue}
 								control={control}
 								register={register}
 								questionIndex={index}
-							/> */}
+							/>
 							<FormControl fullWidth>
 								<TextField
 									sx={{ marginBottom: "20px" }}

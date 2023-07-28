@@ -41,7 +41,6 @@ export default function reviewDoneWork({ params }: reviewDoneWorkProps) {
 	useEffect(() => {
 		changeDoneWorkId();
 		fetchOneDoneWork();
-		console.log(doneWork);
 	}, [dispatch, fetchOneDoneWork, doneWorkId]);
 
 	useEffect(() => {
