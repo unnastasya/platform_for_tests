@@ -20,21 +20,16 @@ import styles from "./AddLessonHeader.module.css";
 interface AddLessonHeaderProps {
 	register: UseFormRegister<any>;
 	classesData: ClassType[];
-	setClassesData: Dispatch<SetStateAction<ClassType[]>>;
 	checkedClass: any[];
 	setCheckedClass: (data: any) => void;
 }
 
 export function AddLessonHeader({
 	register,
-	setClassesData,
 	setCheckedClass,
 	checkedClass,
 	classesData,
 }: AddLessonHeaderProps) {
-	useEffect(() => {
-		getAllClasses().then((res) => setClassesData(res));
-	}, []);
 
 	const handleChange = (event: SelectChangeEvent<any[]>) => {
 		const {

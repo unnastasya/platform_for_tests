@@ -19,11 +19,12 @@ import {
 } from "@/redux/Lesson/AddLesson";
 
 import styles from "./page.module.css";
+import { classesDataSelector } from "@/redux/Class/Classes";
 
 export default function AddLesson() {
 	const dispatch = useAppDispatch();
 
-	const [classesData, setClassesData] = useState<ClassType[]>([]);
+	const classesData = useAppSelector(classesDataSelector);
 	const [checkedClass, setCheckedClass] = useState<any[]>([]);
 
 	const lessonDataId = useAppSelector(addLessonIdSelector);
@@ -109,7 +110,6 @@ export default function AddLesson() {
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<AddLessonHeader
 					register={register}
-					setClassesData={setClassesData}
 					setCheckedClass={setCheckedClass}
 					checkedClass={checkedClass}
 					classesData={classesData}

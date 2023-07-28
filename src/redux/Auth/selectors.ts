@@ -4,6 +4,8 @@ export const authSelector = (state: ApplicationState) => state.auth;
 
 export const activeUserSelector = (state: ApplicationState) =>
 	authSelector(state).activeUser;
+export const activeUserIdSelector = (state: ApplicationState) =>
+	authSelector(state).activeUserId;
 export const requestLoginUserDataSelector = (state: ApplicationState) =>
 	authSelector(state).requestLoginUserData;
 export const isLoadingLoginUserDataSelector = (state: ApplicationState) =>

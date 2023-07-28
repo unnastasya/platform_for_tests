@@ -1,9 +1,11 @@
 import { DoneWorkType } from "@/types/doneWork";
+import { LessonType } from "@/types/lesson";
 import { CaseReducer, PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export type OneDoneWorkStateType = {
 	requestDoneWorkId: string;
 	oneDoneWork: DoneWorkType;
+	oneDoneWorksLesson: LessonType;
 	oneDoneWorkIsLoading: boolean;
 	oneDoneWorkIsError: boolean;
 };
@@ -20,6 +22,15 @@ const initialState: OneDoneWorkStateType = {
 		student: {},
 		allCriteriaRating: 0,
 	},
+	oneDoneWorksLesson: {
+		_id: "",
+		name: "",
+		description: "",
+		doneCount: 0,
+		allCriteriaRating: 0,
+		questions: [],
+		classes: [],
+	},
 	oneDoneWorkIsLoading: false,
 	oneDoneWorkIsError: false,
 };
@@ -33,11 +44,12 @@ const requestOneDoneWork: CaseReducer<OneDoneWorkStateType> = (state) => {
 
 const successOneDoneWork: CaseReducer<
 	OneDoneWorkStateType,
-	PayloadAction<DoneWorkType>
+	PayloadAction<{doneWork: DoneWorkType, lesson: LessonType}>
 > = (state, { payload }) => {
 	state.oneDoneWorkIsLoading = false;
 	state.oneDoneWorkIsError = false;
-	state.oneDoneWork = payload;
+	state.oneDoneWork = payload.doneWork;
+	state.oneDoneWorksLesson = payload.lesson;
 };
 
 const failureOneDoneWork: CaseReducer<OneDoneWorkStateType> = (state) => {

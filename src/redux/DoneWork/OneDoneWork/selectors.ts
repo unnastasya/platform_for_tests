@@ -5,6 +5,8 @@ export const oneDoneWorkSelector = (state: ApplicationState) =>
 
 export const oneDoneWorkDataSelector = (state: ApplicationState) =>
 	oneDoneWorkSelector(state).oneDoneWork;
+export const oneDoneWorksLessonSelector = (state: ApplicationState) =>
+	oneDoneWorkSelector(state).oneDoneWorksLesson;
 export const oneDoneWorkIsLoadingSelector = (state: ApplicationState) =>
 	oneDoneWorkSelector(state).oneDoneWorkIsLoading;
 export const oneDoneWorkIsErrorSelector = (state: ApplicationState) =>

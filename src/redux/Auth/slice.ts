@@ -3,6 +3,7 @@ import { CaseReducer, PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export type AuthStateType = {
 	activeUser: UserType;
+	activeUserId: string;
 
 	requestLoginUserData: LoginUserType;
 	isLoadingLoginUserData: boolean;
@@ -14,6 +15,7 @@ export type AuthStateType = {
 
 const initialState: AuthStateType = {
 	activeUser: { userId: "", fullName: "", role: "student" },
+    activeUserId: "",
 
 	requestLoginUserData: { login: "", password: "" },
 	isLoadingLoginUserData: false,
@@ -43,6 +45,7 @@ const successLogin: CaseReducer<AuthStateType, PayloadAction<UserType>> = (
 	state.isLoadingLoginUserData = false;
 	state.hasErrorLoginUserData = false;
 	state.activeUser = payload;
+    state.activeUserId = payload.userId;
 	state.loginErrorMessage = "";
 	state.isAuthUser = true;
 };

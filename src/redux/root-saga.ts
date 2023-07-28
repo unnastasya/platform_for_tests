@@ -9,6 +9,7 @@ import { watchLoginSaga } from "./Auth/sagas";
 import { watchGetLessonsSaga } from "./Lesson/Lessons/sagas";
 import { watchGetOneLessonSaga } from "./Lesson/OneLesson/sagas";
 import { watchPostLessonSaga } from "./Lesson/AddLesson/sagas";
+import { watchGetMyWorksSaga } from "./MyWorks/sagas";
 
 export function* rootSaga() {
 	yield fork(watchGetClassesSaga);
@@ -20,5 +21,6 @@ export function* rootSaga() {
 	yield fork(watchLoginSaga);
 	yield fork(watchGetLessonsSaga);
 	yield fork(watchGetOneLessonSaga);
-    yield fork (watchPostLessonSaga)
+	yield fork(watchPostLessonSaga);
+	yield fork(watchGetMyWorksSaga);
 }

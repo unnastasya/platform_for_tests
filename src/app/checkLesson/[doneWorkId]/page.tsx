@@ -16,6 +16,7 @@ import {
 	OneDoneWorkActions,
 	oneDoneWorkDataSelector,
 	oneDoneWorkIsLoadingSelector,
+	oneDoneWorksLessonSelector,
 } from "@/redux/DoneWork/OneDoneWork";
 import { activeUserSelector } from "@/redux/Auth";
 
@@ -38,7 +39,7 @@ export default function CheckLesson({ params }: CheckLessonProps) {
 
 	const { doneWorkId } = params;
 	const router = useRouter();
-	const [lesson, setLesson] = useState<any>({});
+	const lesson = useAppSelector(oneDoneWorksLessonSelector);
 	const [comment, setComment] = useState<string>("");
 	const [ratingValue, setRaitingValue] = useState<number>(0);
 
@@ -60,16 +61,6 @@ export default function CheckLesson({ params }: CheckLessonProps) {
 		fetchOneDoneWork();
 	}, [dispatch, fetchOneDoneWork, doneWorkId]);
 
-	useEffect(() => {
-		const fetchData = async () => {
-			const lessonData = await getOneLesson(doneWork.lessonId);
-
-			setLesson(lessonData);
-		};
-
-		fetchData();
-	}, [doneWorkId]);
-
 	const handleClick = () => {
 		changeOneDoneWork(doneWork._id, {
 			isVerified: true,
@@ -79,7 +70,7 @@ export default function CheckLesson({ params }: CheckLessonProps) {
 		router.push(`/resultLesson/${doneWorkId}`);
 	};
 
-	if ((activeUser.role == "student")) {
+	if (activeUser.role == "student") {
 		return (
 			<Page>
 				<div className={styles.oneTest__loadingContainer}>

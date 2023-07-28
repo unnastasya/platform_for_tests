@@ -3,13 +3,21 @@ import { DoneWorkType } from "@/types/doneWork";
 import { getOneDoneWork } from "@/api/doneWorks";
 import { oneDoneWorkRequestIdSelector } from "./selectors";
 import { OneDoneWorkActions } from "./slice";
+import { LessonType } from "@/types/lesson";
+import { getOneLesson } from "@/api/lessons";
 
 function* getOneDoneWorkSaga() {
 	try {
 		const workId: string = yield select(oneDoneWorkRequestIdSelector);
 
 		const doneWork: DoneWorkType = yield call(getOneDoneWork, workId);
-		yield put(OneDoneWorkActions.successOneDoneWork(doneWork));
+		const lesson: LessonType = yield call(getOneLesson, doneWork.lessonId);
+		yield put(
+			OneDoneWorkActions.successOneDoneWork({
+				doneWork: doneWork,
+				lesson: lesson,
+			})
+		);
 	} catch (e: any) {
 		yield put(OneDoneWorkActions.failureOneDoneWork());
 	}
