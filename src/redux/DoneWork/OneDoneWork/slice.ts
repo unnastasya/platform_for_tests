@@ -44,7 +44,7 @@ const requestOneDoneWork: CaseReducer<OneDoneWorkStateType> = (state) => {
 
 const successOneDoneWork: CaseReducer<
 	OneDoneWorkStateType,
-	PayloadAction<{doneWork: DoneWorkType, lesson: LessonType}>
+	PayloadAction<{ doneWork: DoneWorkType; lesson: LessonType }>
 > = (state, { payload }) => {
 	state.oneDoneWorkIsLoading = false;
 	state.oneDoneWorkIsError = false;

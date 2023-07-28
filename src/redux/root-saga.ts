@@ -2,14 +2,20 @@ import { fork } from "redux-saga/effects";
 import { watchGetClassesSaga } from "./Class/Classes/sagas";
 import { watchGetOneClassSaga } from "./Class/OneClass/sagas";
 import { watchPostOneClassSaga } from "./Class/AddClass/sagas";
-import { watchGetDoneWorksSaga } from "./DoneWork/DoneWorks/sagas";
+import {
+	watchGetActiveUsersDoneWorksSaga,
+	watchGetDoneWorksSaga,
+	watchGetOneUsersDoneWorksSaga,
+} from "./DoneWork/DoneWorks/sagas";
 import { watchGetOneDoneWorksSaga } from "./DoneWork/OneDoneWork/sagas";
 import { watchPostDoneWorkSaga } from "./DoneWork/AddDoneWork/sagas";
 import { watchLoginSaga } from "./Auth/sagas";
-import { watchGetLessonsSaga } from "./Lesson/Lessons/sagas";
+import {
+	watchGetActiveUsersLessonsSaga,
+	watchGetLessonsSaga,
+} from "./Lesson/Lessons/sagas";
 import { watchGetOneLessonSaga } from "./Lesson/OneLesson/sagas";
 import { watchPostLessonSaga } from "./Lesson/AddLesson/sagas";
-import { watchGetMyWorksSaga } from "./MyWorks/sagas";
 
 export function* rootSaga() {
 	yield fork(watchGetClassesSaga);
@@ -22,5 +28,7 @@ export function* rootSaga() {
 	yield fork(watchGetLessonsSaga);
 	yield fork(watchGetOneLessonSaga);
 	yield fork(watchPostLessonSaga);
-	yield fork(watchGetMyWorksSaga);
+	yield fork(watchGetActiveUsersDoneWorksSaga);
+	yield fork(watchGetActiveUsersLessonsSaga);
+	yield fork(watchGetOneUsersDoneWorksSaga);
 }

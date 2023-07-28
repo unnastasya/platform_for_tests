@@ -5,8 +5,6 @@ import { CircularProgress, Paper } from "@mui/material";
 import { useCallback, useEffect } from "react";
 import OneClassHeader from "@/components/OneClassHeader/OneClassHeader";
 import PeopleListComponent from "@/components/PeopleListComponent/PeopleListComponent";
-
-import styles from "./page.module.css";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import {
 	OneClassActions,
@@ -14,6 +12,8 @@ import {
 	oneClassIsLoadingSelector,
 	oneClassStudentsSelector,
 } from "@/redux/Class/OneClass";
+
+import styles from "./page.module.css";
 
 interface OneClassProps {
 	params: {

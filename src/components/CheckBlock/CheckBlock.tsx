@@ -10,10 +10,10 @@ import {
 } from "@mui/material";
 import SelectComponent from "../SelectComponent/SelectComponent";
 import { QuestionType } from "@/types/lesson";
-
-import styles from "./CheckBlock.module.css";
 import { activeUserSelector } from "@/redux/Auth";
 import { useAppSelector } from "@/redux/store";
+
+import styles from "./CheckBlock.module.css";
 
 interface CheckBlockProps {
 	question: QuestionType;
@@ -63,9 +63,11 @@ export default function CheckBlock({
 							setCount={setCount}
 						/>
 					))}
-                    {activeUser.role == "student" &&
+				{activeUser.role == "student" &&
 					question.criteria.map((criterion: any) => (
-						<p>{criterion.text} - {criterion.value} балла</p>
+						<p>
+							{criterion.text} - {criterion.value} балла
+						</p>
 					))}
 			</FormGroup>
 			<Divider />

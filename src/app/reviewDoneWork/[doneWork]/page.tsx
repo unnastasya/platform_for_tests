@@ -1,16 +1,24 @@
 "use client";
 
-import { getOneLesson } from "@/api/lessons";
-import { Alert, CircularProgress, Paper } from "@mui/material";
-import { useCallback, useEffect, useState } from "react";
+import {
+	Alert,
+	CircularProgress,
+	Divider,
+	FormControl,
+	Paper,
+	TextField,
+} from "@mui/material";
+import { useCallback, useEffect } from "react";
 import { Page } from "@/components/Page/Page";
-import CheckBlock from "@/components/CheckBlock/CheckBlock";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import {
 	OneDoneWorkActions,
 	oneDoneWorkDataSelector,
 	oneDoneWorkIsLoadingSelector,
+	oneDoneWorksLessonSelector,
 } from "@/redux/DoneWork/OneDoneWork";
+import QuestionBlock from "@/components/QuestionBlock/QuestionBlock";
+import QuestionCriteria from "@/components/QuestionCriteria/QuestionCriteria";
 
 import styles from "./page.module.css";
 
@@ -24,8 +32,7 @@ export default function reviewDoneWork({ params }: reviewDoneWorkProps) {
 	const dispatch = useAppDispatch();
 
 	const { doneWorkId } = params;
-	const [lesson, setLesson] = useState<any>({});
-	const [ratingValue, setRaitingValue] = useState<number>(0);
+	const lesson = useAppSelector(oneDoneWorksLessonSelector);
 
 	const doneWork = useAppSelector(oneDoneWorkDataSelector);
 	const isLoadingDoneWork = useAppSelector(oneDoneWorkIsLoadingSelector);
@@ -41,16 +48,6 @@ export default function reviewDoneWork({ params }: reviewDoneWorkProps) {
 	useEffect(() => {
 		changeDoneWorkId();
 		fetchOneDoneWork();
-	}, [dispatch, fetchOneDoneWork, doneWorkId]);
-
-	useEffect(() => {
-		const fetchData = async () => {
-			const lessonData = await getOneLesson(doneWork.lessonId);
-
-			setLesson(lessonData);
-		};
-
-		fetchData();
 	}, [doneWorkId]);
 
 	if (isLoadingDoneWork) {
@@ -63,6 +60,7 @@ export default function reviewDoneWork({ params }: reviewDoneWorkProps) {
 		);
 	}
 
+	console.log(doneWork);
 	return (
 		<Page>
 			<Paper className={styles.oneTest__questionBlock}>
@@ -73,20 +71,25 @@ export default function reviewDoneWork({ params }: reviewDoneWorkProps) {
 				<p>
 					{doneWork.school}, {doneWork.class}
 				</p>
-				{doneWork.isVerified ? (
-					<Alert>Проверено</Alert>
-				) : (
-					<Alert severity="warning">Ожидает проверки</Alert>
-				)}
+
+				<Alert severity="warning">Ожидает проверки</Alert>
 			</Paper>
 			{lesson.questions &&
 				lesson.questions.map((question: any, index: any) => (
-					<CheckBlock
-						setRaitingValue={setRaitingValue}
+					<QuestionBlock
+						index={index}
 						key={question._id}
 						question={question}
-						answer={doneWork.answers[index]}
-					/>
+					>
+						<FormControl fullWidth>
+							<TextField
+								multiline
+								value={doneWork.answers[index]}
+							/>
+						</FormControl>
+						<Divider />
+						<QuestionCriteria question={question} />
+					</QuestionBlock>
 				))}
 		</Page>
 	);

@@ -1,6 +1,8 @@
 import { Alert, Paper } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { DoneWorkType } from "@/types/doneWork";
+import { useAppSelector } from "@/redux/store";
+import { activeUserSelector } from "@/redux/Auth";
 
 import styles from "./DoneWorkBage.module.css";
 
@@ -18,12 +20,17 @@ interface DoneWorkBageProps {
 
 export default function DoneWorkBage({ work }: DoneWorkBageProps) {
 	const router = useRouter();
+	const activeUser = useAppSelector(activeUserSelector);
 
 	const toOneWorkPage = (id: string, workIsVerified: boolean) => {
 		if (workIsVerified) {
 			router.push(`/resultLesson/${id}`);
 		} else {
-			router.push(`/checkLesson/${id}`);
+			if (activeUser.role == "student") {
+				router.push(`/reviewDoneWork/${id}`);
+			} else {
+				router.push(`/checkLesson/${id}`);
+			}
 		}
 	};
 

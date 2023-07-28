@@ -1,8 +1,5 @@
 "use client";
-import { useCallback, useEffect, useState } from "react";
-
-import styles from "./page.module.css";
-import { getOneLesson } from "@/api/lessons";
+import { useCallback, useEffect } from "react";
 import {
 	Alert,
 	CircularProgress,
@@ -19,7 +16,10 @@ import {
 	OneDoneWorkActions,
 	oneDoneWorkDataSelector,
 	oneDoneWorkIsLoadingSelector,
+	oneDoneWorksLessonSelector,
 } from "@/redux/DoneWork/OneDoneWork";
+
+import styles from "./page.module.css";
 
 const whatColor = (value: number, allCriteriaRating: number) => {
 	const percentage = (value / allCriteriaRating) * 100;
@@ -39,7 +39,8 @@ export default function ResultLesson({ params }: ResultLessonProps) {
 	const dispatch = useAppDispatch();
 
 	const { doneWorkId } = params;
-	const [lesson, setLesson] = useState<any>({});
+
+	const lesson = useAppSelector(oneDoneWorksLessonSelector);
 
 	const doneWork = useAppSelector(oneDoneWorkDataSelector);
 	const isLoadingDoneWork = useAppSelector(oneDoneWorkIsLoadingSelector);
@@ -56,17 +57,6 @@ export default function ResultLesson({ params }: ResultLessonProps) {
 		changeDoneWorkId();
 		fetchOneDoneWork();
 	}, [dispatch, fetchOneDoneWork, doneWorkId]);
-
-	useEffect(() => {
-		const fetchData = async () => {
-			const lessonData = await getOneLesson(doneWork.lessonId).then(
-				(res: any) => res
-			);
-
-			setLesson(lessonData);
-		};
-		fetchData();
-	}, [doneWorkId]);
 
 	if (isLoadingDoneWork) {
 		return (

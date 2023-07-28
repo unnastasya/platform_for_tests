@@ -4,22 +4,22 @@ import { useCallback, useEffect, useState } from "react";
 import DoneWorkBage from "@/components/DoneWorkBage/DoneWorkBage";
 import { Page } from "@/components/Page/Page";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
-import {
-	MyWorksActions,
-	myWorksDataSelector,
-	myWorksIsLoadingSelector,
-} from "@/redux/MyWorks";
 import { CircularProgress } from "@mui/material";
+import {
+	DoneWorksActions,
+	doneWorksDataSelector,
+	doneWorksIsLoadingSelector,
+} from "@/redux/DoneWork/DoneWorks";
 
 import styles from "./page.module.css";
 
 export default function MyWorks() {
 	const dispatch = useAppDispatch();
-	const works = useAppSelector(myWorksDataSelector);
-	const isLoading = useAppSelector(myWorksIsLoadingSelector);
+	const works = useAppSelector(doneWorksDataSelector);
+	const isLoading = useAppSelector(doneWorksIsLoadingSelector);
 
 	const fetchWorks = useCallback(() => {
-		dispatch(MyWorksActions.requestMyWorks());
+		dispatch(DoneWorksActions.requestActiveUsersDoneWorks());
 	}, []);
 
 	useEffect(() => {
@@ -28,7 +28,7 @@ export default function MyWorks() {
 
 	if (isLoading) {
 		return (
-			<Page >
+			<Page>
 				<div className={styles.myWorks__loadingContainer}>
 					<CircularProgress />
 				</div>

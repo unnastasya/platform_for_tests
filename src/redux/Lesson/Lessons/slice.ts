@@ -1,13 +1,13 @@
 import { LessonType } from "@/types/lesson";
 import { CaseReducer, PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-export type DoneWorksStateType = {
+export type LessonsStateType = {
 	lessons: LessonType[];
 	lessonsIsLoading: boolean;
 	lessonsHasError: boolean;
 };
 
-const initialState: DoneWorksStateType = {
+const initialState: LessonsStateType = {
 	lessons: [],
 	lessonsIsLoading: false,
 	lessonsHasError: false,
@@ -15,13 +15,13 @@ const initialState: DoneWorksStateType = {
 
 const NAME = "lessons";
 
-const requestLessons: CaseReducer<DoneWorksStateType> = (state) => {
+const requestLessons: CaseReducer<LessonsStateType> = (state) => {
 	state.lessonsIsLoading = true;
 	state.lessonsHasError = false;
 };
 
 const successLessons: CaseReducer<
-	DoneWorksStateType,
+	LessonsStateType,
 	PayloadAction<LessonType[]>
 > = (state, { payload }) => {
 	state.lessonsIsLoading = false;
@@ -29,9 +29,16 @@ const successLessons: CaseReducer<
 	state.lessons = payload;
 };
 
-const failureLessons: CaseReducer<DoneWorksStateType> = (state) => {
+const failureLessons: CaseReducer<LessonsStateType> = (state) => {
 	state.lessonsIsLoading = false;
 	state.lessonsHasError = true;
+};
+
+const requestActiveUsersOpenLessons: CaseReducer<LessonsStateType> = (
+	state
+) => {
+	state.lessonsIsLoading = true;
+	state.lessonsHasError = false;
 };
 
 export const { reducer: LessonsReducer, actions: LessonsActions } = createSlice(
@@ -42,6 +49,7 @@ export const { reducer: LessonsReducer, actions: LessonsActions } = createSlice(
 			requestLessons,
 			successLessons,
 			failureLessons,
+			requestActiveUsersOpenLessons,
 		},
 	}
 );

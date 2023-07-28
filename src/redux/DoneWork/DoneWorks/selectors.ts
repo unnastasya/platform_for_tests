@@ -8,3 +8,7 @@ export const doneWorksIsLoadingSelector = (state: ApplicationState) =>
 	doneWorksSelector(state).doneWorksIsLoading;
 export const doneWorksIsErrorSelector = (state: ApplicationState) =>
 	doneWorksSelector(state).doneWorksIsError;
+export const requestUserIdSelector = (state: ApplicationState) =>
+	doneWorksSelector(state).requestIdData;
+export const openUserSelector = (state: ApplicationState) =>
+	doneWorksSelector(state).openUser;

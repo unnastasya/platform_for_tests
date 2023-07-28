@@ -24,9 +24,9 @@ import {
 	oneLessonDataSelector,
 	oneLessonIsLoadingSelector,
 } from "@/redux/Lesson/OneLesson";
+import { activeUserSelector } from "@/redux/Auth";
 
 import styles from "./page.module.css";
-import { activeUserSelector } from "@/redux/Auth";
 
 interface OneLessonPageProps {
 	params: {
@@ -126,17 +126,21 @@ export default function OneLessonPage({ params }: OneLessonPageProps) {
 			<div>
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<Paper className={styles.oneLesson__infoBlock}>
-						<div
-							className={styles.oneLesson__infoBlock_deleteButton}
-						>
-							<Button
-								onClick={deleteLessonFunction}
-								variant="contained"
-								size="small"
+						{activeUser.role === "teacher" && (
+							<div
+								className={
+									styles.oneLesson__infoBlock_deleteButton
+								}
 							>
-								<DeleteIcon />
-							</Button>
-						</div>
+								<Button
+									onClick={deleteLessonFunction}
+									variant="contained"
+									size="small"
+								>
+									<DeleteIcon />
+								</Button>
+							</div>
+						)}
 						<h1 className={styles.oneLesson__infoBlock_header}>
 							{lesson.name}
 						</h1>
