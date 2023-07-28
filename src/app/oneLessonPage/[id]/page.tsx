@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { Button, CircularProgress, Divider, Paper } from "@mui/material";
@@ -9,7 +9,6 @@ import AddIcon from "@mui/icons-material/Add";
 import QuestionBlock from "@/components/QuestionBlock/QuestionBlock";
 import QuestionInput from "@/components/QuestionInput/QuestionInput";
 import QuestionCriteria from "@/components/QuestionCriteria/QuestionCriteria";
-import { deleteLesson } from "@/api/lessons";
 import { Page } from "@/components/Page/Page";
 import { DataDoneWork } from "@/types/dataDoneWork";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
@@ -25,8 +24,16 @@ import {
 	oneLessonIsLoadingSelector,
 } from "@/redux/Lesson/OneLesson";
 import { activeUserSelector } from "@/redux/Auth";
+import {
+	Dialog,
+	DialogActions,
+	DialogContent,
+	DialogContentText,
+	DialogTitle,
+} from "@mui/material";
 
 import styles from "./page.module.css";
+import { LessonsActions } from "@/redux/Lesson/Lessons";
 
 interface OneLessonPageProps {
 	params: {
@@ -49,6 +56,12 @@ export default function OneLessonPage({ params }: OneLessonPageProps) {
 
 	const activeUser = useAppSelector(activeUserSelector);
 
+	const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false);
+
+	const openConfirmDialog = () => {
+		setIsConfirmDialogOpen(true);
+	};
+
 	const changeRequestData = (data: any) => {
 		dispatch(AddDoneWorkActions.changeRequestData(data));
 	};
@@ -67,13 +80,10 @@ export default function OneLessonPage({ params }: OneLessonPageProps) {
 	}, [id]);
 
 	const deleteLessonFunction = () => {
-		const answer = window.confirm(
-			`Вы действительно хотите удалить тестирование "${lesson.name}"?`
-		);
-		if (answer) {
-			deleteLesson(id);
-			router.push("/lessonsPage");
-		}
+		dispatch(LessonsActions.changeDeleteLessonRequestId(id));
+		dispatch(LessonsActions.deleteLesson());
+		setIsConfirmDialogOpen(false);
+		router.push("/lessonsPage");
 	};
 
 	const {
@@ -133,7 +143,7 @@ export default function OneLessonPage({ params }: OneLessonPageProps) {
 								}
 							>
 								<Button
-									onClick={deleteLessonFunction}
+									onClick={openConfirmDialog}
 									variant="contained"
 									size="small"
 								>
@@ -169,6 +179,33 @@ export default function OneLessonPage({ params }: OneLessonPageProps) {
 						Сдать работу
 					</Button>
 				</form>
+				<Dialog
+					open={isConfirmDialogOpen}
+					onClose={() => setIsConfirmDialogOpen(false)}
+				>
+					<DialogTitle>Удалить урок</DialogTitle>
+					<DialogContent>
+						<DialogContentText>
+							Вы действительно хотите удалить урок "{lesson.name}
+							"?
+						</DialogContentText>
+					</DialogContent>
+					<DialogActions>
+						<Button
+							variant="outlined"
+							onClick={() => setIsConfirmDialogOpen(false)}
+						>
+							Отмена
+						</Button>
+						<Button
+							variant="outlined"
+							onClick={deleteLessonFunction}
+							color="error"
+						>
+							Удалить
+						</Button>
+					</DialogActions>
+				</Dialog>
 			</div>
 		</Page>
 	);

@@ -5,6 +5,8 @@ export type LessonsStateType = {
 	lessons: LessonType[];
 	lessonsIsLoading: boolean;
 	lessonsHasError: boolean;
+
+	deleteLessonRequestId?: string;
 };
 
 const initialState: LessonsStateType = {
@@ -41,6 +43,18 @@ const requestActiveUsersOpenLessons: CaseReducer<LessonsStateType> = (
 	state.lessonsHasError = false;
 };
 
+const changeDeleteLessonRequestId: CaseReducer<
+	LessonsStateType,
+	PayloadAction<string>
+> = (state, { payload }) => {
+	state.deleteLessonRequestId = payload;
+};
+
+const deleteLesson: CaseReducer<LessonsStateType> = (state) => {
+	state.lessonsIsLoading = true;
+	state.lessonsHasError = false;
+};
+
 export const { reducer: LessonsReducer, actions: LessonsActions } = createSlice(
 	{
 		name: NAME,
@@ -50,6 +64,8 @@ export const { reducer: LessonsReducer, actions: LessonsActions } = createSlice(
 			successLessons,
 			failureLessons,
 			requestActiveUsersOpenLessons,
+			changeDeleteLessonRequestId,
+			deleteLesson,
 		},
 	}
 );

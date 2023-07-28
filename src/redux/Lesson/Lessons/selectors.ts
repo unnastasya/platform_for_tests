@@ -8,3 +8,5 @@ export const lessonsIsLoadingSelector = (state: ApplicationState) =>
 	lessonsSelector(state).lessonsIsLoading;
 export const lessonsHasErrorSelector = (state: ApplicationState) =>
 	lessonsSelector(state).lessonsHasError;
+export const deleteLessonRequestIdSelector = (state: ApplicationState) =>
+	lessonsSelector(state).deleteLessonRequestId;
