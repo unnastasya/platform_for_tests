@@ -5,19 +5,18 @@ import FileCopyIcon from "@mui/icons-material/FileCopy";
 import PeopleIcon from "@mui/icons-material/People";
 import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
 import PersonIcon from "@mui/icons-material/Person";
-import { useRouter } from "next/navigation";
 import { useAppDispatch } from "@/redux/store";
 import { AuthActions } from "@/redux/Auth";
 import LogoutIcon from "@mui/icons-material/Logout";
 
 import styles from "./Header.module.css";
+import Link from "next/link";
 
 interface HeaderProps {
 	activeUser: any;
 }
 
 const Header = ({ activeUser }: HeaderProps) => {
-	const router = useRouter();
 	const dispatch = useAppDispatch();
 
 	const logout = () => [dispatch(AuthActions.logout())];
@@ -29,56 +28,62 @@ const Header = ({ activeUser }: HeaderProps) => {
 					<p className={styles.header__text}>{activeUser.fullName}</p>
 					{activeUser.role === "teacher" && (
 						<Stack direction="row" spacing={2}>
-							<Button
-								variant="contained"
-								endIcon={<AddIcon />}
-								onClick={() => router.push("/addLesson")}
-							>
-								Добавить урок
-							</Button>
+							<Link href="/addLesson">
+								<Button
+									variant="contained"
+									endIcon={<AddIcon />}
+								>
+									Добавить урок
+								</Button>
+							</Link>
 
-							<Button
-								variant="contained"
-								endIcon={<FileCopyIcon />}
-								onClick={() => router.push("/lessonsPage")}
-							>
-								Все уроки
-							</Button>
+							<Link href="/lessonsPage">
+								<Button
+									variant="contained"
+									endIcon={<FileCopyIcon />}
+								>
+									Все уроки
+								</Button>
+							</Link>
 
-							<Button
-								variant="contained"
-								endIcon={<TaskIcon />}
-								onClick={() => router.push("/doneWorks")}
-							>
-								Сданные работы
-							</Button>
+							<Link href="/doneWorks">
+								<Button
+									variant="contained"
+									endIcon={<TaskIcon />}
+								>
+									Сданные работы
+								</Button>
+							</Link>
 
-							<Button
-								variant="contained"
-								endIcon={<PeopleIcon />}
-								onClick={() => router.push("/classes")}
-							>
-								Классы
-							</Button>
+							<Link href="/classes">
+								<Button
+									variant="contained"
+									endIcon={<PeopleIcon />}
+								>
+									Классы
+								</Button>
+							</Link>
 						</Stack>
 					)}
 					{activeUser.role === "student" && (
 						<Stack direction="row" spacing={2}>
-							<Button
-								variant="contained"
-								endIcon={<InsertDriveFileIcon />}
-								onClick={() => router.push("/lessonsPage")}
-							>
-								Доступные уроки
-							</Button>
+							<Link href="/lessonsPage">
+								<Button
+									variant="contained"
+									endIcon={<InsertDriveFileIcon />}
+								>
+									Доступные уроки
+								</Button>
+							</Link>
 
-							<Button
-								variant="contained"
-								endIcon={<PersonIcon />}
-								onClick={() => router.push("/myWorks")}
-							>
-								Мои работы
-							</Button>
+							<Link href="/myWorks">
+								<Button
+									variant="contained"
+									endIcon={<PersonIcon />}
+								>
+									Мои работы
+								</Button>
+							</Link>
 						</Stack>
 					)}
 					<Button
