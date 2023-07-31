@@ -9,37 +9,45 @@ import {
 	TextField,
 	ThemeProvider,
 } from "@mui/material";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { theme } from "../../theme.js";
 import { useRouter } from "next/navigation";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
+import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import {
 	AuthActions,
+	hasErrorLoginUserDataSelector,
 	isAuthUserSelector,
 	isLoadingLoginUserDataSelector,
+	loginErrorMessageSelector,
 } from "@/redux/Auth";
 import { LoginUserType } from "@/types/user";
 
 export default function Page() {
 	const dispatch = useAppDispatch();
 	const router = useRouter();
-	const [loginError, setLoginError] = useState<string>("");
 
 	const isAuthUser = useAppSelector(isAuthUserSelector);
 	const isLoading = useAppSelector(isLoadingLoginUserDataSelector);
+
+	const hasError = useAppSelector(hasErrorLoginUserDataSelector);
+	const errorMessage = useAppSelector(loginErrorMessageSelector);
 
 	const LogiSchema = Yup.object().shape({
 		login: Yup.string().required("Пожалуйста, введите логин"),
 		password: Yup.string().required("Пожалуйста, введите пароль"),
 	});
 
+	useEffect(() => {
+		dispatch(AuthActions.reset());
+	}, []);
+
 	const {
-		register,
 		formState: { errors },
 		handleSubmit,
+		control,
 	} = useForm<LoginUserType>({
 		defaultValues: {
 			login: "",
@@ -49,13 +57,20 @@ export default function Page() {
 	});
 
 	const onSubmit = (data: any) => {
-		dispatch(AuthActions.changeRequestLoginData(data));
-		dispatch(AuthActions.requestLogin());
+		try {
+			const value = { ...data };
+			dispatch(AuthActions.changeRequestLoginData(value));
+			dispatch(AuthActions.requestLogin());
+		} catch (error) {
+			console.error("Error submitting form:", error);
+		}
 	};
 
-	if (isAuthUser) {
-		router.push("/lessonsPage");
-	}
+	useEffect(() => {
+		if (isAuthUser) {
+			router.push("/lessonsPage");
+		}
+	}, [isAuthUser]);
 
 	if (isLoading) {
 		<ThemeProvider theme={theme}>
@@ -77,33 +92,45 @@ export default function Page() {
 					>
 						<h1 className={styles.login__h1}>Войти</h1>
 
-						<TextField
-							{...register("login")}
-							fullWidth
-							multiline
-							label="Логин"
-							error={!!errors.login?.message}
-							helperText={errors.login?.message}
-						/>
-						<TextField
-							{...register("password")}
-							fullWidth
-							multiline
-							label="Пароль"
-							error={!!errors.password?.message}
-							helperText={errors.password?.message}
+						<Controller
+							name="login"
+							control={control}
+							render={({ field }) => (
+								<TextField
+									fullWidth
+									label="Логин"
+									error={!!errors.login?.message}
+									helperText={errors.login?.message}
+									{...field}
+								/>
+							)}
 						/>
 
-						{loginError && (
+						<Controller
+							name="password"
+							control={control}
+							render={({ field }) => (
+								<TextField
+									fullWidth
+									label="Пароль"
+									error={!!errors.password?.message}
+									helperText={errors.password?.message}
+									{...field}
+								/>
+							)}
+						/>
+
+						{hasError && (
 							<Alert
 								sx={{
 									width: "100%",
 								}}
 								severity="error"
 							>
-								{loginError}
+								{errorMessage}
 							</Alert>
 						)}
+
 						<Button variant="contained" fullWidth type="submit">
 							Войти
 						</Button>

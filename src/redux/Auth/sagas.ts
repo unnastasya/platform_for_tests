@@ -9,11 +9,19 @@ function* loginSaga() {
 		const requestData: LoginUserType = yield select(
 			requestLoginUserDataSelector
 		);
-		const data: UserType = yield call(login, requestData);
+		console.log(requestData);
+		const data: UserType | { response: { data: { message: string } } } =
+			yield call(login, requestData);
+		console.log("data", data);
 
-		yield put(AuthActions.successLogin(data));
+		if (!("userId" in data)) {
+			yield put(AuthActions.failureLogin(data.response.data.message));
+		} else {
+			yield put(AuthActions.successLogin(data));
+		}
 	} catch (e: any) {
-		yield put(AuthActions.failureLogin(e.message));
+		console.log(e);
+		yield put(AuthActions.failureLogin("Не удалось авторизоваться"));
 	}
 }
 

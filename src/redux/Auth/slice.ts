@@ -15,7 +15,7 @@ export type AuthStateType = {
 
 const initialState: AuthStateType = {
 	activeUser: { userId: "", fullName: "", role: "student" },
-    activeUserId: "",
+	activeUserId: "",
 
 	requestLoginUserData: { login: "", password: "" },
 	isLoadingLoginUserData: false,
@@ -45,7 +45,7 @@ const successLogin: CaseReducer<AuthStateType, PayloadAction<UserType>> = (
 	state.isLoadingLoginUserData = false;
 	state.hasErrorLoginUserData = false;
 	state.activeUser = payload;
-    state.activeUserId = payload.userId;
+	state.activeUserId = payload.userId;
 	state.loginErrorMessage = "";
 	state.isAuthUser = true;
 };
@@ -62,6 +62,13 @@ const failureLogin: CaseReducer<AuthStateType, PayloadAction<string>> = (
 const logout: CaseReducer<AuthStateType> = (state) => {
 	state.activeUser = { userId: "", fullName: "", role: "student" };
 	state.isAuthUser = false;
+	state.isLoadingLoginUserData = false;
+	state.hasErrorLoginUserData = false;
+};
+
+const reset: CaseReducer<AuthStateType> = (state) => {
+	state.isLoadingLoginUserData = false;
+	state.hasErrorLoginUserData = false;
 };
 
 export const { reducer: AuthReducer, actions: AuthActions } = createSlice({
@@ -73,5 +80,6 @@ export const { reducer: AuthReducer, actions: AuthActions } = createSlice({
 		successLogin,
 		failureLogin,
 		logout,
+		reset,
 	},
 });

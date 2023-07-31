@@ -6,10 +6,7 @@ export const login = (data: any) => {
 	return axios
 		.post(`${API_BASE_URL}/auth/login`, data)
 		.then((response) => response.data.user)
-		.catch((error) => ({
-			status: error.response.status,
-			errorMessage: error.response.data.error,
-		}));
+		.catch((error) => error);
 };
 
 export const getUsersByClassId = (id: string) => {
