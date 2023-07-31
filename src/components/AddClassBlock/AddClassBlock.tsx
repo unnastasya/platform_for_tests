@@ -10,6 +10,8 @@ import {
 	addClassIsLoadingSelector,
 	addClassUsersDataSelector,
 	classIsAddedSelector,
+	editClassDataSelector,
+	editClassIdDataSelector,
 } from "@/redux/Class/AddClass";
 
 import styles from "./AddClassBlock.module.css";
@@ -22,7 +24,10 @@ export default function AddClassBlock() {
 	const isAddedClass = useAppSelector(classIsAddedSelector);
 	const isLoading = useAppSelector(addClassIsLoadingSelector);
 
-	const changeRequestData = (data: any) => {
+	const editClassId = useAppSelector(editClassIdDataSelector || null);
+	const editClassData = useAppSelector(editClassDataSelector || null);
+
+	const changeRequestData = (data: any): any => {
 		dispatch(AddClassActions.changeRequestData(data));
 	};
 
@@ -37,9 +42,9 @@ export default function AddClassBlock() {
 		control,
 	} = useForm({
 		defaultValues: {
-			school: "",
-			class: "",
-			people: [
+			school: editClassData?.school || "",
+			class: editClassData?.class || "",
+			people: editClassData?.students || [
 				{
 					name: "",
 					surname: "",
@@ -49,8 +54,15 @@ export default function AddClassBlock() {
 	});
 
 	const onSubmit = (data: any) => {
-		changeRequestData(data);
-		fetchAddClass();
+		let value = { ...data };
+		console.log(value);
+		if (editClassId) {
+			changeRequestData(value);
+			dispatch(AddClassActions.editClass());
+		} else {
+			changeRequestData(data);
+			fetchAddClass();
+		}
 	};
 
 	const routingToClasses = () => {

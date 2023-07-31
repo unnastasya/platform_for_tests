@@ -5,6 +5,8 @@ import GroupAddIcon from "@mui/icons-material/GroupAdd";
 import { Button, FormControl, TextField } from "@mui/material";
 
 import styles from "./AddStudents.module.css";
+import { useAppSelector } from "@/redux/store";
+import { editClassIdDataSelector } from "@/redux/Class/AddClass";
 
 const styleInput = {
 	width: "100%",
@@ -20,6 +22,8 @@ export default function AddStudents({ control, register }: any) {
 			required: "Пожалуйста, добавьте хотя бы одного ученика",
 		},
 	});
+
+	const editClassId = useAppSelector(editClassIdDataSelector || null);
 
 	const appendStudent = () => {
 		append({
@@ -78,7 +82,7 @@ export default function AddStudents({ control, register }: any) {
 					startIcon={<GroupAddIcon />}
 					type="submit"
 				>
-					Сохранить класс
+					{editClassId ? "Обновить класс" : "Сохранить класс"}
 				</Button>
 			</div>
 		</div>

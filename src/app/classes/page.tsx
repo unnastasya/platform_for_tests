@@ -15,6 +15,7 @@ import {
 } from "@/redux/Class/Classes";
 
 import styles from "./page.module.css";
+import { AddClassActions } from "@/redux/Class/AddClass";
 
 export default function Classes() {
 	const router = useRouter();
@@ -31,6 +32,7 @@ export default function Classes() {
 	}, [dispatch, fetchClasses]);
 
 	const navigateToAddClass = () => {
+		dispatch(AddClassActions.changeEditClassIdData({}));
 		router.push("/addClass");
 	};
 

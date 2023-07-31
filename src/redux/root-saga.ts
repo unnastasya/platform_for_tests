@@ -4,7 +4,10 @@ import {
 	watchGetClassesSaga,
 } from "./Class/Classes/sagas";
 import { watchGetOneClassSaga } from "./Class/OneClass/sagas";
-import { watchPostOneClassSaga } from "./Class/AddClass/sagas";
+import {
+	watchEditOneClassSaga,
+	watchPostOneClassSaga,
+} from "./Class/AddClass/sagas";
 import {
 	watchGetActiveUsersDoneWorksSaga,
 	watchGetDoneWorksSaga,
@@ -37,4 +40,5 @@ export function* rootSaga() {
 	yield fork(watchGetOneUsersDoneWorksSaga);
 	yield fork(watchDeleteClassSaga);
 	yield fork(watchDeleteLessonSaga);
+	yield fork(watchEditOneClassSaga);
 }

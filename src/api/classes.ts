@@ -26,3 +26,16 @@ export const addClass = (data: any): Promise<any> => {
 		.then((response) => response.data)
 		.catch((error) => error);
 };
+
+export const updateClass = ({
+	id,
+	data,
+}: {
+	id: string;
+	data: any;
+}): Promise<any> => {
+	return axios
+		.put(`${API_BASE_URL}/class/${id}`, data)
+		.then((response) => response.data)
+		.catch((error) => error);
+};

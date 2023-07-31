@@ -12,3 +12,7 @@ export const addClassUsersDataSelector = (state: ApplicationState) =>
 	addClassSelector(state).usersData;
 export const addClassIsLoadingSelector = (state: ApplicationState) =>
 	addClassSelector(state).isLoading;
+export const editClassIdDataSelector = (state: ApplicationState) =>
+	addClassSelector(state).editClassIdData;
+export const editClassDataSelector = (state: ApplicationState) =>
+	addClassSelector(state).editClassData;

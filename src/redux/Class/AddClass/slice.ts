@@ -8,6 +8,9 @@ export type AddClassStateType = {
 	isLoading: boolean;
 	message: string;
 	usersData: AddUserType[];
+
+	editClassIdData?: string;
+	editClassData?: ClassType;
 };
 
 const initialState: AddClassStateType = {
@@ -56,6 +59,18 @@ const changeIsAddedClass: CaseReducer<
 	state.classIsAdded = payload;
 };
 
+const changeEditClassIdData: CaseReducer<
+	AddClassStateType,
+	PayloadAction<{ classId?: string; class?: ClassType }>
+> = (state, { payload }) => {
+	state.editClassIdData = payload.classId;
+	state.editClassData = payload.class;
+};
+
+const editClass: CaseReducer<AddClassStateType> = (state) => {
+	state.isLoading = true;
+};
+
 export const { reducer: AddClassReducer, actions: AddClassActions } =
 	createSlice({
 		name: NAME,
@@ -65,6 +80,8 @@ export const { reducer: AddClassReducer, actions: AddClassActions } =
 			addClass,
 			successAddClass,
 			failureAddClass,
-            changeIsAddedClass
+			changeIsAddedClass,
+			changeEditClassIdData,
+			editClass
 		},
 	});
