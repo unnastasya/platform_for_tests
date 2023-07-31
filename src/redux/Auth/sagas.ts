@@ -10,12 +10,12 @@ function* loginSaga() {
 			requestLoginUserDataSelector
 		);
 		console.log(requestData);
-		const data: UserType | { response: { data: { message: string } } } =
+		const data: UserType | { errorMessage: string} =
 			yield call(login, requestData);
 		console.log("data", data);
 
-		if (!("userId" in data)) {
-			yield put(AuthActions.failureLogin(data.response.data.message));
+		if (("errorMessage" in data)) {
+			yield put(AuthActions.failureLogin(data.errorMessage));
 		} else {
 			yield put(AuthActions.successLogin(data));
 		}
