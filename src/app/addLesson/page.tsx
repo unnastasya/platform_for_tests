@@ -1,6 +1,6 @@
 "use client";
 
-import { addImage, addLessonToClass } from "@/api/lessons";
+import { addImage } from "@/api/lessons";
 import { Button, CircularProgress } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
@@ -10,7 +10,6 @@ import AddQuestion from "@/components/AddQuestion/AddQuestion";
 import { Page } from "@/components/Page/Page";
 import { AddLessonHeader } from "@/components/AddLessonHeader/AddLessonHeader";
 import { allCriteriaValue } from "@/utils/allCritariaValue";
-import { ClassType } from "@/types/class";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import {
 	AddLessonActions,
@@ -27,7 +26,6 @@ export default function AddLesson() {
 	const classesData = useAppSelector(classesDataSelector);
 	const [checkedClass, setCheckedClass] = useState<any[]>([]);
 
-	const lessonDataId = useAppSelector(addLessonIdSelector);
 	const isLoading: boolean = useAppSelector(addLessonIsLoadingSelector);
 
 	const {
@@ -64,6 +62,10 @@ export default function AddLesson() {
 		dispatch(AddLessonActions.addLesson());
 	}, [dispatch]);
 
+	const getValue = (data: any) => {
+		let value = { ...data };
+	};
+
 	const onSubmit = async (data: any) => {
 		data.allCriteriaRating = allCriteriaValue(data.questions);
 		data.classes = checkedClass;
@@ -87,10 +89,6 @@ export default function AddLesson() {
 
 		changeRequestData(data);
 		fetchAddLesson();
-
-		for (const oneClass of checkedClass) {
-			addLessonToClass(oneClass._id, { lessonId: lessonDataId });
-		}
 
 		router.push("/lessonsPage");
 	};

@@ -13,14 +13,21 @@ import { CircularProgress } from "@mui/material";
 import { LessonType } from "@/types/lesson";
 
 import styles from "./page.module.css";
+import { activeUserSelector } from "@/redux/Auth";
 
 export default function LessonsPage() {
 	const dispatch = useAppDispatch();
 	const lessons: LessonType[] = useAppSelector(lessonsDataSelector);
 	const isLoading: boolean = useAppSelector(lessonsIsLoadingSelector);
 
+	const activeUser = useAppSelector(activeUserSelector);
+
 	const fetchLessons = useCallback(() => {
-		dispatch(LessonsActions.requestLessons());
+		if (activeUser.role === "student") {
+			dispatch(LessonsActions.requestActiveUsersOpenLessons());
+		} else {
+			dispatch(LessonsActions.requestLessons());
+		}
 	}, [dispatch]);
 
 	useEffect(() => {

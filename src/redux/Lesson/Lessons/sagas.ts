@@ -20,7 +20,7 @@ function* getActiveUsersLessonsSaga() {
 		const userId: string = yield select(activeUserIdSelector);
 
 		const lessons: LessonType[] = yield call(getOneStudentLessons, userId);
-
+		console.log("lessons", lessons);
 		yield put(LessonsActions.successLessons(lessons));
 	} catch (e: any) {
 		yield put(LessonsActions.failureLessons());
