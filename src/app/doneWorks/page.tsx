@@ -9,7 +9,7 @@ import {
 	doneWorksDataSelector,
 	doneWorksIsLoadingSelector,
 } from "@/redux/DoneWork/DoneWorks";
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, Paper } from "@mui/material";
 
 import styles from "./page.module.css";
 
@@ -32,6 +32,20 @@ export default function DoneWorks() {
 			<Page>
 				<div className={styles.doneWorks__loadingContainer}>
 					<CircularProgress />
+				</div>
+			</Page>
+		);
+	}
+
+    if (works.length === 0) {
+		return (
+			<Page>
+				<div className={styles.doneWorks__page}>
+					<Paper
+						className={styles.doneWorks__noLessons}
+					>
+						<p>Сданных работ пока нет</p>
+					</Paper>
 				</div>
 			</Page>
 		);

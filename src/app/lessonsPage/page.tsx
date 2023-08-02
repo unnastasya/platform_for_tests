@@ -9,7 +9,7 @@ import {
 	lessonsDataSelector,
 	lessonsIsLoadingSelector,
 } from "@/redux/Lesson/Lessons";
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, Paper } from "@mui/material";
 import { LessonType } from "@/types/lesson";
 
 import styles from "./page.module.css";
@@ -39,6 +39,22 @@ export default function LessonsPage() {
 			<Page>
 				<div className={styles.lessonsPage__loadingContainer}>
 					<CircularProgress />
+				</div>
+			</Page>
+		);
+	}
+
+	if (lessons.length === 0) {
+		return (
+			<Page>
+				<div className={styles.lessonsPage__container}>
+					<Paper className={styles.lessonsPage__noLessons}>
+						<p>
+							{activeUser.role === "teacher"
+								? "Уроков пока нет"
+								: "Доступных уроков пока нет"}
+						</p>
+					</Paper>
 				</div>
 			</Page>
 		);

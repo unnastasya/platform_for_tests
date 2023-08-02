@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
-import { Button, CircularProgress } from "@mui/material";
+import { Button, CircularProgress, Paper } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import ClassBage from "@/components/ClassBage/ClassBage";
 import { Page } from "@/components/Page/Page";
@@ -41,6 +41,20 @@ export default function Classes() {
 			<Page>
 				<div className={styles.classes__loadingContainer}>
 					<CircularProgress />
+				</div>
+			</Page>
+		);
+	}
+
+    if (classes.length === 0) {
+		return (
+			<Page>
+				<div className={styles.classes__container}>
+					<Paper
+						className={styles.classes__noLessons}
+					>
+						<p>Классов пока нет</p>
+					</Paper>
 				</div>
 			</Page>
 		);
