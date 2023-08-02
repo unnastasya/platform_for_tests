@@ -46,13 +46,18 @@ export default function Classes() {
 		);
 	}
 
-    if (classes.length === 0) {
+	if (classes.length === 0) {
 		return (
 			<Page>
 				<div className={styles.classes__container}>
-					<Paper
-						className={styles.classes__noLessons}
+					<Button
+						variant="contained"
+						onClick={navigateToAddClass}
+						endIcon={<AddIcon />}
 					>
+						Добавить класс
+					</Button>
+					<Paper className={styles.classes__noLessons}>
 						<p>Классов пока нет</p>
 					</Paper>
 				</div>
