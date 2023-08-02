@@ -7,17 +7,15 @@ import {
 	DialogContentText,
 	DialogTitle,
 } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 import { ClassType } from "@/types/class";
 import { useRouter } from "next/navigation";
-import DeleteIcon from "@mui/icons-material/Delete";
+import { useAppDispatch } from "@/redux/store";
+import { ClassesActions } from "@/redux/Class/Classes";
+import { AddClassActions } from "@/redux/Class/AddClass";
 
 import styles from "./OneClassHeader.module.css";
-import { useAppDispatch, useAppSelector } from "@/redux/store";
-import { ClassesActions } from "@/redux/Class/Classes";
-import {
-	AddClassActions,
-	editClassIdDataSelector,
-} from "@/redux/Class/AddClass";
 
 interface OneClassHeaderProps {
 	classData: ClassType;
@@ -61,14 +59,15 @@ export default function OneClassHeader({
 			</p>
 
 			<div className={styles.oneClassHeader__buttonsBlock}>
-				<Button onClick={editClass} variant="contained" size="small">
-					изменить
+				<Button onClick={editClass} variant="outlined" size="small">
+					<EditIcon sx={{ height: "30px", width: "30px" }} />
 				</Button>
 
 				<Button
 					onClick={openConfirmDialog}
-					variant="contained"
+					variant="outlined"
 					size="small"
+					color="error"
 				>
 					<DeleteIcon sx={{ height: "30px", width: "30px" }} />
 				</Button>

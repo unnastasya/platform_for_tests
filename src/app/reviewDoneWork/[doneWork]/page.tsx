@@ -22,13 +22,13 @@ import QuestionCriteria from "@/components/QuestionCriteria/QuestionCriteria";
 
 import styles from "./page.module.css";
 
-interface reviewDoneWorkProps {
+interface ReviewDoneWorkProps {
 	params: {
 		doneWorkId: string;
 	};
 }
 
-export default function reviewDoneWork({ params }: reviewDoneWorkProps) {
+export default function ReviewDoneWork({ params }: ReviewDoneWorkProps) {
 	const dispatch = useAppDispatch();
 
 	const { doneWorkId } = params;

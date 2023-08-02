@@ -24,8 +24,7 @@ export default function OneTestBlock({ lesson }: OneTestBlockProps) {
 		<div>
 			<Paper onClick={linkToTest} className={styles.oneTest__container}>
 				<p className={styles.oneTest__lessonName}>{lesson.name}</p>
-
-				{lesson.classes[0].school && lesson.classes[0].class && (
+				{lesson.classes[0]?.school && lesson.classes[0]?.class && (
 					<div className={styles.oneTest__classesBlock}>
 						{lesson.classes.map((oneClass: any) => (
 							<p
