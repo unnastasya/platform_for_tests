@@ -101,6 +101,7 @@ export default function Page() {
 							control={control}
 							render={({ field }) => (
 								<TextField
+									type="password"
 									fullWidth
 									label="Пароль"
 									error={!!errors.password?.message}
