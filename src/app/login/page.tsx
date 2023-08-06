@@ -72,16 +72,6 @@ export default function Page() {
 		}
 	}, [isAuthUser]);
 
-	if (isLoading) {
-		<ThemeProvider theme={theme}>
-			<div className={styles.login__container}>
-				<Paper className={styles.login__block}>
-					<CircularProgress />
-				</Paper>
-			</div>
-		</ThemeProvider>;
-	}
-
 	return (
 		<ThemeProvider theme={theme}>
 			<div className={styles.login__container}>
@@ -119,6 +109,8 @@ export default function Page() {
 								/>
 							)}
 						/>
+
+						{isLoading && <CircularProgress />}
 
 						{hasError && (
 							<Alert
