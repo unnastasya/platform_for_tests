@@ -3,7 +3,7 @@
 	border-radius: 5px;
 	position: relative;
 	padding: 30px;
-	paddingtop: 50px;
+	padding-bottom: 80px;
 }
 
 .student__work::after {
@@ -48,13 +48,17 @@
 	font-weight: 500;
 	font-size: 22px;
 	line-height: 100%;
-	margin-bottom: 10px;
-}
-
-.student__text {
-	margin-bottom: 30px;
 }
 
 .clickable {
 	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.alert {
+	position: absolute;
+	bottom: 20px;
+	width: 230px;
 }

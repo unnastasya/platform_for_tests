@@ -35,22 +35,24 @@ export default function DoneWorkBage({ work }: DoneWorkBageProps) {
 		}
 	};
 
-	useEffect(() => {
-		console.log("work", work);
-	}, []);
-
 	return (
-		<div
-			key={work._id}
-			onClick={() => toOneWorkPage(work._id, work.isVerified)}
-			className={styles.clickable}
-		>
-			<Paper sx={{ margin: 0 }} className={styles.student__work}>
+		<Paper sx={{ margin: 0 }} className={styles.student__work}>
+			<div
+				key={work._id}
+				onClick={() => toOneWorkPage(work._id, work.isVerified)}
+				className={styles.clickable}
+			>
 				<p className={styles.student__textHeader}>
 					{work.lessonId.name}
 				</p>
 				<p className={styles.student__text}>
 					{work.lessonId.description}
+				</p>
+				<p className={styles.student__text}>
+					{work.student.surname} {work.student.name}
+				</p>
+				<p className={styles.student__text}>
+					{work.student.class?.school} {work.student.class?.class}
 				</p>
 				{work.rating && (
 					<p
@@ -64,11 +66,15 @@ export default function DoneWorkBage({ work }: DoneWorkBageProps) {
 				)}
 
 				{work.isVerified ? (
-					<Alert severity="success">Проверено</Alert>
+					<Alert className={styles.alert} severity="success">
+						Проверено
+					</Alert>
 				) : (
-					<Alert severity="warning">Ожидает проверки</Alert>
+					<Alert className={styles.alert} severity="warning">
+						Ожидает проверки
+					</Alert>
 				)}
-			</Paper>
-		</div>
+			</div>
+		</Paper>
 	);
 }
