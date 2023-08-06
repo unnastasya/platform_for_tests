@@ -5,6 +5,7 @@ import { useAppSelector } from "@/redux/store";
 import { activeUserSelector } from "@/redux/Auth";
 
 import styles from "./DoneWorkBage.module.css";
+import { useEffect } from "react";
 
 const whatColor = (value: number, allCriteriaRating: number) => {
 	const percentage = (value / allCriteriaRating) * 100;
@@ -34,6 +35,10 @@ export default function DoneWorkBage({ work }: DoneWorkBageProps) {
 		}
 	};
 
+	useEffect(() => {
+		console.log("work", work);
+	}, []);
+
 	return (
 		<div
 			key={work._id}
@@ -41,8 +46,12 @@ export default function DoneWorkBage({ work }: DoneWorkBageProps) {
 			className={styles.clickable}
 		>
 			<Paper sx={{ margin: 0 }} className={styles.student__work}>
-				<p className={styles.student__textHeader}>Урок 21.03.2022</p>
-				<p className={styles.student__text}>Описание урока</p>
+				<p className={styles.student__textHeader}>
+					{work.lessonId.name}
+				</p>
+				<p className={styles.student__text}>
+					{work.lessonId.description}
+				</p>
 				{work.rating && (
 					<p
 						className={`${styles.rating__question} ${whatColor(

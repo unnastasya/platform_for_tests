@@ -1,6 +1,8 @@
+import { LessonType } from "./lesson";
+
 export type DoneWorkType = {
 	_id: string;
-	lessonId: string;
+	lessonId: LessonType;
 	answers: string[];
 	isVerified: boolean;
 	school: string;
