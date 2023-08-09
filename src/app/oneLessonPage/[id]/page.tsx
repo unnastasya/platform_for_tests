@@ -186,8 +186,9 @@ export default function OneLessonPage({ params }: OneLessonPageProps) {
 					<DialogTitle>Удалить урок</DialogTitle>
 					<DialogContent>
 						<DialogContentText>
-							Вы действительно хотите удалить урок "{lesson.name}
-							"?
+							Вы действительно хотите удалить урок &quot;
+							{lesson.name}
+							&quot;?
 						</DialogContentText>
 					</DialogContent>
 					<DialogActions>

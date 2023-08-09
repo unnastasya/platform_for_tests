@@ -80,8 +80,8 @@ export default function OneClassHeader({
 				<DialogTitle>Удалить класс</DialogTitle>
 				<DialogContent>
 					<DialogContentText>
-						Вы действительно хотите удалить класс "
-						{classData.school} {classData.class}"?
+						Вы действительно хотите удалить класс &quot;
+						{classData.school} {classData.class}&quot;?
 					</DialogContentText>
 				</DialogContent>
 				<DialogActions>

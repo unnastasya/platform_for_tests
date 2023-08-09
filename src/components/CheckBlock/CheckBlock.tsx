@@ -65,7 +65,7 @@ export default function CheckBlock({
 					))}
 				{activeUser.role == "student" &&
 					question.criteria.map((criterion: any) => (
-						<p>
+						<p key={criterion._id}>
 							{criterion.text} - {criterion.value} балла
 						</p>
 					))}

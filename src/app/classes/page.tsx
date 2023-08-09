@@ -25,11 +25,11 @@ export default function Classes() {
 
 	const fetchClasses = useCallback(() => {
 		dispatch(ClassesActions.requestClasses());
-	}, [dispatch]);
+	}, []);
 
 	useEffect(() => {
 		fetchClasses();
-	}, [dispatch, fetchClasses]);
+	}, []);
 
 	const navigateToAddClass = () => {
 		dispatch(AddClassActions.changeEditClassIdData({}));

@@ -28,11 +28,11 @@ export default function LessonsPage() {
 		} else {
 			dispatch(LessonsActions.requestLessons());
 		}
-	}, [dispatch]);
+	}, [activeUser.role ]);
 
 	useEffect(() => {
 		fetchLessons();
-	}, [dispatch, fetchLessons]);
+	}, []);
 
 	if (isLoading) {
 		return (

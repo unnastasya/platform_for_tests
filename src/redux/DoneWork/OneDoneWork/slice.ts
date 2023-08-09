@@ -14,7 +14,15 @@ const initialState: OneDoneWorkStateType = {
 	requestDoneWorkId: "",
 	oneDoneWork: {
 		_id: "",
-		lessonId: "",
+		lessonId: {
+			_id: "",
+			name: "",
+			description: "",
+			doneCount: 0,
+			allCriteriaRating: 0,
+			questions: [],
+			classes: [],
+		},
 		answers: [],
 		isVerified: false,
 		school: "",

@@ -1,3 +1,5 @@
+"use client";
+
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { Button, CircularProgress, Divider, Paper } from "@mui/material";
@@ -67,6 +69,7 @@ export default function AddClassBlock() {
 
 	const routingToClasses = () => {
 		dispatch(AddClassActions.changeIsAddedClass(false));
+		dispatch(AddClassActions.changeClassIsAddedToFalse());
 		router.push("/classes");
 	};
 
@@ -77,6 +80,7 @@ export default function AddClassBlock() {
 					{studentsData.length > 0 ? (
 						studentsData.map((student) => (
 							<div
+								key={student._id}
 								className={
 									styles.addClassBlock__oneUserDataContainer
 								}

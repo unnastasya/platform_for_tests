@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useEffect } from "react";
 import { Container } from "@mui/material";
 import Header from "./Header";
 import { ThemeProvider } from "@emotion/react";
@@ -14,9 +16,11 @@ export function Page({ children }: any) {
 	const router = useRouter();
 	const isAuthUser = useAppSelector(isAuthUserSelector);
 
-	if (!isAuthUser) {
-		router.push(`/login`);
-	}
+	useEffect(() => {
+		if (!isAuthUser) {
+			router.push(`/login`);
+		}
+	}, [isAuthUser]);
 
 	return (
 		<ThemeProvider theme={theme}>

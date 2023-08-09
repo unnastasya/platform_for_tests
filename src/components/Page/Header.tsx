@@ -37,7 +37,7 @@ const Header = ({ activeUser }: HeaderProps) => {
 								</Button>
 							</Link>
 
-							<Link href="/lessonsPage">
+							<Link href="/lessonsPage" replace>
 								<Button
 									variant="contained"
 									endIcon={<FileCopyIcon />}
@@ -46,7 +46,7 @@ const Header = ({ activeUser }: HeaderProps) => {
 								</Button>
 							</Link>
 
-							<Link href="/doneWorks">
+							<Link href="/doneWorks" replace>
 								<Button
 									variant="contained"
 									endIcon={<TaskIcon />}

@@ -58,7 +58,7 @@ export default function CheckLesson({ params }: CheckLessonProps) {
 	useEffect(() => {
 		changeDoneWorkId();
 		fetchOneDoneWork();
-	}, [dispatch, fetchOneDoneWork, doneWorkId]);
+	}, [doneWorkId]);
 
 	const handleClick = () => {
 		changeOneDoneWork(doneWork._id, {

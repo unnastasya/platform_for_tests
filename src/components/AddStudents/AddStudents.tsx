@@ -1,3 +1,5 @@
+"use client";
+
 import { useFieldArray } from "react-hook-form";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";

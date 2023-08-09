@@ -6,6 +6,7 @@ export type User = {
 };
 
 export type AddUserType = {
+    _id: string;
 	fullName: string;
 	login: string;
 	password: string;

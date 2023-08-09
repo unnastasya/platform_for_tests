@@ -30,6 +30,10 @@ const changeRequestData: CaseReducer<AddClassStateType, PayloadAction<any>> = (
 	state.requestData = payload;
 };
 
+const changeClassIsAddedToFalse: CaseReducer<AddClassStateType> = (state) => {
+	state.classIsAdded = false;
+};
+
 const addClass: CaseReducer<AddClassStateType> = (state) => {
 	state.classIsAdded = false;
 	state.isLoading = true;
@@ -82,6 +86,7 @@ export const { reducer: AddClassReducer, actions: AddClassActions } =
 			failureAddClass,
 			changeIsAddedClass,
 			changeEditClassIdData,
-			editClass
+			editClass,
+            changeClassIsAddedToFalse
 		},
 	});

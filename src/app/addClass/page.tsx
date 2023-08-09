@@ -1,5 +1,3 @@
-"use client";
-
 import AddClassBlock from "@/components/AddClassBlock/AddClassBlock";
 import { Page } from "@/components/Page/Page";
 

@@ -30,7 +30,7 @@ export default function OneStudent({ params }: OneStudentProps) {
 	const fetchStudentsDoneWorks = useCallback(() => {
 		dispatch(DoneWorksActions.changeRequestIdData(studentId));
 		dispatch(DoneWorksActions.requesOneUsersDoneWorks());
-	}, []);
+	}, [studentId]);
 
 	useEffect(() => {
 		fetchStudentsDoneWorks();

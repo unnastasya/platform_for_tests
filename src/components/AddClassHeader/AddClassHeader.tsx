@@ -1,3 +1,5 @@
+"use client";
+
 import { TextField } from "@mui/material";
 import styles from "./AddClassHeader.module.css";
 

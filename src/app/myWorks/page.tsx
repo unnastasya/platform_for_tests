@@ -52,7 +52,7 @@ export default function MyWorks() {
 		<Page>
 			<div className={styles.myWorks__container}>
 				{works.map((work: any) => (
-					<DoneWorkBage work={work} />
+					<DoneWorkBage work={work} key={work._id} />
 				))}
 			</div>
 		</Page>
