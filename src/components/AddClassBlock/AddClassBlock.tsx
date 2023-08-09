@@ -74,17 +74,27 @@ export default function AddClassBlock() {
 		return (
 			<>
 				<Paper className={styles.addClassBlock__usersDataContainer}>
-					{studentsData.map((student) => (
+					{studentsData.length > 0 ? (
+						studentsData.map((student) => (
+							<div
+								className={
+									styles.addClassBlock__oneUserDataContainer
+								}
+							>
+								<p>Имя: {student.fullName}</p>
+								<p>Логин: {student.login}</p>
+								<p>Пароль: {student.password}</p>
+							</div>
+						))
+					) : (
 						<div
 							className={
 								styles.addClassBlock__oneUserDataContainer
 							}
 						>
-							<p>Имя: {student.fullName}</p>
-							<p>Логин: {student.login}</p>
-							<p>Пароль: {student.password}</p>
+							<p>Вы не добавили новых учеников</p>
 						</div>
-					))}
+					)}
 				</Paper>
 				<Button variant="contained" onClick={routingToClasses}>
 					Готово
