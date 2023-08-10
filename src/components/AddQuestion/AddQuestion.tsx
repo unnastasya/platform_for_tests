@@ -88,7 +88,7 @@ export default function AddQuestion({ control, register, setValue }: any) {
 						id: Number(Date.now()),
 						question: "",
 						description: "",
-						criteria: [{ text: "", value: 0 }],
+						criteria: [{ text: "", value: 0, status: false }],
 						criteriaRating: 0,
 					});
 				}}

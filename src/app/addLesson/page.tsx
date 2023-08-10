@@ -44,7 +44,7 @@ export default function AddLesson() {
 					images: [],
 					questionText: "",
 					description: "",
-					criteria: [{ text: "", value: 0 }],
+					criteria: [{ text: "", value: 0, status: false }],
 					criteriaRating: 0,
 				},
 			],
@@ -69,6 +69,7 @@ export default function AddLesson() {
 	const onSubmit = async (data: any) => {
 		data.allCriteriaRating = allCriteriaValue(data.questions);
 		data.classes = checkedClass;
+        console.log(data)
 
 		for (
 			let questionIndex = 0;
@@ -90,7 +91,7 @@ export default function AddLesson() {
 		changeRequestData(data);
 		fetchAddLesson();
 
-		router.push("/lessonsPage");
+		router.push("/lessons");
 	};
 
 	if (isLoading) {

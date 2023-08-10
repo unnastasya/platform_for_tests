@@ -45,6 +45,7 @@ export default function AddCriteria({ register, indexQuestion, control }: any) {
 		append({
 			text: "",
 			value: 0,
+            status: false
 		});
 	};
 

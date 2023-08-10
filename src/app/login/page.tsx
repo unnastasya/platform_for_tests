@@ -68,7 +68,7 @@ export default function Page() {
 
 	useEffect(() => {
 		if (isAuthUser) {
-			router.push("/lessonsPage");
+			router.push("/lessons");
 		}
 	}, [isAuthUser]);
 

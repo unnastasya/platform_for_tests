@@ -5,21 +5,20 @@ import FileCopyIcon from "@mui/icons-material/FileCopy";
 import PeopleIcon from "@mui/icons-material/People";
 import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
 import PersonIcon from "@mui/icons-material/Person";
-import { useAppDispatch } from "@/redux/store";
-import { AuthActions } from "@/redux/Auth";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
+import { AuthActions, activeUserSelector } from "@/redux/Auth";
 import LogoutIcon from "@mui/icons-material/Logout";
 
 import styles from "./Header.module.css";
 import Link from "next/link";
 
-interface HeaderProps {
-	activeUser: any;
-}
 
-const Header = ({ activeUser }: HeaderProps) => {
+const Header = () => {
 	const dispatch = useAppDispatch();
+    const activeUser = useAppSelector(activeUserSelector);
 
-	const logout = () => [dispatch(AuthActions.logout())];
+	const logout = () => {dispatch(AuthActions.logout())};
+
 
 	return (
 		<div className={styles.header__root}>
@@ -37,7 +36,7 @@ const Header = ({ activeUser }: HeaderProps) => {
 								</Button>
 							</Link>
 
-							<Link href="/lessonsPage" replace>
+							<Link href="/lessons" replace>
 								<Button
 									variant="contained"
 									endIcon={<FileCopyIcon />}

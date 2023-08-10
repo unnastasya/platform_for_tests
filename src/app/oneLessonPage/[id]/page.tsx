@@ -83,7 +83,7 @@ export default function OneLessonPage({ params }: OneLessonPageProps) {
 		dispatch(LessonsActions.changeDeleteLessonRequestId(id));
 		dispatch(LessonsActions.deleteLesson());
 		setIsConfirmDialogOpen(false);
-		router.push("/lessonsPage");
+		router.push("/lessons");
 	};
 
 	const {
