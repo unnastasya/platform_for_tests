@@ -45,6 +45,10 @@ export default function CheckLesson({ params }: CheckLessonProps) {
 	const doneWork = useAppSelector(oneDoneWorkDataSelector);
 	const isLoadingDoneWork = useAppSelector(oneDoneWorkIsLoadingSelector);
 
+    console.log("lesson", lesson);
+    console.log("doneWork", doneWork);
+    console.log("doneWorkId", doneWork);
+
 	const activeUser = useAppSelector(activeUserSelector);
 
 	const changeDoneWorkId = () => {

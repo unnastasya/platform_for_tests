@@ -9,9 +9,10 @@ import { getOneLesson } from "@/api/lessons";
 function* getOneDoneWorkSaga() {
 	try {
 		const workId: string = yield select(oneDoneWorkRequestIdSelector);
-
+        
 		const doneWork: DoneWorkType = yield call(getOneDoneWork, workId);
 		const lesson: LessonType = yield call(getOneLesson, doneWork.lessonId);
+
 		yield put(
 			OneDoneWorkActions.successOneDoneWork({
 				doneWork: doneWork,
