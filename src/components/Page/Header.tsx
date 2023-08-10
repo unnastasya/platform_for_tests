@@ -12,13 +12,13 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import styles from "./Header.module.css";
 import Link from "next/link";
 
-
 const Header = () => {
 	const dispatch = useAppDispatch();
-    const activeUser = useAppSelector(activeUserSelector);
+	const activeUser = useAppSelector(activeUserSelector);
 
-	const logout = () => {dispatch(AuthActions.logout())};
-
+	const logout = () => {
+		dispatch(AuthActions.logout());
+	};
 
 	return (
 		<div className={styles.header__root}>
@@ -66,7 +66,7 @@ const Header = () => {
 					)}
 					{activeUser.role === "student" && (
 						<Stack direction="row" spacing={2}>
-							<Link href="/lessonsPage">
+							<Link href="/lessons">
 								<Button
 									variant="contained"
 									endIcon={<InsertDriveFileIcon />}
