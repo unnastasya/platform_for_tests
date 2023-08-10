@@ -10,7 +10,7 @@ import {
 	ThemeProvider,
 } from "@mui/material";
 import { Controller, useForm } from "react-hook-form";
-import { theme } from "../../theme.js";
+import { theme } from "../../src/theme.js";
 import { useRouter } from "next/navigation";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";

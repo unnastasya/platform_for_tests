@@ -1,7 +1,7 @@
 "use client";
 import { ThemeProvider } from "@emotion/react";
 import Link from "next/link";
-import { theme } from "../theme";
+import { theme } from "../src/theme";
 import { Button } from "@mui/material";
 import LoginIcon from "@mui/icons-material/Login";
 
