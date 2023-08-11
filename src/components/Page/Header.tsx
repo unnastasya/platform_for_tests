@@ -1,5 +1,4 @@
 import { Button, Container, Stack } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
 import TaskIcon from "@mui/icons-material/Task";
 import FileCopyIcon from "@mui/icons-material/FileCopy";
 import PeopleIcon from "@mui/icons-material/People";
@@ -27,21 +26,12 @@ const Header = () => {
 					<p className={styles.header__text}>{activeUser.fullName}</p>
 					{activeUser.role === "teacher" && (
 						<Stack direction="row" spacing={2}>
-							<Link href="/addLesson">
-								<Button
-									variant="contained"
-									endIcon={<AddIcon />}
-								>
-									Добавить урок
-								</Button>
-							</Link>
-
 							<Link href="/lessons" replace>
 								<Button
 									variant="contained"
 									endIcon={<FileCopyIcon />}
 								>
-									Все уроки
+									Уроки
 								</Button>
 							</Link>
 

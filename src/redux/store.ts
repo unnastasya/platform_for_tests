@@ -28,7 +28,7 @@ const rootReducer = combineReducers({
 	doneWorks: DoneWorksReducer,
 	oneDoneWork: OneDoneWorkReducer,
 	addDoneWork: AddDoneWorkReducer,
-	auth: AuthReducer,
+	auth: persistReducer(persistConfig, AuthReducer),
 	lessons: LessonsReducer,
 	oneLesson: OneLessonReducer,
 	addLesson: AddLessonReducer,
@@ -39,7 +39,7 @@ const sagaMiddleware = createSagaMiddleware();
 const middlewares = [sagaMiddleware];
 
 const store = configureStore({
-	reducer: persistedReducer,
+	reducer: rootReducer,
 	devTools: true,
 	middleware: middlewares,
 });

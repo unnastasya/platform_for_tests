@@ -32,9 +32,11 @@ export default function ReviewDoneWork({ params }: ReviewDoneWorkProps) {
 	const dispatch = useAppDispatch();
 
 	const { doneWorkId } = params;
+
 	const lesson = useAppSelector(oneDoneWorksLessonSelector);
 
 	const doneWork = useAppSelector(oneDoneWorkDataSelector);
+
 	const isLoadingDoneWork = useAppSelector(oneDoneWorkIsLoadingSelector);
 
 	const changeDoneWorkId = () => {
@@ -60,7 +62,6 @@ export default function ReviewDoneWork({ params }: ReviewDoneWorkProps) {
 		);
 	}
 
-	console.log(doneWork);
 	return (
 		<Page>
 			<Paper className={styles.oneTest__questionBlock}>

@@ -8,7 +8,7 @@ function* postDoneWork() {
 		const requestData: {} = yield select(addDoneWorkRequestDataSelector);
 
 		const doneWorkId: { id: string } = yield call(addDoneWork, requestData);
-
+        console.log(doneWorkId)
 		yield put(
 			AddDoneWorkActions.successAddDoneWork({
 				message: "Работа успешно добавлена",

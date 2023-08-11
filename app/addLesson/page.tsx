@@ -3,7 +3,7 @@
 import { addImage } from "@/api/lessons";
 import { Button, CircularProgress } from "@mui/material";
 import { useRouter } from "next/navigation";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import DoneIcon from "@mui/icons-material/Done";
 import AddQuestion from "@/components/AddQuestion/AddQuestion";
@@ -18,7 +18,7 @@ import {
 } from "@/redux/Lesson/AddLesson";
 
 import styles from "./page.module.css";
-import { classesDataSelector } from "@/redux/Class/Classes";
+import { ClassesActions, classesDataSelector } from "@/redux/Class/Classes";
 
 export default function AddLesson() {
 	const dispatch = useAppDispatch();
@@ -27,6 +27,14 @@ export default function AddLesson() {
 	const [checkedClass, setCheckedClass] = useState<any[]>([]);
 
 	const isLoading: boolean = useAppSelector(addLessonIsLoadingSelector);
+
+    const fetchClasses = useCallback(() => {
+		dispatch(ClassesActions.requestClasses());
+	}, []);
+
+	useEffect(() => {
+		fetchClasses();
+	}, []);
 
 	const {
 		register,

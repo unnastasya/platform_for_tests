@@ -9,11 +9,13 @@ import {
 	lessonsDataSelector,
 	lessonsIsLoadingSelector,
 } from "@/redux/Lesson/Lessons";
-import { CircularProgress, Paper } from "@mui/material";
+import { Button, CircularProgress, Paper } from "@mui/material";
 import { LessonType } from "@/types/lesson";
 
 import styles from "./page.module.css";
 import { activeUserSelector } from "@/redux/Auth";
+import Link from "next/link";
+import AddIcon from "@mui/icons-material/Add";
 
 export default function LessonsPage() {
 	const dispatch = useAppDispatch();
@@ -28,7 +30,7 @@ export default function LessonsPage() {
 		} else {
 			dispatch(LessonsActions.requestLessons());
 		}
-	}, [activeUser.role ]);
+	}, [activeUser.role]);
 
 	useEffect(() => {
 		fetchLessons();
@@ -63,6 +65,15 @@ export default function LessonsPage() {
 	return (
 		<>
 			<Page>
+				<Link href="/addLesson">
+					<Button
+						sx={{ marginBottom: "20px" }}
+						variant="contained"
+						endIcon={<AddIcon />}
+					>
+						Добавить урок
+					</Button>
+				</Link>
 				<div className={styles.lessonsPage__container}>
 					{lessons.map((lesson) => (
 						<OneTestBlock key={lesson._id} lesson={lesson} />

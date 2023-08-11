@@ -57,6 +57,7 @@ export default function OneLessonPage({ params }: OneLessonPageProps) {
 	const activeUser = useAppSelector(activeUserSelector);
 
 	const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false);
+	const [isAddedDialogOpen, setIsAddedDialogOpen] = useState(false);
 
 	const openConfirmDialog = () => {
 		setIsConfirmDialogOpen(true);
@@ -108,13 +109,15 @@ export default function OneLessonPage({ params }: OneLessonPageProps) {
 		};
 
 		changeRequestData(data);
-		await fetchAddDoneWork();
+		fetchAddDoneWork();
 
-		if (activeUser.role == "student") {
-			router.push(`/reviewDoneWork/${doneWorkId}`);
-		} else {
-			router.push(`/checkLesson/${doneWorkId}`);
-		}
+		setIsAddedDialogOpen(true);
+
+		// if (activeUser.role == "student") {
+		// 	router.push("/myWorks");
+		// } else {
+		// 	router.push(`/checkLesson/${doneWorkId}`);
+		// }
 	};
 
 	const onSubmit = (data: any) => {
@@ -133,6 +136,25 @@ export default function OneLessonPage({ params }: OneLessonPageProps) {
 
 	return (
 		<Page>
+			<Dialog
+				open={isAddedDialogOpen}
+				onClose={() => setIsAddedDialogOpen(false)}
+			>
+				<DialogContent>
+					<DialogContentText>Ваша работа принята</DialogContentText>
+				</DialogContent>
+				<DialogActions>
+					<Button
+						variant="outlined"
+						onClick={() => {
+							setIsAddedDialogOpen(false);
+							router.push("/myWorks");
+						}}
+					>
+						ОК
+					</Button>
+				</DialogActions>
+			</Dialog>
 			<div>
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<Paper className={styles.oneLesson__infoBlock}>
