@@ -70,7 +70,8 @@ export default function ReviewDoneWork({ params }: ReviewDoneWorkProps) {
 					{doneWork.student.name} {doneWork.student.surname}
 				</p>
 				<p>
-					{doneWork.school}, {doneWork.class}
+					{doneWork.student.class?.school},{" "}
+					{doneWork.student.class?.class}
 				</p>
 
 				<Alert severity="warning">Ожидает проверки</Alert>

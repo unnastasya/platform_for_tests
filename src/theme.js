@@ -33,7 +33,7 @@ export const theme = createTheme({
 		MuiButton: {
 			styleOverrides: {
 				root: {
-					height: "50px",
+					height: "40px",
 					fontSize: "16px",
 				},
 			},

@@ -46,9 +46,6 @@ export default function DoneWorkBage({ work }: DoneWorkBageProps) {
 					{work.lessonId.name}
 				</p>
 				<p className={styles.student__text}>
-					{work.lessonId.description}
-				</p>
-				<p className={styles.student__text}>
 					{work.student.surname} {work.student.name}
 				</p>
 				<p className={styles.student__text}>

@@ -191,13 +191,15 @@ export default function OneLesson({ params }: OneLessonProps) {
 								<QuestionCriteria question={question} />
 							</QuestionBlock>
 						))}
-					<Button
-						variant="contained"
-						endIcon={<AddIcon />}
-						type="submit"
-					>
-						Сдать работу
-					</Button>
+					{activeUser.role === "student" && (
+						<Button
+							variant="contained"
+							endIcon={<AddIcon />}
+							type="submit"
+						>
+							Сдать работу
+						</Button>
+					)}
 				</form>
 				<Dialog
 					open={isConfirmDialogOpen}
