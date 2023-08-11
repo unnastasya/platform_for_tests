@@ -17,6 +17,7 @@
 	overflow: auto;
 	white-space: nowrap;
 	display: flex;
+    position: relative;
 	gap: 20px;
 }
 
