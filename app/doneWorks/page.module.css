@@ -1,9 +1,8 @@
 .doneWorks__page {
-	width: 1200px;
-	display: flex;
-	flex-wrap: wrap;
-	gap: 10px;
-	align-items: stretch;
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-gap: 10px;
 }
 
 .doneWorks__loadingContainer {
@@ -22,4 +21,10 @@
 	flex-direction: column;
 	gap: 30px;
 	justify-content: space-between;
+}
+
+@media (max-width: 1064px) {
+	.doneWorks__page {
+		grid-template-columns: repeat(3, 1fr);
+	}
 }

@@ -1,5 +1,5 @@
 .oneStudent__questionBlock {
-	width: 1200px;
+	width: 100%;
 	padding: 30px;
 	padding-top: 45px;
 	border-radius: 10px;
@@ -29,10 +29,11 @@
 }
 
 .oneStudents__doneWorks__page {
-	width: 1200px;
-	display: flex;
-	flex-wrap: wrap;
-	gap: 10px;
+	width: 100%;
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-gap: 10px;
 }
 
 .oneStudent__loadingContainer {
@@ -45,4 +46,10 @@
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
+}
+
+@media (max-width: 1064px) {
+	.oneStudents__doneWorks__page {
+		grid-template-columns: repeat(3, 1fr);
+	}
 }

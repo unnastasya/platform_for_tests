@@ -28,7 +28,7 @@ export default function PeopleListComponent({
 					<p>
 						{person.name} {person.surname}
 					</p>
-					<Button variant="contained">Показать все работы</Button>
+					<Button variant="outlined">Показать все работы</Button>
 				</div>
 			))}
 		</div>

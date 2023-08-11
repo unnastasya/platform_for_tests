@@ -39,7 +39,7 @@
 }
 
 .oneTest__questionBlock {
-	width: 1200px;
+	width: 100%;
 	padding: 30px;
 	padding-top: 50px;
 	border-radius: 10px;

@@ -1,8 +1,9 @@
 .myWorks__container {
-	width: 1200px;
-	display: flex;
-	flex-wrap: wrap;
-	gap: 10px;
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-gap: 10px;
+	align-items: stretch;
 }
 
 .myWorks__loadingContainer {
@@ -21,4 +22,10 @@
 	flex-direction: column;
 	gap: 30px;
 	justify-content: space-between;
+}
+
+@media (max-width: 1064px) {
+	.myWorks__container {
+		grid-template-columns: repeat(3, 1fr);
+	}
 }

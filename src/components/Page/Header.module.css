@@ -3,7 +3,7 @@
 	border-bottom: 1px solid #e0e0e0;
 	position: fixed;
 	width: 100vw;
-	z-index: 10;
+	z-index: 2;
 	background: #ffffff;
 	display: flex;
 	justify-content: center;
@@ -16,6 +16,7 @@
 	align-items: center;
 	width: 100%;
 	max-width: 1200px;
+	padding: 0 10px;
 }
 
 .header__text {

@@ -1,12 +1,12 @@
 .classes__classesList {
-	width: 1200px;
-	display: flex;
-	flex-wrap: wrap;
-	gap: 10px;
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-gap: 10px;
 }
 
 .classes__container {
-	width: 1200px;
+	width: 100%;
 	display: flex;
 	flex-wrap: wrap;
 	gap: 20px;
@@ -28,4 +28,10 @@
 	flex-direction: column;
 	gap: 30px;
 	justify-content: space-between;
+}
+
+@media (max-width: 1064px) {
+	.classes__classesList {
+		grid-template-columns: repeat(3, 1fr);
+	}
 }
