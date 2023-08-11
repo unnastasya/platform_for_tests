@@ -88,7 +88,8 @@ export default function ResultLesson({ params }: ResultLessonProps) {
 				</p>
 
 				<p>
-					{doneWork.school}, {doneWork.class}
+					{doneWork.student.class?.school},{" "}
+					{doneWork.student.class?.class}
 				</p>
 				<Alert severity="success">Проверено</Alert>
 			</Paper>

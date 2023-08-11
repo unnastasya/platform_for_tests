@@ -30,8 +30,6 @@ function* editOneClassSaga() {
 		const requestData: {} = yield select(addClassRequestDataSelector);
 		const editClassId: string = yield select(editClassIdDataSelector);
 
-		console.log("requestData", requestData);
-
 		const usersData: AddUserType[] = yield call(updateClass, {
 			id: editClassId,
 			data: requestData,

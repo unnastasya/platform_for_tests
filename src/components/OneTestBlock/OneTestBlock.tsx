@@ -14,10 +14,9 @@ export default function OneTestBlock({ lesson }: OneTestBlockProps) {
 	const router = useRouter();
 
 	const linkToTest = () => {
-		router.push(`/oneLessonPage/${lesson._id}`);
+		router.push(`/oneLesson/${lesson._id}`);
 	};
 
-	console.log(lesson);
 	const activeUser = useAppSelector(activeUserSelector);
 
 	return (

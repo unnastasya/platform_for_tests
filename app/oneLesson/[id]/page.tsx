@@ -35,13 +35,13 @@ import {
 import styles from "./page.module.css";
 import { LessonsActions } from "@/redux/Lesson/Lessons";
 
-interface OneLessonPageProps {
+interface OneLessonProps {
 	params: {
 		id: string;
 	};
 }
 
-export default function OneLessonPage({ params }: OneLessonPageProps) {
+export default function OneLesson({ params }: OneLessonProps) {
 	const dispatch = useAppDispatch();
 
 	const id = params.id;
@@ -103,8 +103,6 @@ export default function OneLessonPage({ params }: OneLessonPageProps) {
 			lessonId: id,
 			student: activeUser.userId,
 			isVerified: false,
-			school: "4 средняя школа",
-			class: "9a",
 			allCriteriaRating: lesson.allCriteriaRating,
 		};
 

@@ -28,7 +28,7 @@ export default function AddLesson() {
 
 	const isLoading: boolean = useAppSelector(addLessonIsLoadingSelector);
 
-    const fetchClasses = useCallback(() => {
+	const fetchClasses = useCallback(() => {
 		dispatch(ClassesActions.requestClasses());
 	}, []);
 
@@ -77,7 +77,6 @@ export default function AddLesson() {
 	const onSubmit = async (data: any) => {
 		data.allCriteriaRating = allCriteriaValue(data.questions);
 		data.classes = checkedClass;
-        console.log(data)
 
 		for (
 			let questionIndex = 0;

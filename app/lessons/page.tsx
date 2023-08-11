@@ -65,15 +65,17 @@ export default function LessonsPage() {
 	return (
 		<>
 			<Page>
-				<Link href="/addLesson">
-					<Button
-						sx={{ marginBottom: "20px" }}
-						variant="contained"
-						endIcon={<AddIcon />}
-					>
-						Добавить урок
-					</Button>
-				</Link>
+				{activeUser.role === "teacher" && (
+					<Link href="/addLesson">
+						<Button
+							sx={{ marginBottom: "20px" }}
+							variant="contained"
+							endIcon={<AddIcon />}
+						>
+							Добавить урок
+						</Button>
+					</Link>
+				)}
 				<div className={styles.lessonsPage__container}>
 					{lessons.map((lesson) => (
 						<OneTestBlock key={lesson._id} lesson={lesson} />
