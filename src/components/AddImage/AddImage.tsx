@@ -49,7 +49,7 @@ export default function AddImage({
 				<Button
 					component="label"
 					onClick={() => inputFileRef.current?.click()}
-					variant="contained"
+					variant="outlined"
 					{...register(`questions.${questionIndex}.images`)}
 					startIcon={<AttachFileIcon />}
 				>

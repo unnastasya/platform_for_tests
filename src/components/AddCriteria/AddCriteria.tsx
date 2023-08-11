@@ -76,7 +76,7 @@ export default function AddCriteria({ register, indexQuestion, control }: any) {
 							/>
 						</FormControl>
 						<Button
-							variant="contained"
+							variant="outlined"
 							aria-label="delete"
 							onClick={() => {
 								remove(index);
@@ -91,7 +91,7 @@ export default function AddCriteria({ register, indexQuestion, control }: any) {
 			})}
 			<Button
 				onClick={appendCriteria}
-				variant="contained"
+				variant="outlined"
 				startIcon={<AddIcon />}
 			>
 				Еще критерий

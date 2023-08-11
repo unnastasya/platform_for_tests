@@ -29,7 +29,7 @@ export default function AddQuestion({ control, register, setValue }: any) {
 								Вопрос {index + 1}
 							</p>
 							<Button
-								variant="contained"
+								variant="outlined"
 								aria-label="delete"
 								onClick={() => {
 									remove(index);
