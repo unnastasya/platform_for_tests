@@ -70,55 +70,57 @@ export default function ResultLesson({ params }: ResultLessonProps) {
 
 	return (
 		<Page>
-			<Paper className={styles.resultLesson__container}>
-				{doneWork.rating && (
-					<p
-						className={`${styles.rating__question} ${whatColor(
-							doneWork.rating,
-							lesson.allCriteriaRating
-						)}`}
-					>
-						{doneWork.rating}
-					</p>
-				)}
-
-				<p className={styles.resultLesson__header}>{lesson.name}</p>
-				<p>
-					{doneWork.student.name} {doneWork.student.surname}
-				</p>
-
-				<p>
-					{doneWork.student.class?.school},{" "}
-					{doneWork.student.class?.class}
-				</p>
-				<Alert severity="success">Проверено</Alert>
-			</Paper>
-			{doneWork.comment && (
+			<div className={styles.resultLesson__pageContainer}>
 				<Paper className={styles.resultLesson__container}>
-					<p className={styles.resultLesson__header}>
-						Комментарий к работе:
+					{doneWork.rating && (
+						<p
+							className={`${styles.rating__question} ${whatColor(
+								doneWork.rating,
+								lesson.allCriteriaRating
+							)}`}
+						>
+							{doneWork.rating}
+						</p>
+					)}
+
+					<p className={styles.resultLesson__header}>{lesson.name}</p>
+					<p>
+						{doneWork.student.name} {doneWork.student.surname}
 					</p>
-					<p>{doneWork.comment}</p>
+
+					<p>
+						{doneWork.student.class?.school},{" "}
+						{doneWork.student.class?.class}
+					</p>
+					<Alert severity="success">Проверено</Alert>
 				</Paper>
-			)}
-			{lesson.questions &&
-				lesson.questions.map((question: any, index: any) => (
-					<QuestionBlock
-						index={index}
-						key={question._id}
-						question={question}
-					>
-						<FormControl fullWidth>
-							<TextField
-								multiline
-								label="Ответ ученика"
-								value={doneWork.answers[index]}
-							/>
-						</FormControl>
-						<Divider />
-						<QuestionCriteria question={question} />
-					</QuestionBlock>
-				))}
+				{doneWork.comment && (
+					<Paper className={styles.resultLesson__container}>
+						<p className={styles.resultLesson__header}>
+							Комментарий к работе:
+						</p>
+						<p>{doneWork.comment}</p>
+					</Paper>
+				)}
+				{lesson.questions &&
+					lesson.questions.map((question: any, index: any) => (
+						<QuestionBlock
+							index={index}
+							key={question._id}
+							question={question}
+						>
+							<FormControl fullWidth>
+								<TextField
+									multiline
+									label="Ответ ученика"
+									value={doneWork.answers[index]}
+								/>
+							</FormControl>
+							<Divider />
+							<QuestionCriteria question={question} />
+						</QuestionBlock>
+					))}
+			</div>
 		</Page>
 	);
 }

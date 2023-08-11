@@ -1,6 +1,5 @@
 "use client";
 
-import styles from "./page.module.css";
 import {
 	Alert,
 	Button,
@@ -24,6 +23,8 @@ import {
 	loginErrorMessageSelector,
 } from "@/redux/Auth";
 import { LoginUserType } from "@/types/user";
+
+import styles from "./page.module.css";
 
 export default function Page() {
 	const dispatch = useAppDispatch();

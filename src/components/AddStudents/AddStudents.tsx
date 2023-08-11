@@ -5,10 +5,10 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import GroupAddIcon from "@mui/icons-material/GroupAdd";
 import { Button, FormControl, TextField } from "@mui/material";
-
-import styles from "./AddStudents.module.css";
 import { useAppSelector } from "@/redux/store";
 import { editClassIdDataSelector } from "@/redux/Class/AddClass";
+
+import styles from "./AddStudents.module.css";
 
 const styleInput = {
 	width: "100%",

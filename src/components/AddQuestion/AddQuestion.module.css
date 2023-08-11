@@ -1,12 +1,17 @@
-.addQuestion__container {
+.oneAddQuestion__container {
 	width: 1200px;
-	padding: 50px;
-	margin: 25px 0;
+	padding: 30px;
 	position: relative;
 	border-radius: 10px;
 	display: flex;
 	flex-direction: column;
 	gap: 30px;
+}
+
+.addQuestions__container {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
 }
 
 .addQuestion__nameBlock {

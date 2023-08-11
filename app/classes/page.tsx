@@ -13,9 +13,9 @@ import {
 	classesDataSelector,
 	classesIsLoadingSelector,
 } from "@/redux/Class/Classes";
+import { AddClassActions } from "@/redux/Class/AddClass";
 
 import styles from "./page.module.css";
-import { AddClassActions } from "@/redux/Class/AddClass";
 
 export default function Classes() {
 	const router = useRouter();

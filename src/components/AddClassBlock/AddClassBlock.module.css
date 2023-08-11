@@ -1,7 +1,7 @@
 .addClass__container {
 	width: 1200px;
-	padding: 50px;
-	margin: 25px 0;
+	padding: 30px;
+	padding-top: 45px;
 	position: relative;
 	border-radius: 10px;
 }

@@ -1,10 +1,10 @@
 import { Paper } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { LessonType } from "@/types/lesson";
-
-import styles from "./OneTestBlock.module.css";
 import { useAppSelector } from "@/redux/store";
 import { activeUserSelector } from "@/redux/Auth";
+
+import styles from "./OneTestBlock.module.css";
 
 interface OneTestBlockProps {
 	lesson: LessonType;

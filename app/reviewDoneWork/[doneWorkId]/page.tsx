@@ -64,35 +64,37 @@ export default function ReviewDoneWork({ params }: ReviewDoneWorkProps) {
 
 	return (
 		<Page>
-			<Paper className={styles.oneTest__questionBlock}>
-				<p className={styles.oneTest__headerText}>{lesson.name}</p>
-				<p className={styles.oneTest__headerText}>
-					{doneWork.student.name} {doneWork.student.surname}
-				</p>
-				<p>
-					{doneWork.student.class?.school},{" "}
-					{doneWork.student.class?.class}
-				</p>
+			<div className={styles.oneTest__container}>
+				<Paper className={styles.oneTest__questionBlock}>
+					<p className={styles.oneTest__headerText}>{lesson.name}</p>
+					<p className={styles.oneTest__headerText}>
+						{doneWork.student.name} {doneWork.student.surname}
+					</p>
+					<p>
+						{doneWork.student.class?.school},{" "}
+						{doneWork.student.class?.class}
+					</p>
 
-				<Alert severity="warning">Ожидает проверки</Alert>
-			</Paper>
-			{lesson.questions &&
-				lesson.questions.map((question: any, index: any) => (
-					<QuestionBlock
-						index={index}
-						key={question._id}
-						question={question}
-					>
-						<FormControl fullWidth>
-							<TextField
-								multiline
-								value={doneWork.answers[index]}
-							/>
-						</FormControl>
-						<Divider />
-						<QuestionCriteria question={question} />
-					</QuestionBlock>
-				))}
+					<Alert severity="warning">Ожидает проверки</Alert>
+				</Paper>
+				{lesson.questions &&
+					lesson.questions.map((question: any, index: any) => (
+						<QuestionBlock
+							index={index}
+							key={question._id}
+							question={question}
+						>
+							<FormControl fullWidth>
+								<TextField
+									multiline
+									value={doneWork.answers[index]}
+								/>
+							</FormControl>
+							<Divider />
+							<QuestionCriteria question={question} />
+						</QuestionBlock>
+					))}
+			</div>
 		</Page>
 	);
 }

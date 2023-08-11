@@ -7,9 +7,9 @@ import PersonIcon from "@mui/icons-material/Person";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { AuthActions, activeUserSelector } from "@/redux/Auth";
 import LogoutIcon from "@mui/icons-material/Logout";
+import Link from "next/link";
 
 import styles from "./Header.module.css";
-import Link from "next/link";
 
 const Header = () => {
 	const dispatch = useAppDispatch();
@@ -21,69 +21,64 @@ const Header = () => {
 
 	return (
 		<div className={styles.header__root}>
-			<Container>
-				<div className={styles.header__inner}>
-					<p className={styles.header__text}>{activeUser.fullName}</p>
-					{activeUser.role === "teacher" && (
-						<Stack direction="row" spacing={2}>
-							<Link href="/lessons" replace>
-								<Button
-									variant="contained"
-									endIcon={<FileCopyIcon />}
-								>
-									Уроки
-								</Button>
-							</Link>
+			<div className={styles.header__inner}>
+				<p className={styles.header__text}>{activeUser.fullName}</p>
+				{activeUser.role === "teacher" && (
+					<Stack direction="row" spacing={2}>
+						<Link href="/lessons" replace>
+							<Button
+								variant="contained"
+								endIcon={<FileCopyIcon />}
+							>
+								Уроки
+							</Button>
+						</Link>
 
-							<Link href="/doneWorks" replace>
-								<Button
-									variant="contained"
-									endIcon={<TaskIcon />}
-								>
-									Сданные работы
-								</Button>
-							</Link>
+						<Link href="/doneWorks" replace>
+							<Button variant="contained" endIcon={<TaskIcon />}>
+								Сданные работы
+							</Button>
+						</Link>
 
-							<Link href="/classes">
-								<Button
-									variant="contained"
-									endIcon={<PeopleIcon />}
-								>
-									Классы
-								</Button>
-							</Link>
-						</Stack>
-					)}
-					{activeUser.role === "student" && (
-						<Stack direction="row" spacing={2}>
-							<Link href="/lessons">
-								<Button
-									variant="contained"
-									endIcon={<InsertDriveFileIcon />}
-								>
-									Доступные уроки
-								</Button>
-							</Link>
+						<Link href="/classes">
+							<Button
+								variant="contained"
+								endIcon={<PeopleIcon />}
+							>
+								Классы
+							</Button>
+						</Link>
+					</Stack>
+				)}
+				{activeUser.role === "student" && (
+					<Stack direction="row" spacing={2}>
+						<Link href="/lessons">
+							<Button
+								variant="contained"
+								endIcon={<InsertDriveFileIcon />}
+							>
+								Доступные уроки
+							</Button>
+						</Link>
 
-							<Link href="/myWorks">
-								<Button
-									variant="contained"
-									endIcon={<PersonIcon />}
-								>
-									Мои работы
-								</Button>
-							</Link>
-						</Stack>
-					)}
-					<Button
-						variant="contained"
-						endIcon={<LogoutIcon />}
-						onClick={() => logout()}
-					>
-						Выйти
-					</Button>
-				</div>
-			</Container>
+						<Link href="/myWorks">
+							<Button
+								variant="contained"
+								endIcon={<PersonIcon />}
+							>
+								Мои работы
+							</Button>
+						</Link>
+					</Stack>
+				)}
+				<Button
+					variant="contained"
+					endIcon={<LogoutIcon />}
+					onClick={() => logout()}
+				>
+					Выйти
+				</Button>
+			</div>
 		</div>
 	);
 };

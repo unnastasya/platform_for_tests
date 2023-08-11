@@ -31,9 +31,9 @@ import {
 	DialogContentText,
 	DialogTitle,
 } from "@mui/material";
+import { LessonsActions } from "@/redux/Lesson/Lessons";
 
 import styles from "./page.module.css";
-import { LessonsActions } from "@/redux/Lesson/Lessons";
 
 interface OneLessonProps {
 	params: {
@@ -155,51 +155,55 @@ export default function OneLesson({ params }: OneLessonProps) {
 			</Dialog>
 			<div>
 				<form onSubmit={handleSubmit(onSubmit)}>
-					<Paper className={styles.oneLesson__infoBlock}>
-						{activeUser.role === "teacher" && (
-							<div
-								className={
-									styles.oneLesson__infoBlock_deleteButton
-								}
-							>
-								<Button
-									onClick={openConfirmDialog}
-									variant="contained"
-									size="small"
+					<div className={styles.oneLesson__container}>
+						<Paper className={styles.oneLesson__infoBlock}>
+							{activeUser.role === "teacher" && (
+								<div
+									className={
+										styles.oneLesson__infoBlock_deleteButton
+									}
 								>
-									<DeleteIcon />
-								</Button>
-							</div>
-						)}
-						<h1 className={styles.oneLesson__infoBlock_header}>
-							{lesson.name}
-						</h1>
-						<p>{lesson.description}</p>
-					</Paper>
-					{lesson.questions &&
-						lesson.questions.map((question: any, index: any) => (
-							<QuestionBlock
-								index={index}
-								key={question._id}
-								question={question}
+									<Button
+										onClick={openConfirmDialog}
+										variant="contained"
+										size="small"
+									>
+										<DeleteIcon />
+									</Button>
+								</div>
+							)}
+							<h1 className={styles.oneLesson__infoBlock_header}>
+								{lesson.name}
+							</h1>
+							<p>{lesson.description}</p>
+						</Paper>
+						{lesson.questions &&
+							lesson.questions.map(
+								(question: any, index: any) => (
+									<QuestionBlock
+										index={index}
+										key={question._id}
+										question={question}
+									>
+										<QuestionInput
+											index={index}
+											register={register}
+										/>
+										<Divider />
+										<QuestionCriteria question={question} />
+									</QuestionBlock>
+								)
+							)}
+						{activeUser.role === "student" && (
+							<Button
+								variant="contained"
+								endIcon={<AddIcon />}
+								type="submit"
 							>
-								<QuestionInput
-									index={index}
-									register={register}
-								/>
-								<Divider />
-								<QuestionCriteria question={question} />
-							</QuestionBlock>
-						))}
-					{activeUser.role === "student" && (
-						<Button
-							variant="contained"
-							endIcon={<AddIcon />}
-							type="submit"
-						>
-							Сдать работу
-						</Button>
-					)}
+								Сдать работу
+							</Button>
+						)}
+					</div>
 				</form>
 				<Dialog
 					open={isConfirmDialogOpen}

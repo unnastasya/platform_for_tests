@@ -13,12 +13,11 @@ import { allCriteriaValue } from "@/utils/allCritariaValue";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import {
 	AddLessonActions,
-	addLessonIdSelector,
 	addLessonIsLoadingSelector,
 } from "@/redux/Lesson/AddLesson";
+import { ClassesActions, classesDataSelector } from "@/redux/Class/Classes";
 
 import styles from "./page.module.css";
-import { ClassesActions, classesDataSelector } from "@/redux/Class/Classes";
 
 export default function AddLesson() {
 	const dispatch = useAppDispatch();
@@ -114,19 +113,20 @@ export default function AddLesson() {
 	return (
 		<Page>
 			<form onSubmit={handleSubmit(onSubmit)}>
-				<AddLessonHeader
-					register={register}
-					setCheckedClass={setCheckedClass}
-					checkedClass={checkedClass}
-					classesData={classesData}
-				/>
+				<div className={styles.addLesson__container}>
+					<AddLessonHeader
+						register={register}
+						setCheckedClass={setCheckedClass}
+						checkedClass={checkedClass}
+						classesData={classesData}
+					/>
 
-				<AddQuestion
-					setValue={setValue}
-					control={control}
-					register={register}
-				/>
-
+					<AddQuestion
+						setValue={setValue}
+						control={control}
+						register={register}
+					/>
+				</div>
 				<Button
 					variant="contained"
 					endIcon={<DoneIcon />}

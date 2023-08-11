@@ -1,3 +1,9 @@
+.oneTest__container {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
 .countRating__question {
 	z-index: 10;
 	position: fixed;
@@ -35,8 +41,7 @@
 .oneTest__questionBlock {
 	width: 1200px;
 	padding: 30px;
-	padding-top: 50px;
-	margin-bottom: 30px;
+	padding-top: 45px;
 	border-radius: 10px;
 	position: relative;
 	display: flex;

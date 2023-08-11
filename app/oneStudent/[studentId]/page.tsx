@@ -48,18 +48,22 @@ export default function OneStudent({ params }: OneStudentProps) {
 
 	return (
 		<Page>
-			<Paper className={styles.oneStudent__questionBlock}>
-				<p className={styles.oneStudent__header}>{user?.fullName}</p>
-			</Paper>
-			<div className={styles.oneStudents__doneWorks__page}>
-				{works.length === 0 && (
-					<Paper className={styles.oneStudent__questionBlock}>
-						<p>У ученика пока нет сданных работ</p>
-					</Paper>
-				)}
-				{works.map((work: any) => (
-					<DoneWorkBage work={work} key={work._id} />
-				))}
+			<div className={styles.oneStudent__container}>
+				<Paper className={styles.oneStudent__questionBlock}>
+					<p className={styles.oneStudent__header}>
+						{user?.fullName}
+					</p>
+				</Paper>
+				<div className={styles.oneStudents__doneWorks__page}>
+					{works.length === 0 && (
+						<Paper className={styles.oneStudent__questionBlock}>
+							<p>У ученика пока нет сданных работ</p>
+						</Paper>
+					)}
+					{works.map((work: any) => (
+						<DoneWorkBage work={work} key={work._id} />
+					))}
+				</div>
 			</div>
 		</Page>
 	);

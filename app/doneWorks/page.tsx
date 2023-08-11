@@ -1,7 +1,7 @@
 "use client";
 
 import DoneWorkBage from "@/components/DoneWorkBage/DoneWorkBage";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect } from "react";
 import { Page } from "@/components/Page/Page";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import {
@@ -37,13 +37,11 @@ export default function DoneWorks() {
 		);
 	}
 
-    if (works.length === 0) {
+	if (works.length === 0) {
 		return (
 			<Page>
 				<div className={styles.doneWorks__page}>
-					<Paper
-						className={styles.doneWorks__noLessons}
-					>
+					<Paper className={styles.doneWorks__noLessons}>
 						<p>Сданных работ пока нет</p>
 					</Paper>
 				</div>

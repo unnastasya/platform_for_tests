@@ -25,9 +25,7 @@ export function Page({ children }: any) {
 		<ThemeProvider theme={theme}>
 			<div className={styles.page__container}>
 				<Header />
-				<div className={styles.page__content}>
-					<Container maxWidth="lg">{children}</Container>
-				</div>
+				<div className={styles.page__content}>{children}</div>
 			</div>
 		</ThemeProvider>
 	);

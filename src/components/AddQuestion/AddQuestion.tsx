@@ -7,7 +7,6 @@ import AddImage from "../AddImage/AddImage";
 
 import styles from "./AddQuestion.module.css";
 
-
 export default function AddQuestion({ control, register, setValue }: any) {
 	const { fields, append, remove } = useFieldArray({
 		name: "questions",
@@ -18,12 +17,12 @@ export default function AddQuestion({ control, register, setValue }: any) {
 	});
 
 	return (
-		<div>
+		<div className={styles.addQuestions__container}>
 			{fields.map((field, index) => {
 				return (
 					<Paper
 						key={index}
-						className={styles.addQuestion__container}
+						className={styles.oneAddQuestion__container}
 					>
 						<div className={styles.addQuestion__header}>
 							<p className={styles.addQuestion__textNumber}>

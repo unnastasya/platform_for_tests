@@ -1,10 +1,18 @@
+.resultLesson__pageContainer {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
 .resultLesson__container {
 	width: 1200px;
 	padding: 30px;
-	padding-top: 50px;
-	margin-bottom: 30px;
+	padding-top: 45px;
 	border-radius: 10px;
 	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 }
 
 .resultLesson__container:first-child::after {

@@ -91,43 +91,45 @@ export default function CheckLesson({ params }: CheckLessonProps) {
 
 	return (
 		<Page>
-			<div
-				className={`${styles.countRating__question} ${whatColor(
-					ratingValue,
-					lesson.allCriteriaRating
-				)}`}
-			>
-				<p>{ratingValue}</p>
-			</div>
-			<Paper className={styles.oneTest__questionBlock}>
-				<p className={styles.oneTest__headerText}>{lesson.name}</p>
-				<p className={styles.oneTest__headerText}>
-					{doneWork.student.name} {doneWork.student.surname}
-				</p>
-				<p>
-					{doneWork.student.class?.school},{" "}
-					{doneWork.student.class?.class}
-				</p>
+			<div className={styles.oneTest__container}>
+				<div
+					className={`${styles.countRating__question} ${whatColor(
+						ratingValue,
+						lesson.allCriteriaRating
+					)}`}
+				>
+					<p>{ratingValue}</p>
+				</div>
+				<Paper className={styles.oneTest__questionBlock}>
+					<p className={styles.oneTest__headerText}>{lesson.name}</p>
+					<p className={styles.oneTest__headerText}>
+						{doneWork.student.name} {doneWork.student.surname}
+					</p>
+					<p>
+						{doneWork.student.class?.school},{" "}
+						{doneWork.student.class?.class}
+					</p>
 
-				<Alert severity="warning">Ожидает проверки</Alert>
-			</Paper>
-			{lesson.questions &&
-				lesson.questions.map((question: any, index: any) => (
-					<CheckBlock
-						setRaitingValue={setRaitingValue}
-						key={question._id}
-						question={question}
-						answer={doneWork.answers[index]}
-					/>
-				))}
-			<AddComment comment={comment} setComment={setComment} />
-			<Button
-				onClick={handleClick}
-				variant="contained"
-				endIcon={<DoneIcon />}
-			>
-				Выставить оценку
-			</Button>
+					<Alert severity="warning">Ожидает проверки</Alert>
+				</Paper>
+				{lesson.questions &&
+					lesson.questions.map((question: any, index: any) => (
+						<CheckBlock
+							setRaitingValue={setRaitingValue}
+							key={question._id}
+							question={question}
+							answer={doneWork.answers[index]}
+						/>
+					))}
+				<AddComment comment={comment} setComment={setComment} />
+				<Button
+					onClick={handleClick}
+					variant="contained"
+					endIcon={<DoneIcon />}
+				>
+					Выставить оценку
+				</Button>
+			</div>
 		</Page>
 	);
 }

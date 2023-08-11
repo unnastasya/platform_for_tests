@@ -5,7 +5,6 @@ import { useAppSelector } from "@/redux/store";
 import { activeUserSelector } from "@/redux/Auth";
 
 import styles from "./DoneWorkBage.module.css";
-import { useEffect } from "react";
 
 const whatColor = (value: number, allCriteriaRating: number) => {
 	const percentage = (value / allCriteriaRating) * 100;

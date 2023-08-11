@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect } from "react";
 import OneTestBlock from "@/components/OneTestBlock/OneTestBlock";
 import { Page } from "@/components/Page/Page";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
@@ -11,11 +11,11 @@ import {
 } from "@/redux/Lesson/Lessons";
 import { Button, CircularProgress, Paper } from "@mui/material";
 import { LessonType } from "@/types/lesson";
-
-import styles from "./page.module.css";
 import { activeUserSelector } from "@/redux/Auth";
 import Link from "next/link";
 import AddIcon from "@mui/icons-material/Add";
+
+import styles from "./page.module.css";
 
 export default function LessonsPage() {
 	const dispatch = useAppDispatch();
@@ -63,25 +63,21 @@ export default function LessonsPage() {
 	}
 
 	return (
-		<>
-			<Page>
+		<Page>
+			<div className={styles.lessonsPage__container}>
 				{activeUser.role === "teacher" && (
 					<Link href="/addLesson">
-						<Button
-							sx={{ marginBottom: "20px" }}
-							variant="contained"
-							endIcon={<AddIcon />}
-						>
+						<Button variant="contained" endIcon={<AddIcon />}>
 							Добавить урок
 						</Button>
 					</Link>
 				)}
-				<div className={styles.lessonsPage__container}>
+				<div className={styles.lessonsPage__testsBlock}>
 					{lessons.map((lesson) => (
 						<OneTestBlock key={lesson._id} lesson={lesson} />
 					))}
 				</div>
-			</Page>
-		</>
+			</div>
+		</Page>
 	);
 }
