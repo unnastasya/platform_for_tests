@@ -21,7 +21,8 @@ export const deleteLesson = (id: any) => {
 export const addLesson = (object: any) => {
 	return axios
 		.post(`${API_BASE_URL}/lesson`, object)
-		.then((response) => response.data).catch((error) => error);
+		.then((response) => response.data)
+		.catch((error) => error);
 };
 
 export const addLessonToClass = (id: any, obj: any) => {
@@ -38,4 +39,17 @@ export const addImage = (data: any) => {
 	return axios
 		.post(`${API_BASE_URL}/uploadImage`, data)
 		.then((response) => response.data);
+};
+
+export const updateLesson = ({
+	id,
+	data,
+}: {
+	id: string;
+	data: any;
+}): Promise<any> => {
+	return axios
+		.put(`${API_BASE_URL}/lesson/${id}`, data)
+		.then((response) => response.data)
+		.catch((error) => error);
 };

@@ -61,7 +61,7 @@ export default function AddClassBlock() {
 			changeRequestData(value);
 			dispatch(AddClassActions.editClass());
 		} else {
-			changeRequestData(data);
+			changeRequestData(value);
 			fetchAddClass();
 		}
 	};

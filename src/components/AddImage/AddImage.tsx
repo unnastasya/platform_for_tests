@@ -93,7 +93,7 @@ export default function AddImage({
 								</IconButton>
 								<img
 									className={styles.addImage__image}
-									src={field.file}
+									src={field.file || field.url}
 								/>
 							</div>
 						);

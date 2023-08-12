@@ -27,7 +27,9 @@
 	background: #2979ff;
 }
 
-.oneLesson__infoBlock_deleteButton {
+.oneLesson__infoBlock_buttonsBlock {
+	display: flex;
+	gap: 20px;
 	position: absolute;
 	top: 50px;
 	right: 30px;

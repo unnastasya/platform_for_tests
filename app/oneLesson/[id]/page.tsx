@@ -34,6 +34,8 @@ import {
 import { LessonsActions } from "@/redux/Lesson/Lessons";
 
 import styles from "./page.module.css";
+import { AddLessonActions } from "@/redux/Lesson/AddLesson";
+import EditIcon from "@mui/icons-material/Edit";
 
 interface OneLessonProps {
 	params: {
@@ -132,6 +134,16 @@ export default function OneLesson({ params }: OneLessonProps) {
 		);
 	}
 
+	const editLesson = () => {
+		dispatch(
+			AddLessonActions.changeEditLessonData({
+				lessonId: id,
+				lesson: lesson,
+			})
+		);
+		router.push("/addLesson");
+	};
+
 	return (
 		<Page>
 			<Dialog
@@ -160,13 +172,21 @@ export default function OneLesson({ params }: OneLessonProps) {
 							{activeUser.role === "teacher" && (
 								<div
 									className={
-										styles.oneLesson__infoBlock_deleteButton
+										styles.oneLesson__infoBlock_buttonsBlock
 									}
 								>
 									<Button
-										onClick={openConfirmDialog}
-										variant="contained"
+										onClick={editLesson}
+										variant="outlined"
 										size="small"
+									>
+										<EditIcon />
+									</Button>
+									<Button
+										onClick={openConfirmDialog}
+										variant="outlined"
+										size="small"
+										color="error"
 									>
 										<DeleteIcon />
 									</Button>

@@ -1,3 +1,4 @@
+import { LessonType } from "@/types/lesson";
 import { CaseReducer, PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export type AddLessonStateType = {
@@ -6,6 +7,9 @@ export type AddLessonStateType = {
 	isLoading: boolean;
 	message: string;
 	lessonId?: string;
+
+	editLessonIdData?: string;
+	editLessonData?: LessonType;
 };
 
 const initialState: AddLessonStateType = {
@@ -45,6 +49,18 @@ const failureAddLesson: CaseReducer<AddLessonStateType> = (state) => {
 	state.isLoading = false;
 };
 
+const changeEditLessonData: CaseReducer<
+	AddLessonStateType,
+	PayloadAction<{ lessonId?: string; lesson?: LessonType }>
+> = (state, { payload }) => {
+	state.editLessonIdData = payload.lessonId;
+	state.editLessonData = payload.lesson;
+};
+
+const editLesson: CaseReducer<AddLessonStateType> = (state) => {
+	state.isLoading = true;
+};
+
 export const { reducer: AddLessonReducer, actions: AddLessonActions } =
 	createSlice({
 		name: NAME,
@@ -54,5 +70,7 @@ export const { reducer: AddLessonReducer, actions: AddLessonActions } =
 			addLesson,
 			successAddLesson,
 			failureAddLesson,
+			changeEditLessonData,
+			editLesson,
 		},
 	});

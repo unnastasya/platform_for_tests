@@ -14,6 +14,8 @@ import { useAppDispatch, useAppSelector } from "@/redux/store";
 import {
 	AddLessonActions,
 	addLessonIsLoadingSelector,
+	editLessonDataSelector,
+	editLessonIdDataSelector,
 } from "@/redux/Lesson/AddLesson";
 import { ClassesActions, classesDataSelector } from "@/redux/Class/Classes";
 
@@ -26,6 +28,11 @@ export default function AddLesson() {
 	const [checkedClass, setCheckedClass] = useState<any[]>([]);
 
 	const isLoading: boolean = useAppSelector(addLessonIsLoadingSelector);
+
+	const editLessonId = useAppSelector(editLessonIdDataSelector || null);
+	const editLessonData = useAppSelector(editLessonDataSelector || null);
+
+	console.log("editLessonData", editLessonData);
 
 	const fetchClasses = useCallback(() => {
 		dispatch(ClassesActions.requestClasses());
@@ -43,10 +50,10 @@ export default function AddLesson() {
 		control,
 	} = useForm({
 		defaultValues: {
-			name: "",
-			description: "",
-			doneCount: 0,
-			questions: [
+			name: editLessonData?.name || "",
+			description: editLessonData?.description || "",
+			doneCount: editLessonData?.doneCount || 0,
+			questions: editLessonData?.questions || [
 				{
 					images: [],
 					questionText: "",
@@ -55,7 +62,7 @@ export default function AddLesson() {
 					criteriaRating: 0,
 				},
 			],
-			allCriteriaRating: 0,
+			allCriteriaRating: editLessonData?.allCriteriaRating || 0,
 		},
 	});
 
@@ -69,34 +76,39 @@ export default function AddLesson() {
 		dispatch(AddLessonActions.addLesson());
 	}, [dispatch]);
 
-	const getValue = (data: any) => {
-		let value = { ...data };
-	};
-
 	const onSubmit = async (data: any) => {
-		data.allCriteriaRating = allCriteriaValue(data.questions);
-		data.classes = checkedClass;
+		let value = { ...data };
+		value.allCriteriaRating = allCriteriaValue(value.questions);
+		value.classes = checkedClass;
 
-		for (
-			let questionIndex = 0;
-			questionIndex < data.questions.length;
-			questionIndex++
-		) {
+		if (editLessonId) {
+			changeRequestData(value);
+			dispatch(AddLessonActions.editLesson());
+		} else {
 			for (
-				let imageIndex = 0;
-				imageIndex < data.questions[questionIndex].images.length;
-				imageIndex++
+				let questionIndex = 0;
+				questionIndex < value.questions.length;
+				questionIndex++
 			) {
-				const imageData = await addImage(
-					data.questions[questionIndex].images[imageIndex]
-				).then((res) => res);
-				data.questions[questionIndex].images[imageIndex] = imageData;
+				for (
+					let imageIndex = 0;
+					imageIndex < value.questions[questionIndex].images.length;
+					imageIndex++
+				) {
+					const imageData = await addImage(
+						value.questions[questionIndex].images[imageIndex]
+					).then((res) => res);
+					value.questions[questionIndex].images[imageIndex] =
+						imageData;
+				}
 			}
+			changeRequestData(value);
+			fetchAddLesson();
 		}
 
-		changeRequestData(data);
-		fetchAddLesson();
-
+		// changeRequestData(data);
+		// fetchAddLesson();
+		dispatch(AddLessonActions.changeEditLessonData({}));
 		router.push("/lessons");
 	};
 
