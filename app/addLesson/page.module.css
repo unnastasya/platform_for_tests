@@ -10,3 +10,11 @@
 	gap: 20px;
 	margin-bottom: 20px;
 }
+
+.addLesson__repairContainer {
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+	margin-top: 150px;
+}

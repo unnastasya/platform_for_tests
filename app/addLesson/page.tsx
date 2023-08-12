@@ -24,6 +24,8 @@ import styles from "./page.module.css";
 export default function AddLesson() {
 	const dispatch = useAppDispatch();
 
+	const isRepair = true;
+
 	const classesData = useAppSelector(classesDataSelector);
 	const [checkedClass, setCheckedClass] = useState<any[]>([]);
 
@@ -111,6 +113,20 @@ export default function AddLesson() {
 		dispatch(AddLessonActions.changeEditLessonData({}));
 		router.push("/lessons");
 	};
+
+	if (isRepair) {
+		return (
+			<Page>
+				<div className={styles.addLesson__repairContainer}>
+					<img
+						src="../../icon-paint.png"
+						style={{ width: "200px" }}
+					/>
+                    <p style={{ fontSize: "18px" }}>Извините, идет ремонт страницы</p>
+				</div>
+			</Page>
+		);
+	}
 
 	if (isLoading) {
 		return (
