@@ -10,10 +10,7 @@ import styles from "./AddQuestion.module.css";
 export default function AddQuestion({ control, register, setValue }: any) {
 	const { fields, append, remove } = useFieldArray({
 		name: "questions",
-		control,
-		rules: {
-			required: "Пожалуйста, добавьте хотя бы один вопрос",
-		},
+		control
 	});
 
 	return (

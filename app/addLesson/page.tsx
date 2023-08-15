@@ -24,8 +24,6 @@ import styles from "./page.module.css";
 export default function AddLesson() {
 	const dispatch = useAppDispatch();
 
-	const isRepair = true;
-
 	const classesData = useAppSelector(classesDataSelector);
 	const [checkedClass, setCheckedClass] = useState<any[]>([]);
 
@@ -83,7 +81,34 @@ export default function AddLesson() {
 		value.allCriteriaRating = allCriteriaValue(value.questions);
 		value.classes = checkedClass;
 
+		console.log("value", value);
+
 		if (editLessonId) {
+			for (
+				let questionIndex = 0;
+				questionIndex < value.questions.length;
+				questionIndex++
+			) {
+				for (
+					let imageIndex = 0;
+					imageIndex < value.questions[questionIndex].images.length;
+					imageIndex++
+				) {
+					if (
+						!(
+							"public_id" in
+							value.questions[questionIndex].images[imageIndex]
+						)
+					) {
+						const imageData = await addImage(
+							value.questions[questionIndex].images[imageIndex]
+						).then((res) => res);
+						value.questions[questionIndex].images[imageIndex] =
+							imageData;
+					}
+				}
+			}
+			console.log("editLesson", value);
 			changeRequestData(value);
 			dispatch(AddLessonActions.editLesson());
 		} else {
@@ -113,20 +138,6 @@ export default function AddLesson() {
 		dispatch(AddLessonActions.changeEditLessonData({}));
 		router.push("/lessons");
 	};
-
-	if (isRepair) {
-		return (
-			<Page>
-				<div className={styles.addLesson__repairContainer}>
-					<img
-						src="../../icon-paint.png"
-						style={{ width: "200px" }}
-					/>
-                    <p style={{ fontSize: "18px" }}>Извините, идет ремонт страницы</p>
-				</div>
-			</Page>
-		);
-	}
 
 	if (isLoading) {
 		return (
