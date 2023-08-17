@@ -6,7 +6,6 @@ export type oneClassStateType = {
 	oneClass: ClassType;
 	oneClassIsLoading: boolean;
 	oneClassIsError: boolean;
-	oneClassStudents: User[];
 	requestClassId: string;
 };
 
@@ -14,7 +13,6 @@ const initialState: oneClassStateType = {
 	oneClass: { _id: 0, school: "", class: "", studentsCount: 0, lessons: [] },
 	oneClassIsLoading: false,
 	oneClassIsError: false,
-	oneClassStudents: [],
 	requestClassId: "",
 };
 
@@ -27,12 +25,11 @@ const requestOneClass: CaseReducer<oneClassStateType> = (state) => {
 
 const successOneClass: CaseReducer<
 	oneClassStateType,
-	PayloadAction<{ oneClass: ClassType; classStudents: User[] }>
+	PayloadAction<ClassType>
 > = (state, { payload }) => {
 	state.oneClassIsLoading = false;
 	state.oneClassIsError = false;
-	state.oneClass = payload.oneClass;
-	state.oneClassStudents = payload.classStudents;
+	state.oneClass = payload;
 };
 
 const failureOneClass: CaseReducer<oneClassStateType> = (state) => {

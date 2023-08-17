@@ -13,8 +13,6 @@ export default function QuestionCriteria({
 	question,
 	successCriterias,
 }: QuestionCriteriaProps) {
-	// console.log("criterias", criterias);
-
 	if (!!successCriterias) {
 		return (
 			<div className={styles.questionCriteria__container}>
