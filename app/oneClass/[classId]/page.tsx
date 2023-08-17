@@ -10,7 +10,6 @@ import {
 	OneClassActions,
 	oneClassDataSelector,
 	oneClassIsLoadingSelector,
-	oneClassStudentsSelector,
 } from "@/redux/Class/OneClass";
 
 import styles from "./page.module.css";
