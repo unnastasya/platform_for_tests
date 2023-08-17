@@ -2,7 +2,7 @@
 
 import React, { useEffect } from "react";
 import { Container } from "@mui/material";
-import Header from "./Header";
+// import Header from "./Header";
 import { ThemeProvider } from "@emotion/react";
 import { theme } from "../../theme";
 import { useAppSelector } from "@/redux/store";
@@ -10,6 +10,8 @@ import { isAuthUserSelector } from "@/redux/Auth";
 import { useRouter } from "next/navigation";
 
 import styles from "./Page.module.css";
+import dynamic from "next/dynamic";
+import Header from "./Header";
 
 export function Page({ children }: any) {
 	const router = useRouter();

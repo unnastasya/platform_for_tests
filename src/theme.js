@@ -18,7 +18,7 @@ export const theme = createTheme({
 		MuiTextField: {
 			styleOverrides: {
 				root: {
-					height: "50px",
+					minHeight: "50px",
 					borderRadius: "5px",
 				},
 			},
@@ -26,7 +26,7 @@ export const theme = createTheme({
 		MuiOutlinedInput: {
 			styleOverrides: {
 				root: {
-					height: "50px",
+					minHeight: "50px",
 				},
 			},
 		},

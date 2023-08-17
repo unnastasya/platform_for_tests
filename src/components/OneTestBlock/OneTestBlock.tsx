@@ -30,7 +30,7 @@ export default function OneTestBlock({ lesson }: OneTestBlockProps) {
 								key={oneClass._id}
 								className={styles.oneTest__text}
 							>
-								{oneClass.school},{oneClass.class}
+								{oneClass.school}, {oneClass.class}
 							</p>
 						))}
 					</div>

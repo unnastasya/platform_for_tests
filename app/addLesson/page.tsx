@@ -1,7 +1,6 @@
 "use client";
 
-import { addImage } from "@/api/lessons";
-import { Button, CircularProgress } from "@mui/material";
+import { Button } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -18,11 +17,15 @@ import {
 	editLessonIdDataSelector,
 } from "@/redux/Lesson/AddLesson";
 import { ClassesActions, classesDataSelector } from "@/redux/Class/Classes";
+import LoadingBlock from "@/components/LoadingBlock/LoadingBlock";
+import addImagesToQuestions from "./utils";
 
 import styles from "./page.module.css";
 
+
 export default function AddLesson() {
 	const dispatch = useAppDispatch();
+	const router = useRouter();
 
 	const classesData = useAppSelector(classesDataSelector);
 	const [checkedClass, setCheckedClass] = useState<any[]>([]);
@@ -66,8 +69,6 @@ export default function AddLesson() {
 		},
 	});
 
-	const router = useRouter();
-
 	const changeRequestData = (data: any) => {
 		dispatch(AddLessonActions.changeRequestData(data));
 	};
@@ -83,52 +84,12 @@ export default function AddLesson() {
 
 		console.log("value", value);
 
+		await addImagesToQuestions(value);
+
 		if (editLessonId) {
-			for (
-				let questionIndex = 0;
-				questionIndex < value.questions.length;
-				questionIndex++
-			) {
-				for (
-					let imageIndex = 0;
-					imageIndex < value.questions[questionIndex].images.length;
-					imageIndex++
-				) {
-					if (
-						!(
-							"public_id" in
-							value.questions[questionIndex].images[imageIndex]
-						)
-					) {
-						const imageData = await addImage(
-							value.questions[questionIndex].images[imageIndex]
-						).then((res) => res);
-						value.questions[questionIndex].images[imageIndex] =
-							imageData;
-					}
-				}
-			}
-			console.log("editLesson", value);
 			changeRequestData(value);
 			dispatch(AddLessonActions.editLesson());
 		} else {
-			for (
-				let questionIndex = 0;
-				questionIndex < value.questions.length;
-				questionIndex++
-			) {
-				for (
-					let imageIndex = 0;
-					imageIndex < value.questions[questionIndex].images.length;
-					imageIndex++
-				) {
-					const imageData = await addImage(
-						value.questions[questionIndex].images[imageIndex]
-					).then((res) => res);
-					value.questions[questionIndex].images[imageIndex] =
-						imageData;
-				}
-			}
 			changeRequestData(value);
 			fetchAddLesson();
 		}
@@ -140,13 +101,7 @@ export default function AddLesson() {
 	};
 
 	if (isLoading) {
-		return (
-			<Page>
-				<div className={styles.addLesson__loadingContainer}>
-					<CircularProgress />
-				</div>
-			</Page>
-		);
+		return <LoadingBlock />;
 	}
 
 	return (
