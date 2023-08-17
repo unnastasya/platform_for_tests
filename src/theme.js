@@ -37,6 +37,6 @@ export const theme = createTheme({
 					fontSize: "16px",
 				},
 			},
-		},
+		}
 	},
 });

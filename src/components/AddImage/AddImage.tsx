@@ -85,6 +85,7 @@ export default function AddImage({
 								className={styles.addImage__oneImage_container}
 							>
 								<IconButton
+									sx={{ position: "absolute" }}
 									className={styles.addImage__oneImage_delete}
 									color="primary"
 									onClick={() => remove(index)}
