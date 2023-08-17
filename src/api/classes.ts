@@ -35,7 +35,7 @@ export const updateClass = ({
 	data: any;
 }): Promise<any> => {
 	return axios
-		.put(`http://localhost:8080/class/${id}`, data)
+		.put(`${API_BASE_URL}/class/${id}`, data)
 		.then((response) => response.data)
 		.catch((error) => error);
 };
