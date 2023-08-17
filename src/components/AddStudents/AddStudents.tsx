@@ -20,9 +20,6 @@ export default function AddStudents({ control, register }: any) {
 	const { fields, append, remove } = useFieldArray({
 		name: "people",
 		control,
-		rules: {
-			required: "Пожалуйста, добавьте хотя бы одного ученика",
-		},
 	});
 
 	const editClassId = useAppSelector(editClassIdDataSelector || null);

@@ -11,13 +11,8 @@ function* getOneClasses() {
 		const classId: string = yield select(requestClassIdSelector);
 
 		const oneClass: ClassType = yield call(getOneClass, classId);
-		const classStudents: User[] = yield call(getUsersByClassId, classId);
-		yield put(
-			OneClassActions.successOneClass({
-				oneClass: oneClass,
-				classStudents: classStudents,
-			})
-		);
+
+		yield put(OneClassActions.successOneClass(oneClass));
 	} catch (e: any) {
 		yield put(OneClassActions.failureOneClass());
 	}

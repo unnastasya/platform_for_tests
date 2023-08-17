@@ -6,7 +6,7 @@ import { Button, CircularProgress, Divider, Paper } from "@mui/material";
 import AddClassHeader from "../AddClassHeader/AddClassHeader";
 import AddStudents from "../AddStudents/AddStudents";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import {
 	AddClassActions,
 	addClassIsLoadingSelector,
@@ -57,6 +57,7 @@ export default function AddClassBlock() {
 
 	const onSubmit = (data: any) => {
 		let value = { ...data };
+        console.log("value", value)
 		if (editClassId) {
 			changeRequestData(value);
 			dispatch(AddClassActions.editClass());
@@ -72,32 +73,28 @@ export default function AddClassBlock() {
 		router.push("/classes");
 	};
 
-	if (isAddedClass) {
+	useEffect(() => {
+		if (isAddedClass && studentsData.length == 0) {
+			routingToClasses();
+		}
+	}, [isAddedClass]);
+
+	if (isAddedClass && studentsData.length > 0) {
 		return (
 			<>
 				<Paper className={styles.addClassBlock__usersDataContainer}>
-					{studentsData.length > 0 ? (
-						studentsData.map((student) => (
-							<div
-								key={student._id}
-								className={
-									styles.addClassBlock__oneUserDataContainer
-								}
-							>
-								<p>Имя: {student.fullName}</p>
-								<p>Логин: {student.login}</p>
-								<p>Пароль: {student.password}</p>
-							</div>
-						))
-					) : (
+					{studentsData.map((student) => (
 						<div
+							key={student._id}
 							className={
 								styles.addClassBlock__oneUserDataContainer
 							}
 						>
-							<p>Вы не добавили новых учеников</p>
+							<p>Имя: {student.fullName}</p>
+							<p>Логин: {student.login}</p>
+							<p>Пароль: {student.password}</p>
 						</div>
-					)}
+					))}
 				</Paper>
 				<Button variant="contained" onClick={routingToClasses}>
 					Готово

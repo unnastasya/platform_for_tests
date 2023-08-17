@@ -44,7 +44,6 @@ export default function CheckLesson({ params }: CheckLessonProps) {
 
 	const doneWork = useAppSelector(oneDoneWorkDataSelector);
 	const isLoadingDoneWork = useAppSelector(oneDoneWorkIsLoadingSelector);
-	console.log("checkLesson", lesson);
 
 	const [successCriterias, setSuccessCriterias] = useState<any[]>([]);
 

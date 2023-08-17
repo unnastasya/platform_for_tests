@@ -44,7 +44,7 @@ export default function ResultLesson({ params }: ResultLessonProps) {
 
 	const doneWork = useAppSelector(oneDoneWorkDataSelector);
 	const isLoadingDoneWork = useAppSelector(oneDoneWorkIsLoadingSelector);
-	console.log("doneWork", lesson);
+
 	const successCriterias = doneWork.successCriterias;
 
 	const changeDoneWorkId = () => {

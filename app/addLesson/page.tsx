@@ -22,7 +22,6 @@ import addImagesToQuestions from "./utils";
 
 import styles from "./page.module.css";
 
-
 export default function AddLesson() {
 	const dispatch = useAppDispatch();
 	const router = useRouter();
@@ -34,8 +33,6 @@ export default function AddLesson() {
 
 	const editLessonId = useAppSelector(editLessonIdDataSelector || null);
 	const editLessonData = useAppSelector(editLessonDataSelector || null);
-
-	console.log("editLessonData", editLessonData);
 
 	const fetchClasses = useCallback(() => {
 		dispatch(ClassesActions.requestClasses());
@@ -81,8 +78,6 @@ export default function AddLesson() {
 		let value = { ...data };
 		value.allCriteriaRating = allCriteriaValue(value.questions);
 		value.classes = checkedClass;
-
-		console.log("value", value);
 
 		await addImagesToQuestions(value);
 
