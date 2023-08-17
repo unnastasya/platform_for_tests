@@ -1,9 +1,13 @@
-.oneStudent__questionBlock {
+.oneStudent__questionBlock,
+.oneStudent__noDoneWorksBlock {
 	width: 100%;
 	padding: 30px;
-	padding-top: 45px;
 	border-radius: 10px;
 	position: relative;
+}
+
+.oneStudent__questionBlock {
+	padding-top: 45px;
 }
 
 .oneStudent__questionBlock::after {
