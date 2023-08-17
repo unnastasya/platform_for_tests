@@ -8,7 +8,5 @@ export const oneClassIsLoadingSelector = (state: ApplicationState) =>
 	oneClassSelector(state).oneClassIsLoading;
 export const oneClassIsErrorSelector = (state: ApplicationState) =>
 	oneClassSelector(state).oneClassIsError;
-export const oneClassStudentsSelector = (state: ApplicationState) =>
-	oneClassSelector(state).oneClassStudents;
 export const requestClassIdSelector = (state: ApplicationState) =>
 	oneClassSelector(state).requestClassId;
