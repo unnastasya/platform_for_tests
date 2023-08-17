@@ -29,6 +29,7 @@ const initialState: OneDoneWorkStateType = {
 		class: "",
 		student: {},
 		allCriteriaRating: 0,
+        successCriterias: [],
 	},
 	oneDoneWorksLesson: {
 		_id: "",
