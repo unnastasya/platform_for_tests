@@ -35,42 +35,38 @@ export default function DoneWorkBage({ work }: DoneWorkBageProps) {
 	};
 
 	return (
-		<Paper sx={{ margin: 0 }} className={styles.student__work}>
-			<div
-				key={work._id}
-				onClick={() => toOneWorkPage(work._id, work.isVerified)}
-				className={styles.clickable}
-			>
-				<p className={styles.student__textHeader}>
-					{work.lessonId.name}
+		<Paper
+			sx={{ margin: 0 }}
+			className={styles.student__work}
+			onClick={() => toOneWorkPage(work._id, work.isVerified)}
+		>
+			<p className={styles.student__textHeader}>{work.lessonId.name}</p>
+			<p className={styles.student__text}>
+				{work.student.surname} {work.student.name}
+			</p>
+			<p className={styles.student__text}>
+				{work.student.class?.school} {work.student.class?.class}
+			</p>
+			{!!work.rating && (
+				<p
+					className={`${styles.rating__question} ${whatColor(
+						work.rating,
+						work.allCriteriaRating
+					)}`}
+				>
+					{work.rating}
 				</p>
-				<p className={styles.student__text}>
-					{work.student.surname} {work.student.name}
-				</p>
-				<p className={styles.student__text}>
-					{work.student.class?.school} {work.student.class?.class}
-				</p>
-				{!!work.rating && (
-					<p
-						className={`${styles.rating__question} ${whatColor(
-							work.rating,
-							work.allCriteriaRating
-						)}`}
-					>
-						{work.rating}
-					</p>
-				)}
+			)}
 
-				{work.isVerified ? (
-					<Alert className={styles.alert} severity="success">
-						Проверено
-					</Alert>
-				) : (
-					<Alert className={styles.alert} severity="warning">
-						Ожидает проверки
-					</Alert>
-				)}
-			</div>
+			{work.isVerified ? (
+				<Alert className={styles.alert} severity="success">
+					Проверено
+				</Alert>
+			) : (
+				<Alert className={styles.alert} severity="warning">
+					Ожидает проверки
+				</Alert>
+			)}
 		</Paper>
 	);
 }

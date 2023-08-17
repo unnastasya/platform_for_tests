@@ -3,6 +3,13 @@
 	border-radius: 5px;
 	position: relative;
 	padding: 30px;
+	height: 100%;
+	padding-top: 45px;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	justify-content: space-between;
+	cursor: pointer;
 }
 
 .student__work::after {
@@ -47,13 +54,6 @@
 	font-weight: 500;
 	font-size: 22px;
 	line-height: 100%;
-}
-
-.clickable {
-	cursor: pointer;
-	display: flex;
-	flex-direction: column;
-	gap: 15px;
 }
 
 .alert {
