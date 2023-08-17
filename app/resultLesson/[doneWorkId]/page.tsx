@@ -72,7 +72,7 @@ export default function ResultLesson({ params }: ResultLessonProps) {
 		<Page>
 			<div className={styles.resultLesson__pageContainer}>
 				<Paper className={styles.resultLesson__container}>
-					{doneWork.rating && (
+					{!!doneWork.rating && (
 						<p
 							className={`${styles.rating__question} ${whatColor(
 								doneWork.rating,
