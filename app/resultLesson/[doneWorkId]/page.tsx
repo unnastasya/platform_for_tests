@@ -44,6 +44,8 @@ export default function ResultLesson({ params }: ResultLessonProps) {
 
 	const doneWork = useAppSelector(oneDoneWorkDataSelector);
 	const isLoadingDoneWork = useAppSelector(oneDoneWorkIsLoadingSelector);
+	console.log("doneWork", lesson);
+	const successCriterias = doneWork.successCriterias;
 
 	const changeDoneWorkId = () => {
 		dispatch(OneDoneWorkActions.changeRequestDoneWorkId(doneWorkId));
@@ -72,16 +74,14 @@ export default function ResultLesson({ params }: ResultLessonProps) {
 		<Page>
 			<div className={styles.resultLesson__pageContainer}>
 				<Paper className={styles.resultLesson__container}>
-					{!!doneWork.rating && (
-						<p
-							className={`${styles.rating__question} ${whatColor(
-								doneWork.rating,
-								lesson.allCriteriaRating
-							)}`}
-						>
-							{doneWork.rating}
-						</p>
-					)}
+					<p
+						className={`${styles.rating__question} ${whatColor(
+							doneWork.rating || 0,
+							lesson.allCriteriaRating
+						)}`}
+					>
+						{doneWork.rating}
+					</p>
 
 					<p className={styles.resultLesson__header}>{lesson.name}</p>
 					<p>
@@ -117,7 +117,10 @@ export default function ResultLesson({ params }: ResultLessonProps) {
 								/>
 							</FormControl>
 							<Divider />
-							<QuestionCriteria question={question} />
+							<QuestionCriteria
+								question={question}
+								successCriterias={successCriterias}
+							/>
 						</QuestionBlock>
 					))}
 			</div>

@@ -19,12 +19,16 @@ interface CheckBlockProps {
 	question: QuestionType;
 	setRaitingValue: Dispatch<SetStateAction<number>>;
 	answer: string;
+	successCriterias: any;
+	setSuccessCriterias: any;
 }
 
 export default function CheckBlock({
 	question,
 	setRaitingValue,
 	answer,
+	successCriterias,
+	setSuccessCriterias,
 }: CheckBlockProps) {
 	const [count, setCount] = useState(0);
 
@@ -61,6 +65,7 @@ export default function CheckBlock({
 							setRaitingValue={setRaitingValue}
 							criterion={criterion}
 							setCount={setCount}
+							setSuccessCriterias={setSuccessCriterias}
 						/>
 					))}
 				{activeUser.role == "student" &&

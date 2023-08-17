@@ -47,7 +47,7 @@ export default function DoneWorkBage({ work }: DoneWorkBageProps) {
 			<p className={styles.student__text}>
 				{work.student.class?.school} {work.student.class?.class}
 			</p>
-			{!!work.rating && (
+			{(!!work.rating || work.rating == 0) && (
 				<p
 					className={`${styles.rating__question} ${whatColor(
 						work.rating,

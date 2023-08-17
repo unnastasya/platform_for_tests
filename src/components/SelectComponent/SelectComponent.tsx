@@ -7,12 +7,14 @@ interface SelectComponentProps {
 	criterion: CriteriaType;
 	setCount: Dispatch<SetStateAction<number>>;
 	setRaitingValue: Dispatch<SetStateAction<number>>;
+	setSuccessCriterias: any;
 }
 
 export default function SelectComponent({
 	criterion,
 	setCount,
 	setRaitingValue,
+	setSuccessCriterias,
 }: SelectComponentProps) {
 	const [status, setStatus] = useState(false);
 
@@ -21,11 +23,14 @@ export default function SelectComponent({
 			setCount((prev: any) => prev - +criterion.value);
 			setRaitingValue((prev: any) => prev - +criterion.value);
 			setStatus((prev) => !prev);
+			setSuccessCriterias((prev: any) =>
+				prev.filter((el: any) => el._id !== criterion._id)
+			);
 		} else {
 			setCount((prev: any) => prev + +criterion.value);
 			setRaitingValue((prev: any) => prev + +criterion.value);
-
 			setStatus((prev) => !prev);
+			setSuccessCriterias((prev: any) => [...prev, criterion._id]);
 		}
 	};
 

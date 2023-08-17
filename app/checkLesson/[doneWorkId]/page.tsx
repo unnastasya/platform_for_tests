@@ -44,6 +44,9 @@ export default function CheckLesson({ params }: CheckLessonProps) {
 
 	const doneWork = useAppSelector(oneDoneWorkDataSelector);
 	const isLoadingDoneWork = useAppSelector(oneDoneWorkIsLoadingSelector);
+	console.log("checkLesson", lesson);
+
+	const [successCriterias, setSuccessCriterias] = useState<any[]>([]);
 
 	const activeUser = useAppSelector(activeUserSelector);
 
@@ -65,6 +68,7 @@ export default function CheckLesson({ params }: CheckLessonProps) {
 			isVerified: true,
 			rating: ratingValue,
 			comment: comment,
+			successCriterias: successCriterias,
 		});
 		router.push(`/resultLesson/${doneWorkId}`);
 	};
@@ -119,6 +123,8 @@ export default function CheckLesson({ params }: CheckLessonProps) {
 							key={question._id}
 							question={question}
 							answer={doneWork.answers[index]}
+							successCriterias={successCriterias}
+							setSuccessCriterias={setSuccessCriterias}
 						/>
 					))}
 				<AddComment comment={comment} setComment={setComment} />

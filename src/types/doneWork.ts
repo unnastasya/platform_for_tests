@@ -11,4 +11,5 @@ export type DoneWorkType = {
 	comment?: string;
 	student: any;
 	allCriteriaRating: number;
+    successCriterias: any[];
 };
