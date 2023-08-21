@@ -1,6 +1,5 @@
 import axios from "axios";
-
-const API_BASE_URL = "https://platform-for-tests-backend.vercel.app";
+import { API_BASE_URL } from ".";
 
 export const addDoneWork = (data: any) => {
 	return axios
@@ -14,9 +13,9 @@ export const getOneStudentWorks = (studentId: string) => {
 		.then((response) => response.data);
 };
 
-export const getDoneWorks = () => {
+export const getDoneWorks = (id: string) => {
 	return axios
-		.get(`${API_BASE_URL}/doneWork`)
+		.get(`${API_BASE_URL}/doneWork/${id}`)
 		.then((response) => response.data);
 };
 

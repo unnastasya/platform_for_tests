@@ -9,7 +9,9 @@ import { getOneUser } from "@/api/auth";
 
 function* getDoneWorksSaga() {
 	try {
-		const doneWorks: DoneWorkType[] = yield call(getDoneWorks);
+		const userId: string = yield select(activeUserIdSelector);
+
+		const doneWorks: DoneWorkType[] = yield call(getDoneWorks, userId);
 		yield put(DoneWorksActions.successDoneWorks(doneWorks));
 	} catch (e: any) {
 		yield put(DoneWorksActions.failureDoneWorks());

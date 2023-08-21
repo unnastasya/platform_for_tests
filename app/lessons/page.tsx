@@ -58,6 +58,15 @@ export default function LessonsPage() {
 		return (
 			<Page>
 				<div className={styles.lessonsPage__container}>
+					{activeUser.role === "teacher" && (
+						<Button
+							onClick={goToAddLesson}
+							variant="contained"
+							endIcon={<AddIcon />}
+						>
+							Добавить урок
+						</Button>
+					)}
 					<Paper className={styles.lessonsPage__noLessons}>
 						<p>
 							{activeUser.role === "teacher"

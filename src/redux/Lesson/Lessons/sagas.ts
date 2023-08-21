@@ -7,7 +7,9 @@ import { deleteLessonRequestIdSelector } from "./selectors";
 
 function* getLessonsSaga() {
 	try {
-		const lessons: LessonType[] = yield call(getLessons);
+		const activeUserId: string = yield select(activeUserIdSelector);
+
+		const lessons: LessonType[] = yield call(getLessons, activeUserId);
 
 		yield put(LessonsActions.successLessons(lessons));
 	} catch (e: any) {
@@ -20,7 +22,7 @@ function* getActiveUsersLessonsSaga() {
 		const userId: string = yield select(activeUserIdSelector);
 
 		const lessons: LessonType[] = yield call(getOneStudentLessons, userId);
-        
+
 		yield put(LessonsActions.successLessons(lessons));
 	} catch (e: any) {
 		yield put(LessonsActions.failureLessons());
@@ -33,7 +35,9 @@ function* deleteLessonSaga() {
 
 		yield call(deleteLesson, lessonId);
 
-		const lessons: LessonType[] = yield call(getLessons);
+		const activeUserId: string = yield select(activeUserIdSelector);
+
+		const lessons: LessonType[] = yield call(getLessons, activeUserId);
 		yield put(LessonsActions.successLessons(lessons));
 	} catch (e: any) {
 		yield put(LessonsActions.failureLessons());

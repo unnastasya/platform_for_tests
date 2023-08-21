@@ -21,10 +21,13 @@ import LoadingBlock from "@/components/LoadingBlock/LoadingBlock";
 import addImagesToQuestions from "./utils";
 
 import styles from "./page.module.css";
+import { activeUserIdSelector } from "@/redux/Auth";
 
 export default function AddLesson() {
 	const dispatch = useAppDispatch();
 	const router = useRouter();
+
+	const activeUserId = useAppSelector(activeUserIdSelector);
 
 	const classesData = useAppSelector(classesDataSelector);
 	const [checkedClass, setCheckedClass] = useState<any[]>([]);
@@ -63,6 +66,7 @@ export default function AddLesson() {
 				},
 			],
 			allCriteriaRating: editLessonData?.allCriteriaRating || 0,
+			authorId: editLessonData?.authorId || activeUserId,
 		},
 	});
 

@@ -8,6 +8,7 @@ export type LessonType = {
 	allCriteriaRating: number;
 	questions: QuestionType[];
 	classes: ClassType[];
+	authorId: string;
 };
 
 export type QuestionType = {

@@ -1,6 +1,5 @@
 import axios from "axios";
-
-const API_BASE_URL = "https://platform-for-tests-backend.vercel.app";
+import { API_BASE_URL } from ".";
 
 export const getOneClass = (id: string) => {
 	return axios
