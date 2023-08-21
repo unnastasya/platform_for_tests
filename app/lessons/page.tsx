@@ -16,9 +16,12 @@ import Link from "next/link";
 import AddIcon from "@mui/icons-material/Add";
 
 import styles from "./page.module.css";
+import { useRouter } from "next/navigation";
+import { AddLessonActions } from "@/redux/Lesson/AddLesson";
 
 export default function LessonsPage() {
 	const dispatch = useAppDispatch();
+	const router = useRouter();
 	const lessons: LessonType[] = useAppSelector(lessonsDataSelector);
 	const isLoading: boolean = useAppSelector(lessonsIsLoadingSelector);
 
@@ -35,6 +38,11 @@ export default function LessonsPage() {
 	useEffect(() => {
 		fetchLessons();
 	}, []);
+
+	const goToAddLesson = () => {
+		dispatch(AddLessonActions.changeEditLessonData({}));
+		router.push("/addLesson");
+	};
 
 	if (isLoading) {
 		return (
@@ -66,11 +74,13 @@ export default function LessonsPage() {
 		<Page>
 			<div className={styles.lessonsPage__container}>
 				{activeUser.role === "teacher" && (
-					<Link href="/addLesson">
-						<Button variant="contained" endIcon={<AddIcon />}>
-							Добавить урок
-						</Button>
-					</Link>
+					<Button
+						onClick={goToAddLesson}
+						variant="contained"
+						endIcon={<AddIcon />}
+					>
+						Добавить урок
+					</Button>
 				)}
 				<div className={styles.lessonsPage__testsBlock}>
 					{lessons.map((lesson) => (
