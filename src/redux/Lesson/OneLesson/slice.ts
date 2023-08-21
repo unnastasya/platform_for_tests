@@ -18,6 +18,7 @@ const initialState: OneLessonStateType = {
 		allCriteriaRating: 0,
 		questions: [],
 		classes: [],
+        authorId: "",
 	},
 	oneLessonIsLoading: false,
 	oneLessonHasError: false,
