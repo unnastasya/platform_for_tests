@@ -3,8 +3,11 @@ import {
 	addLessonRequestDataSelector,
 	editLessonIdDataSelector,
 } from "./selectors";
-import { addLesson, updateLesson } from "@/api/lessons";
+import { addLesson, getLessons, updateLesson } from "@/api/lessons";
 import { AddLessonActions } from "./slice";
+import { activeUserIdSelector } from "@/redux/Auth";
+import { LessonType } from "@/types/lesson";
+import { LessonsActions } from "../Lessons";
 
 function* postLessonSaga() {
 	try {
@@ -18,6 +21,12 @@ function* postLessonSaga() {
 				lessonId: lessonId,
 			})
 		);
+
+		const activeUserId: string = yield select(activeUserIdSelector);
+
+		const lessons: LessonType[] = yield call(getLessons, activeUserId);
+
+		yield put(LessonsActions.successLessons(lessons));
 	} catch (e: any) {
 		yield put(AddLessonActions.failureAddLesson());
 	}
@@ -39,6 +48,12 @@ function* editLessonSaga() {
 				lessonId: lessonId,
 			})
 		);
+
+		const activeUserId: string = yield select(activeUserIdSelector);
+
+		const lessons: LessonType[] = yield call(getLessons, activeUserId);
+
+		yield put(LessonsActions.successLessons(lessons));
 	} catch (e: any) {
 		yield put(AddLessonActions.failureAddLesson());
 	}
