@@ -3,7 +3,7 @@ import { API_BASE_URL } from ".";
 
 export const getLessons = (id: string) => {
 	return axios
-		.get(`${API_BASE_URL}/lesson/${id}`)
+		.get(`${API_BASE_URL}/allLessons/${id}`)
 		.then((response) => response.data);
 };
 
