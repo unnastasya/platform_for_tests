@@ -1,7 +1,16 @@
 "use client";
 
 import { changeOneDoneWork } from "@/api/doneWorks";
-import { Alert, Button, CircularProgress, Paper } from "@mui/material";
+import {
+	Alert,
+	Button,
+	CircularProgress,
+	Dialog,
+	DialogActions,
+	DialogContent,
+	DialogContentText,
+	Paper,
+} from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import DoneIcon from "@mui/icons-material/Done";
@@ -41,6 +50,7 @@ export default function CheckLesson({ params }: CheckLessonProps) {
 	const lesson = useAppSelector(oneDoneWorksLessonSelector);
 	const [comment, setComment] = useState<string>("");
 	const [ratingValue, setRaitingValue] = useState<number>(0);
+	const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
 
 	const doneWork = useAppSelector(oneDoneWorkDataSelector);
 	const isLoadingDoneWork = useAppSelector(oneDoneWorkIsLoadingSelector);
@@ -69,7 +79,8 @@ export default function CheckLesson({ params }: CheckLessonProps) {
 			comment: comment,
 			successCriterias: successCriterias,
 		});
-		router.push(`/resultLesson/${doneWorkId}`);
+		setIsDialogOpen(true);
+		// router.push(`/resultLesson/${doneWorkId}`);
 	};
 
 	if (activeUser.role == "student") {
@@ -94,6 +105,22 @@ export default function CheckLesson({ params }: CheckLessonProps) {
 
 	return (
 		<Page>
+			<Dialog open={isDialogOpen} onClose={() => setIsDialogOpen(false)}>
+				<DialogContent>
+					<DialogContentText>Оценка выставлена</DialogContentText>
+				</DialogContent>
+				<DialogActions>
+					<Button
+						variant="outlined"
+						onClick={() => {
+							setIsDialogOpen(false);
+							router.push(`/resultLesson/${doneWorkId}`);
+						}}
+					>
+						ОК
+					</Button>
+				</DialogActions>
+			</Dialog>
 			<div className={styles.oneTest__container}>
 				<div
 					className={`${styles.countRating__question} ${whatColor(
