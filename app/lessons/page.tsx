@@ -12,12 +12,11 @@ import {
 import { Button, CircularProgress, Paper } from "@mui/material";
 import { LessonType } from "@/types/lesson";
 import { activeUserSelector } from "@/redux/Auth";
-import Link from "next/link";
 import AddIcon from "@mui/icons-material/Add";
-
-import styles from "./page.module.css";
 import { useRouter } from "next/navigation";
 import { AddLessonActions } from "@/redux/Lesson/AddLesson";
+
+import styles from "./page.module.css";
 
 export default function LessonsPage() {
 	const dispatch = useAppDispatch();

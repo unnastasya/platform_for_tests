@@ -3,8 +3,6 @@ import { takeLatest, call, put, select } from "redux-saga/effects";
 import { ClassType } from "@/types/class";
 import { OneClassActions } from "./slice";
 import { requestClassIdSelector } from "./selectors";
-import { User } from "@/types/user";
-import { getUsersByClassId } from "@/api/auth";
 
 function* getOneClasses() {
 	try {

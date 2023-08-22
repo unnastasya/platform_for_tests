@@ -32,10 +32,10 @@ import {
 	DialogTitle,
 } from "@mui/material";
 import { LessonsActions } from "@/redux/Lesson/Lessons";
-
-import styles from "./page.module.css";
 import { AddLessonActions } from "@/redux/Lesson/AddLesson";
 import EditIcon from "@mui/icons-material/Edit";
+
+import styles from "./page.module.css";
 
 interface OneLessonProps {
 	params: {
@@ -112,8 +112,6 @@ export default function OneLesson({ params }: OneLessonProps) {
 		fetchAddDoneWork();
 
 		setIsAddedDialogOpen(true);
-
-		
 	};
 
 	const onSubmit = (data: any) => {

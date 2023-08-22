@@ -1,10 +1,10 @@
 "use client";
 import { useFieldArray } from "react-hook-form";
 import { Button } from "@mui/material";
-
-import styles from "./AddQuestion.module.css";
 import AddOneQuestion from "../AddOneQuestion/AddOneQuestion";
 import AddIcon from "@mui/icons-material/Add";
+
+import styles from "./AddQuestion.module.css";
 
 export default function AddQuestion({ control, register, setValue }: any) {
 	const { fields, append, remove } = useFieldArray({

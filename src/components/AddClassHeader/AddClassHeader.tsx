@@ -1,6 +1,7 @@
 "use client";
 
 import { TextField } from "@mui/material";
+
 import styles from "./AddClassHeader.module.css";
 
 export default function AddClassHeader({ register }: any) {

@@ -1,8 +1,8 @@
 import { QuestionType } from "@/types/lesson";
-
-import styles from "./QuestionCriteria.module.css";
 import DoneIcon from "@mui/icons-material/Done";
 import CloseIcon from "@mui/icons-material/Close";
+
+import styles from "./QuestionCriteria.module.css";
 
 interface QuestionCriteriaProps {
 	question: QuestionType;

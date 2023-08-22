@@ -1,6 +1,5 @@
-import { addClass, getAllClasses, updateClass } from "@/api/classes";
+import { addClass, updateClass } from "@/api/classes";
 import { takeLatest, call, put, select } from "redux-saga/effects";
-import { ClassType } from "@/types/class";
 import {
 	addClassRequestDataSelector,
 	editClassIdDataSelector,

@@ -10,7 +10,7 @@ export default function AddOneQuestion({
 	register,
 	remove,
 	setValue,
-    control
+	control,
 }: any) {
 	return (
 		<Paper key={index} className={styles.oneAddQuestion__container}>
