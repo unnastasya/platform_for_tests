@@ -1,7 +1,11 @@
 import { takeLatest, call, put, select } from "redux-saga/effects";
 import { DoneWorksActions } from "./slice";
 import { DoneWorkType } from "@/types/doneWork";
-import { getDoneWorks, getOneStudentWorks } from "@/api/doneWorks";
+import {
+	getDoneWorks,
+	getOneStudentWorks,
+	getStudentsDoneWorks,
+} from "@/api/doneWorks";
 import { activeUserIdSelector } from "@/redux/Auth";
 import { requestUserIdSelector } from "./selectors";
 import { UserType } from "@/types/user";
@@ -24,8 +28,7 @@ function* getActiveUsersDoneWorksSaga() {
 		const activeUserId: string = yield select(activeUserIdSelector);
 
 		const doneWorks: DoneWorkType[] = yield call(
-			getOneStudentWorks,
-			activeUserId,
+			getStudentsDoneWorks,
 			userId
 		);
 		yield put(DoneWorksActions.successDoneWorks(doneWorks));

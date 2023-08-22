@@ -113,11 +113,7 @@ export default function OneLesson({ params }: OneLessonProps) {
 
 		setIsAddedDialogOpen(true);
 
-		// if (activeUser.role == "student") {
-		// 	router.push("/myWorks");
-		// } else {
-		// 	router.push(`/checkLesson/${doneWorkId}`);
-		// }
+		
 	};
 
 	const onSubmit = (data: any) => {

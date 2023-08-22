@@ -26,10 +26,8 @@ export default function OneClass({ params }: OneClassProps) {
 	const classId = params.classId;
 
 	const classData = useAppSelector(oneClassDataSelector);
-	const classStudents = classData.students || []
+	const classStudents = classData.students || [];
 	const classIsLoading = useAppSelector(oneClassIsLoadingSelector);
-
-    console.log("classStudents", classStudents)
 
 	const changeClassId = () => {
 		dispatch(OneClassActions.changeRequestClassId(classId || ""));

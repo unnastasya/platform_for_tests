@@ -57,7 +57,7 @@ export default function AddClassBlock() {
 
 	const onSubmit = (data: any) => {
 		let value = { ...data };
-        console.log("value", value)
+
 		if (editClassId) {
 			changeRequestData(value);
 			dispatch(AddClassActions.editClass());

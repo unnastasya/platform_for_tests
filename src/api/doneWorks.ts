@@ -15,7 +15,13 @@ export const getOneStudentWorks = (activeUserId: string, studentId: string) => {
 
 export const getDoneWorks = (id: string) => {
 	return axios
-		.get(`${API_BASE_URL}/doneWork/${id}`)
+		.get(`${API_BASE_URL}/doneWorks/${id}`)
+		.then((response) => response.data);
+};
+
+export const getStudentsDoneWorks = (id: string) => {
+	return axios
+		.get(`${API_BASE_URL}/studentsDoneWorks/${id}`)
 		.then((response) => response.data);
 };
 
