@@ -21,9 +21,11 @@ function* getDoneWorksSaga() {
 function* getActiveUsersDoneWorksSaga() {
 	try {
 		const userId: string = yield select(activeUserIdSelector);
+		const activeUserId: string = yield select(activeUserIdSelector);
 
 		const doneWorks: DoneWorkType[] = yield call(
 			getOneStudentWorks,
+			activeUserId,
 			userId
 		);
 		yield put(DoneWorksActions.successDoneWorks(doneWorks));
@@ -35,9 +37,11 @@ function* getActiveUsersDoneWorksSaga() {
 function* getOneUsersDoneWorksSaga() {
 	try {
 		const userId: string = yield select(requestUserIdSelector);
+		const activeUserId: string = yield select(activeUserIdSelector);
 
 		const doneWorks: DoneWorkType[] = yield call(
 			getOneStudentWorks,
+			activeUserId,
 			userId
 		);
 

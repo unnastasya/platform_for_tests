@@ -7,9 +7,9 @@ export const addDoneWork = (data: any) => {
 		.then((response) => response.data);
 };
 
-export const getOneStudentWorks = (studentId: string) => {
+export const getOneStudentWorks = (activeUserId: string, studentId: string) => {
 	return axios
-		.get(`${API_BASE_URL}/doneWorkByStudentId/${studentId}`)
+		.get(`${API_BASE_URL}/doneWorkByStudentId/${activeUserId}/${studentId}`)
 		.then((response) => response.data);
 };
 
