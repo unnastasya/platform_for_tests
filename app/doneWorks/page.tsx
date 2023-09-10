@@ -17,6 +17,7 @@ export default function DoneWorks() {
 	const works = useAppSelector(doneWorksDataSelector);
 	const worksIsLoading: boolean = useAppSelector(doneWorksIsLoadingSelector);
 
+	console.log(works);
 	const dispatch = useAppDispatch();
 
 	const fetchDoneWorks = useCallback(() => {
@@ -47,15 +48,15 @@ export default function DoneWorks() {
 				</div>
 			</Page>
 		);
+	} else {
+		return (
+			<Page>
+				<div className={styles.doneWorks__page}>
+					{works.map((work: any) => (
+						<DoneWorkBage work={work} key={work._id} />
+					))}
+				</div>
+			</Page>
+		);
 	}
-
-	return (
-		<Page>
-			<div className={styles.doneWorks__page}>
-				{works.map((work: any) => (
-					<DoneWorkBage work={work} key={work._id} />
-				))}
-			</div>
-		</Page>
-	);
 }
