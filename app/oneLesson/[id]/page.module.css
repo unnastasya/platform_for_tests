@@ -21,9 +21,15 @@
 	bottom: 0;
 	height: 15px;
 	width: 100%;
-	background: #82b1ff;
 	background-position: center center;
 	border-radius: 5px 5px 0 0;
+}
+
+.oneLesson__infoBlock__visible__false::after {
+	background: #A4A9AD;
+}
+
+.oneLesson__infoBlock__visible__true::after {
 	background: #2979ff;
 }
 

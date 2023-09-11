@@ -8,4 +8,5 @@ export type ClassType = {
 	studentsCount: number;
 	students?: User[];
 	lessons: LessonType[];
+    authorId: string;
 };

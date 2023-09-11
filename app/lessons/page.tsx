@@ -56,16 +56,17 @@ export default function LessonsPage() {
 	if (lessons.length === 0) {
 		return (
 			<Page>
+				{activeUser.role === "teacher" && (
+					<Button
+						onClick={goToAddLesson}
+						variant="contained"
+						endIcon={<AddIcon />}
+						sx={{ marginBottom: "20px" }}
+					>
+						Добавить урок
+					</Button>
+				)}
 				<div className={styles.lessonsPage__container}>
-					{activeUser.role === "teacher" && (
-						<Button
-							onClick={goToAddLesson}
-							variant="contained"
-							endIcon={<AddIcon />}
-						>
-							Добавить урок
-						</Button>
-					)}
 					<Paper className={styles.lessonsPage__noLessons}>
 						<p>
 							{activeUser.role === "teacher"
@@ -80,16 +81,17 @@ export default function LessonsPage() {
 
 	return (
 		<Page>
+			{activeUser.role === "teacher" && (
+				<Button
+					onClick={goToAddLesson}
+					variant="contained"
+					endIcon={<AddIcon />}
+					sx={{ marginBottom: "20px" }}
+				>
+					Добавить урок
+				</Button>
+			)}
 			<div className={styles.lessonsPage__container}>
-				{activeUser.role === "teacher" && (
-					<Button
-						onClick={goToAddLesson}
-						variant="contained"
-						endIcon={<AddIcon />}
-					>
-						Добавить урок
-					</Button>
-				)}
 				<div className={styles.lessonsPage__testsBlock}>
 					{lessons.map((lesson) => (
 						<OneTestBlock key={lesson._id} lesson={lesson} />

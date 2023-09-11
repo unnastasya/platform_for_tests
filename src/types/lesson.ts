@@ -9,6 +9,8 @@ export type LessonType = {
 	questions: QuestionType[];
 	classes: ClassType[];
 	authorId: string;
+    isVisible: boolean;
+    isDeleted: boolean
 };
 
 export type QuestionType = {

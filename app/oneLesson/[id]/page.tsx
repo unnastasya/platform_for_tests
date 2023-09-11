@@ -36,6 +36,7 @@ import { AddLessonActions } from "@/redux/Lesson/AddLesson";
 import EditIcon from "@mui/icons-material/Edit";
 
 import styles from "./page.module.css";
+import { changeVisible } from "@/api/lessons";
 
 interface OneLessonProps {
 	params: {
@@ -60,6 +61,12 @@ export default function OneLesson({ params }: OneLessonProps) {
 
 	const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false);
 	const [isAddedDialogOpen, setIsAddedDialogOpen] = useState(false);
+
+	const [isVisible, setIsVisible] = useState(lesson.isVisible);
+
+	useEffect(() => {
+		setIsVisible(lesson.isVisible);
+	}, [lesson.isVisible]);
 
 	const openConfirmDialog = () => {
 		setIsConfirmDialogOpen(true);
@@ -138,6 +145,10 @@ export default function OneLesson({ params }: OneLessonProps) {
 		router.push("/addLesson");
 	};
 
+	const changeLessonVisible = () => {
+		changeVisible(id);
+	};
+
 	return (
 		<Page>
 			<Dialog
@@ -162,13 +173,36 @@ export default function OneLesson({ params }: OneLessonProps) {
 			<div>
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<div className={styles.oneLesson__container}>
-						<Paper className={styles.oneLesson__infoBlock}>
+						<Paper
+							className={
+								isVisible
+									? `${styles.oneLesson__infoBlock} ${styles.oneLesson__infoBlock__visible__true}`
+									: `${styles.oneLesson__infoBlock} ${styles.oneLesson__infoBlock__visible__false}`
+							}
+						>
 							{activeUser.role === "teacher" && (
 								<div
 									className={
 										styles.oneLesson__infoBlock_buttonsBlock
 									}
 								>
+									<Button
+										onClick={changeLessonVisible}
+										variant="outlined"
+										size="small"
+										sx={
+											lesson.isVisible
+												? {
+														borderColor: "#A4A9AD",
+														color: "#A4A9AD",
+												  }
+												: {}
+										}
+									>
+										{lesson.isVisible
+											? "Сделать невидимым"
+											: "Сделать видимым"}
+									</Button>
 									<Button
 										onClick={editLesson}
 										variant="outlined"

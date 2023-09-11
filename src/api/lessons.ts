@@ -52,3 +52,9 @@ export const updateLesson = ({
 		.then((response) => response.data)
 		.catch((error) => error);
 };
+
+export const changeVisible = (id: any) => {
+	return axios
+		.put(`${API_BASE_URL}/lesson/changeVisible/${id}`)
+		.then((response) => response.data);
+};

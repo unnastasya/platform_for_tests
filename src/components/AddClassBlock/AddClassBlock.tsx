@@ -17,6 +17,7 @@ import {
 } from "@/redux/Class/AddClass";
 
 import styles from "./AddClassBlock.module.css";
+import { activeUserIdSelector } from "@/redux/Auth";
 
 export default function AddClassBlock() {
 	const dispatch = useAppDispatch();
@@ -28,6 +29,9 @@ export default function AddClassBlock() {
 
 	const editClassId = useAppSelector(editClassIdDataSelector || null);
 	const editClassData = useAppSelector(editClassDataSelector || null);
+
+	const activeUserId = useAppSelector(activeUserIdSelector);
+
 
 	const changeRequestData = (data: any): any => {
 		dispatch(AddClassActions.changeRequestData(data));
@@ -52,11 +56,13 @@ export default function AddClassBlock() {
 					surname: "",
 				},
 			],
+            authorId: editClassData?.authorId || activeUserId,
 		},
 	});
 
 	const onSubmit = (data: any) => {
 		let value = { ...data };
+        console.log(value)
 
 		if (editClassId) {
 			changeRequestData(value);

@@ -8,11 +8,12 @@ export const getOneClass = (id: string) => {
 		.catch((error) => error);
 };
 
-export const getAllClasses = () => {
+export const getAllClasses = (id: string) => {
+    console.log(id)
 	return axios
-		.get(`${API_BASE_URL}/class`)
+		.get(`${API_BASE_URL}/allClasses/${id}`)
 		.then((response) => response.data)
-		.catch((error) => error);
+		.catch((error) => {console.log(error); return error});
 };
 
 export const deleteOneClass = (id: string) => {
@@ -35,6 +36,13 @@ export const updateClass = ({
 }): Promise<any> => {
 	return axios
 		.put(`${API_BASE_URL}/class/${id}`, data)
+		.then((response) => response.data)
+		.catch((error) => error);
+};
+
+export const getClassesUsers = (id: string) => {
+	return axios
+		.get(`http://localhost:8080/classUsers/${id}`)
 		.then((response) => response.data)
 		.catch((error) => error);
 };

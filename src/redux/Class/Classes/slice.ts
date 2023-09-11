@@ -26,6 +26,7 @@ const successClasses: CaseReducer<
 	ClassesStateType,
 	PayloadAction<ClassType[]>
 > = (state, { payload }) => {
+    console.log(payload)
 	state.classesIsLoading = false;
 	state.classesIsError = false;
 	state.classes = payload;

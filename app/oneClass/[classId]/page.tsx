@@ -2,7 +2,7 @@
 
 import { Page } from "@/components/Page/Page";
 import { CircularProgress, Paper } from "@mui/material";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import OneClassHeader from "@/components/OneClassHeader/OneClassHeader";
 import PeopleListComponent from "@/components/PeopleListComponent/PeopleListComponent";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
@@ -28,6 +28,8 @@ export default function OneClass({ params }: OneClassProps) {
 	const classData = useAppSelector(oneClassDataSelector);
 	const classStudents = classData.students || [];
 	const classIsLoading = useAppSelector(oneClassIsLoadingSelector);
+	const [users, setUsers] = useState<any[]>([]);
+	const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false);
 
 	const changeClassId = () => {
 		dispatch(OneClassActions.changeRequestClassId(classId || ""));
@@ -55,8 +57,8 @@ export default function OneClass({ params }: OneClassProps) {
 	return (
 		<Page>
 			<Paper className={styles.oneClass__container}>
-				<OneClassHeader classData={classData} classId={classId} />
-				<PeopleListComponent people={classStudents} />
+				<OneClassHeader classData={classData} classId={classId} setUsers={setUsers} setIsConfirmDialogOpenUsers={setIsConfirmDialogOpen}/>
+				<PeopleListComponent people={classStudents} users={users} isConfirmDialogOpen={isConfirmDialogOpen}  setIsConfirmDialogOpen={setIsConfirmDialogOpen}/>
 			</Paper>
 		</Page>
 	);

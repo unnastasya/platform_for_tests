@@ -16,15 +16,20 @@ import { ClassesActions } from "@/redux/Class/Classes";
 import { AddClassActions } from "@/redux/Class/AddClass";
 
 import styles from "./OneClassHeader.module.css";
+import { getClassesUsers } from "@/api/classes";
 
 interface OneClassHeaderProps {
 	classData: ClassType;
 	classId: string;
+	setUsers: any;
+	setIsConfirmDialogOpenUsers: any;
 }
 
 export default function OneClassHeader({
 	classData,
 	classId,
+	setUsers,
+	setIsConfirmDialogOpenUsers,
 }: OneClassHeaderProps) {
 	const dispatch = useAppDispatch();
 
@@ -52,6 +57,14 @@ export default function OneClassHeader({
 		router.push("/addClass");
 	};
 
+	const getPasswords = () => {
+		getClassesUsers(classId).then((res) => {
+			console.log(res);
+			setUsers(res);
+		});
+		setIsConfirmDialogOpenUsers(true);
+	};
+
 	return (
 		<div className={styles.oneClassHeader__container}>
 			<p className={styles.oneClassHeader__textHeader}>
@@ -59,6 +72,9 @@ export default function OneClassHeader({
 			</p>
 
 			<div className={styles.oneClassHeader__buttonsBlock}>
+				<Button onClick={getPasswords} variant="outlined" size="small">
+					Данные учеников
+				</Button>
 				<Button onClick={editClass} variant="outlined" size="small">
 					<EditIcon sx={{ height: "30px", width: "30px" }} />
 				</Button>
