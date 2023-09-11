@@ -10,7 +10,14 @@ export type oneClassStateType = {
 };
 
 const initialState: oneClassStateType = {
-	oneClass: { _id: 0, school: "", class: "", studentsCount: 0, lessons: [] },
+	oneClass: {
+		_id: 0,
+		school: "",
+		class: "",
+		studentsCount: 0,
+		lessons: [],
+		authorId: "",
+	},
 	oneClassIsLoading: false,
 	oneClassIsError: false,
 	requestClassId: "",

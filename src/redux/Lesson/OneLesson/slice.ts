@@ -19,6 +19,8 @@ const initialState: OneLessonStateType = {
 		questions: [],
 		classes: [],
 		authorId: "",
+		isVisible: false,
+		isDeleted: false,
 	},
 	oneLessonIsLoading: false,
 	oneLessonHasError: false,
