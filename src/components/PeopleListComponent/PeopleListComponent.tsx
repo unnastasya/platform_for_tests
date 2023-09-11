@@ -39,7 +39,7 @@ export default function PeopleListComponent({
 				<DialogContent>
 					<DialogContentText>
 						{users.map((user) => (
-							<div className={styles.userData}>
+							<div key={user.login} className={styles.userData}>
 								<p>{user.fullName}</p>
 								<p>{user.login}</p>
 								<p>{user.password}</p>
