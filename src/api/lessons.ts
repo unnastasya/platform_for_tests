@@ -56,5 +56,6 @@ export const updateLesson = ({
 export const changeVisible = (id: any) => {
 	return axios
 		.put(`${API_BASE_URL}/lesson/changeVisible/${id}`)
-		.then((response) => response.data);
+		.then((response) => response.data)
+		.catch((error) => console.log(error));
 };

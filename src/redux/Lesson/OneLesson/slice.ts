@@ -54,6 +54,8 @@ const changeRequestLessonId: CaseReducer<
 	state.requestLessonId = payload;
 };
 
+const changeVisibleLesson: CaseReducer<OneLessonStateType> = (state) => {};
+
 export const { reducer: OneLessonReducer, actions: OneLessonActions } =
 	createSlice({
 		name: NAME,
@@ -63,5 +65,6 @@ export const { reducer: OneLessonReducer, actions: OneLessonActions } =
 			successOneLesson,
 			failureOneLesson,
 			changeRequestLessonId,
+			changeVisibleLesson,
 		},
 	});

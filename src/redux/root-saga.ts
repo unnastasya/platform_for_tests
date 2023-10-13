@@ -21,7 +21,7 @@ import {
 	watchGetActiveUsersLessonsSaga,
 	watchGetLessonsSaga,
 } from "./Lesson/Lessons/sagas";
-import { watchGetOneLessonSaga } from "./Lesson/OneLesson/sagas";
+import { watchChangeVisibleLessonSaga, watchGetOneLessonSaga } from "./Lesson/OneLesson/sagas";
 import {
 	watchEditLessonSaga,
 	watchPostLessonSaga,
@@ -45,4 +45,5 @@ export function* rootSaga() {
 	yield fork(watchDeleteLessonSaga);
 	yield fork(watchEditOneClassSaga);
 	yield fork(watchEditLessonSaga);
+	yield fork(watchChangeVisibleLessonSaga);
 }

@@ -62,12 +62,6 @@ export default function OneLesson({ params }: OneLessonProps) {
 	const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false);
 	const [isAddedDialogOpen, setIsAddedDialogOpen] = useState(false);
 
-	const [isVisible, setIsVisible] = useState(lesson.isVisible);
-
-	useEffect(() => {
-		setIsVisible(lesson.isVisible);
-	}, [lesson.isVisible]);
-
 	const openConfirmDialog = () => {
 		setIsConfirmDialogOpen(true);
 	};
@@ -146,7 +140,8 @@ export default function OneLesson({ params }: OneLessonProps) {
 	};
 
 	const changeLessonVisible = () => {
-		changeVisible(id);
+		dispatch(OneLessonActions.changeVisibleLesson());
+		// changeVisible(id);
 	};
 
 	return (
@@ -175,7 +170,7 @@ export default function OneLesson({ params }: OneLessonProps) {
 					<div className={styles.oneLesson__container}>
 						<Paper
 							className={
-								isVisible
+								lesson.isVisible
 									? `${styles.oneLesson__infoBlock} ${styles.oneLesson__infoBlock__visible__true}`
 									: `${styles.oneLesson__infoBlock} ${styles.oneLesson__infoBlock__visible__false}`
 							}
