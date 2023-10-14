@@ -17,7 +17,6 @@ export default function DoneWorks() {
 	const works = useAppSelector(doneWorksDataSelector);
 	const worksIsLoading: boolean = useAppSelector(doneWorksIsLoadingSelector);
 
-	console.log(works);
 	const dispatch = useAppDispatch();
 
 	const fetchDoneWorks = useCallback(() => {

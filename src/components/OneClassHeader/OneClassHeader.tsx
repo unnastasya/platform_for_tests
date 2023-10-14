@@ -59,7 +59,6 @@ export default function OneClassHeader({
 
 	const getPasswords = () => {
 		getClassesUsers(classId).then((res) => {
-			console.log(res);
 			setUsers(res);
 		});
 		setIsConfirmDialogOpenUsers(true);

@@ -20,6 +20,7 @@ interface AddLessonHeaderProps {
 	classesData: ClassType[];
 	checkedClass: any[];
 	setCheckedClass: (data: any) => void;
+	errors: any;
 }
 
 export function AddLessonHeader({
@@ -27,6 +28,7 @@ export function AddLessonHeader({
 	setCheckedClass,
 	checkedClass,
 	classesData,
+	errors,
 }: AddLessonHeaderProps) {
 	const handleChange = (event: SelectChangeEvent<any[]>) => {
 		const {
@@ -48,12 +50,8 @@ export function AddLessonHeader({
 				fullWidth
 				multiline
 				label="Тема урока"
-			/>
-
-			<TextField
-				{...register("description")}
-				multiline
-				label="Описание"
+				error={!!errors.name?.message}
+				helperText={errors.name?.message}
 			/>
 
 			<FormControl>

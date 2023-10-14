@@ -1,7 +1,14 @@
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddCriteria from "../AddCriteria/AddCriteria";
 import AddImage from "../AddImage/AddImage";
-import { Button, Divider, FormControl, Paper, TextField } from "@mui/material";
+import {
+	Alert,
+	Button,
+	Divider,
+	FormControl,
+	Paper,
+	TextField,
+} from "@mui/material";
 
 import styles from "./AddOneQuestion.module.css";
 
@@ -11,6 +18,7 @@ export default function AddOneQuestion({
 	remove,
 	setValue,
 	control,
+	errors,
 }: any) {
 	return (
 		<Paper key={index} className={styles.oneAddQuestion__container}>
@@ -34,12 +42,8 @@ export default function AddOneQuestion({
 					fullWidth
 					multiline
 					label="Задание"
-				/>
-				<TextField
-					{...register(`questions.${index}.description`)}
-					fullWidth
-					multiline
-					label="Описание задания"
+					error={!!errors?.questionText?.message}
+					helperText={errors?.questionText?.message}
 				/>
 				<AddImage
 					setValue={setValue}
@@ -58,10 +62,15 @@ export default function AddOneQuestion({
 
 			<Divider />
 
+			{errors?.criteria?.type == "min" && (
+				<Alert severity="error">{errors.criteria?.message}</Alert>
+			)}
+
 			<AddCriteria
 				indexQuestion={index}
 				register={register}
 				control={control}
+				errors={errors?.criteria}
 			/>
 		</Paper>
 	);

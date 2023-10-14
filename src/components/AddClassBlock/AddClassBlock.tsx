@@ -32,7 +32,6 @@ export default function AddClassBlock() {
 
 	const activeUserId = useAppSelector(activeUserIdSelector);
 
-
 	const changeRequestData = (data: any): any => {
 		dispatch(AddClassActions.changeRequestData(data));
 	};
@@ -56,13 +55,12 @@ export default function AddClassBlock() {
 					surname: "",
 				},
 			],
-            authorId: editClassData?.authorId || activeUserId,
+			authorId: editClassData?.authorId || activeUserId,
 		},
 	});
 
 	const onSubmit = (data: any) => {
 		let value = { ...data };
-        console.log(value)
 
 		if (editClassId) {
 			changeRequestData(value);

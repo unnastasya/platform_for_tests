@@ -27,7 +27,12 @@ function getTotal(payload: any) {
 	return total;
 }
 
-export default function AddCriteria({ register, indexQuestion, control }: any) {
+export default function AddCriteria({
+	register,
+	indexQuestion,
+	control,
+	errors,
+}: any) {
 	const { fields, append, remove } = useFieldArray({
 		name: `questions.${indexQuestion}.criteria`,
 		control,
@@ -53,6 +58,8 @@ export default function AddCriteria({ register, indexQuestion, control }: any) {
 		<div className={styles.addCriteria__container}>
 			<p className={styles.addCriteria__headerText}>Добавьте критерии</p>
 			{fields.map((field, index) => {
+				const criteriaErrors = errors?.[index];
+
 				return (
 					<div
 						key={field.id}
@@ -64,6 +71,11 @@ export default function AddCriteria({ register, indexQuestion, control }: any) {
 									`questions.${indexQuestion}.criteria.${index}.text`
 								)}
 								id="outlined-multiline-static"
+								error={
+									!!criteriaErrors?.text?.message ||
+									!!criteriaErrors?.value?.message
+								}
+								helperText={criteriaErrors?.text?.message}
 							/>
 						</FormControl>
 						<FormControl sx={styleInputCount}>
@@ -73,9 +85,11 @@ export default function AddCriteria({ register, indexQuestion, control }: any) {
 									`questions.${indexQuestion}.criteria.${index}.value`
 								)}
 								id="outlined-multiline-static"
+								error={!!criteriaErrors?.value?.message}
 							/>
 						</FormControl>
 						<Button
+							sx={{ height: "56px" }}
 							variant="outlined"
 							aria-label="delete"
 							onClick={() => {

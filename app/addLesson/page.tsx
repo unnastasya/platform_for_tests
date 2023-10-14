@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@mui/material";
+import { Alert, Button } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -22,6 +22,8 @@ import addImagesToQuestions from "./utils";
 
 import styles from "./page.module.css";
 import { activeUserIdSelector } from "@/redux/Auth";
+import * as Yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 export default function AddLesson() {
 	const dispatch = useAppDispatch();
@@ -36,6 +38,34 @@ export default function AddLesson() {
 
 	const editLessonId = useAppSelector(editLessonIdDataSelector || null);
 	const editLessonData = useAppSelector(editLessonDataSelector || null);
+
+	const LessonSchema = Yup.object().shape({
+		name: Yup.string().required("Введите урок"),
+		classes: Yup.array(),
+		doneCount: Yup.number(),
+		questions: Yup.array()
+			.of(
+				Yup.object({
+					images: Yup.array(),
+					questionText: Yup.string().required("Введите вопрос"),
+					criteria: Yup.array()
+						.of(
+							Yup.object({
+								text: Yup.string().required(
+									"Установите критерий и количество бвллов больше 1"
+								),
+								value: Yup.number().min(1).required(),
+								status: Yup.boolean(),
+							})
+						)
+						.min(1, "хотя бы 1 критерий"),
+					criteriaRating: Yup.number(),
+				})
+			)
+			.min(1, "Пожалуйста, добавьте хотя бы один вопрос"),
+		allCriteriaRating: Yup.number(),
+		authorId: Yup.string(),
+	});
 
 	const fetchClasses = useCallback(() => {
 		dispatch(ClassesActions.requestClasses());
@@ -54,13 +84,13 @@ export default function AddLesson() {
 	} = useForm({
 		defaultValues: {
 			name: editLessonData?.name || "",
-			description: editLessonData?.description || "",
+			classes: [],
 			doneCount: editLessonData?.doneCount || 0,
 			questions: editLessonData?.questions || [
 				{
 					images: [],
 					questionText: "",
-					description: "",
+
 					criteria: [{ text: "", value: 0, status: false }],
 					criteriaRating: 0,
 				},
@@ -68,6 +98,7 @@ export default function AddLesson() {
 			allCriteriaRating: editLessonData?.allCriteriaRating || 0,
 			authorId: editLessonData?.authorId || activeUserId,
 		},
+		resolver: yupResolver(LessonSchema),
 	});
 
 	const changeRequestData = (data: any) => {
@@ -79,9 +110,12 @@ export default function AddLesson() {
 	}, [dispatch]);
 
 	const onSubmit = async (data: any) => {
+		console.log("submit");
 		let value = { ...data };
 		value.allCriteriaRating = allCriteriaValue(value.questions);
 		value.classes = checkedClass;
+
+		console.log(value);
 
 		await addImagesToQuestions(value);
 
@@ -93,8 +127,6 @@ export default function AddLesson() {
 			fetchAddLesson();
 		}
 
-		// changeRequestData(data);
-		// fetchAddLesson();
 		dispatch(AddLessonActions.changeEditLessonData({}));
 		router.push("/lessons");
 	};
@@ -112,12 +144,20 @@ export default function AddLesson() {
 						setCheckedClass={setCheckedClass}
 						checkedClass={checkedClass}
 						classesData={classesData}
+						errors={errors}
 					/>
+
+					{!!errors.questions?.message && (
+						<Alert severity="error">
+							{errors.questions?.message}
+						</Alert>
+					)}
 
 					<AddQuestion
 						setValue={setValue}
 						control={control}
 						register={register}
+						errors={errors}
 					/>
 				</div>
 				<Button

@@ -6,7 +6,12 @@ import AddIcon from "@mui/icons-material/Add";
 
 import styles from "./AddQuestion.module.css";
 
-export default function AddQuestion({ control, register, setValue }: any) {
+export default function AddQuestion({
+	control,
+	register,
+	setValue,
+	errors,
+}: any) {
 	const { fields, append, remove } = useFieldArray({
 		name: "questions",
 		control,
@@ -34,6 +39,7 @@ export default function AddQuestion({ control, register, setValue }: any) {
 							remove={remove}
 							setValue={setValue}
 							control={control}
+							errors={errors.questions?.[index]}
 						/>
 					);
 				})}

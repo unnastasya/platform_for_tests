@@ -26,7 +26,6 @@ const successClasses: CaseReducer<
 	ClassesStateType,
 	PayloadAction<ClassType[]>
 > = (state, { payload }) => {
-    console.log(payload)
 	state.classesIsLoading = false;
 	state.classesIsError = false;
 	state.classes = payload;
@@ -35,6 +34,7 @@ const successClasses: CaseReducer<
 const failureClasses: CaseReducer<ClassesStateType> = (state) => {
 	state.classesIsLoading = false;
 	state.classesIsError = true;
+	state.classes = [];
 };
 
 const changeDeleteClassRequestId: CaseReducer<
@@ -45,9 +45,9 @@ const changeDeleteClassRequestId: CaseReducer<
 };
 
 const deleteClass: CaseReducer<ClassesStateType> = (state) => {
-    state.classesIsLoading = true;
+	state.classesIsLoading = true;
 	state.classesIsError = false;
-}
+};
 
 export const { reducer: ClassesReducer, actions: ClassesActions } = createSlice(
 	{
@@ -57,8 +57,8 @@ export const { reducer: ClassesReducer, actions: ClassesActions } = createSlice(
 			requestClasses,
 			successClasses,
 			failureClasses,
-            changeDeleteClassRequestId,
-            deleteClass
+			changeDeleteClassRequestId,
+			deleteClass,
 		},
 	}
 );

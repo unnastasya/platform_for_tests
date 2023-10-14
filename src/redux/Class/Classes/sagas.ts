@@ -7,12 +7,15 @@ import { activeUserIdSelector } from "@/redux/Auth";
 
 function* getClassesSaga() {
 	try {
-        const activeUserId: string = yield select(activeUserIdSelector);
+		const activeUserId: string = yield select(activeUserIdSelector);
 
 		const classes: ClassType[] = yield call(getAllClasses, activeUserId);
 
-        console.log(classes)
-		yield put(ClassesActions.successClasses(classes));
+		if ("message" in classes) {
+			yield put(ClassesActions.failureClasses());
+		} else {
+			yield put(ClassesActions.successClasses(classes));
+		}
 	} catch (e: any) {
 		yield put(ClassesActions.failureClasses());
 	}
