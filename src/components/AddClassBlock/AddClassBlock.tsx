@@ -112,7 +112,7 @@ export default function AddClassBlock() {
 								styles.addClassBlock__oneUserDataContainer
 							}
 						>
-							<p>Имя: {student.fullName}</p>
+							<p>{student.fullName}</p>
 							<p>Логин: {student.login}</p>
 							<p>Пароль: {student.password}</p>
 						</div>

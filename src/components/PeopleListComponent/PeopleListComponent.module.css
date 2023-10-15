@@ -23,7 +23,11 @@
 }
 
 .userData {
-    margin-bottom: 10px;
-    border: 1px solid black;
-    padding: 10px
+	padding: 20px;
+}
+
+.userData > p:first-child {
+	color: #000;
+	text-decoration: 3px underline solid #2979ff;
+	margin-bottom: 5px;
 }

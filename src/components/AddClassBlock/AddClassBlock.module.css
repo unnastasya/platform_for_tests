@@ -61,3 +61,8 @@
 	flex-direction: column;
 	gap: 10px;
 }
+
+.addClassBlock__oneUserDataContainer > p:first-child {
+	color: #000;
+	text-decoration: 3px underline solid #2979ff;
+}
