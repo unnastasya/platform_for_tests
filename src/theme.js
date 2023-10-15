@@ -37,6 +37,13 @@ export const theme = createTheme({
 					fontSize: "16px",
 				},
 			},
-		}
+		},
+		MuiAlert: {
+			styleOverrides: {
+				outlined: {
+					borderColor: "#2979FF",
+				},
+			},
+		},
 	},
 });

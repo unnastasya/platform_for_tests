@@ -1,6 +1,6 @@
 "use client";
 
-import { CircularProgress, Paper } from "@mui/material";
+import { Alert, CircularProgress, Paper } from "@mui/material";
 import { useCallback, useEffect } from "react";
 import { Page } from "@/components/Page/Page";
 import DoneWorkBage from "@/components/DoneWorkBage/DoneWorkBage";
@@ -21,8 +21,8 @@ interface OneStudentProps {
 }
 
 export default function OneStudent({ params }: OneStudentProps) {
-	const studentId = params.studentId;
 	const dispatch = useAppDispatch();
+	const studentId = params.studentId;
 	const works = useAppSelector(doneWorksDataSelector);
 	const user = useAppSelector(openUserSelector);
 	const isLoading = useAppSelector(doneWorksIsLoadingSelector);
@@ -55,9 +55,9 @@ export default function OneStudent({ params }: OneStudentProps) {
 					</p>
 				</Paper>
 				{works.length === 0 ? (
-					<Paper className={styles.oneStudent__noDoneWorksBlock}>
+					<Alert severity="info" variant="outlined">
 						<p>У ученика пока нет сданных работ</p>
-					</Paper>
+					</Alert>
 				) : (
 					<div className={styles.oneStudents__doneWorks__page}>
 						{works.map((work: any) => (

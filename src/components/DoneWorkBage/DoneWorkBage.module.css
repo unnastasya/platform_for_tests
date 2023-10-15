@@ -2,9 +2,9 @@
 	width: 100%;
 	border-radius: 5px;
 	position: relative;
-	padding: 30px;
+	padding: 20px;
 	height: 100%;
-	padding-top: 45px;
+	padding-top: 25px;
 	display: flex;
 	flex-direction: column;
 	gap: 15px;
@@ -19,7 +19,7 @@
 	top: 0;
 	right: 0;
 	bottom: 0;
-	height: 15px;
+	height: 5px;
 	width: 100%;
 	background: #82b1ff;
 	background-position: center center;
