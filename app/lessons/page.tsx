@@ -9,7 +9,7 @@ import {
 	lessonsDataSelector,
 	lessonsIsLoadingSelector,
 } from "@/redux/Lesson/Lessons";
-import { Button, CircularProgress, Paper } from "@mui/material";
+import { Alert, Button, CircularProgress } from "@mui/material";
 import { LessonType } from "@/types/lesson";
 import { activeUserSelector } from "@/redux/Auth";
 import AddIcon from "@mui/icons-material/Add";
@@ -67,13 +67,13 @@ export default function LessonsPage() {
 					</Button>
 				)}
 				<div className={styles.lessonsPage__container}>
-					<Paper className={styles.lessonsPage__noLessons}>
+					<Alert severity="info" variant="outlined">
 						<p>
 							{activeUser.role === "teacher"
 								? "Уроков пока нет"
 								: "Доступных уроков пока нет"}
 						</p>
-					</Paper>
+					</Alert>
 				</div>
 			</Page>
 		);
