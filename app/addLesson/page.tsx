@@ -110,12 +110,9 @@ export default function AddLesson() {
 	}, [dispatch]);
 
 	const onSubmit = async (data: any) => {
-		console.log("submit");
 		let value = { ...data };
 		value.allCriteriaRating = allCriteriaValue(value.questions);
 		value.classes = checkedClass;
-
-		console.log(value);
 
 		await addImagesToQuestions(value);
 

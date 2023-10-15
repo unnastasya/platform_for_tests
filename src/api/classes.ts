@@ -41,7 +41,7 @@ export const updateClass = ({
 
 export const getClassesUsers = (id: string) => {
 	return axios
-		.get(`http://localhost:8080/classUsers/${id}`)
+		.get(`${API_BASE_URL}/classUsers/${id}`)
 		.then((response) => response.data)
 		.catch((error) => error);
 };
