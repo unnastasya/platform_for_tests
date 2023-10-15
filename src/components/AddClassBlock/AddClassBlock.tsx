@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-import { Button, CircularProgress, Divider, Paper } from "@mui/material";
+import { Alert, Button, CircularProgress, Divider, Paper } from "@mui/material";
 import AddClassHeader from "../AddClassHeader/AddClassHeader";
 import AddStudents from "../AddStudents/AddStudents";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
@@ -19,6 +19,9 @@ import {
 import styles from "./AddClassBlock.module.css";
 import { activeUserIdSelector } from "@/redux/Auth";
 
+import * as Yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+
 export default function AddClassBlock() {
 	const dispatch = useAppDispatch();
 	const router = useRouter();
@@ -31,6 +34,20 @@ export default function AddClassBlock() {
 	const editClassData = useAppSelector(editClassDataSelector || null);
 
 	const activeUserId = useAppSelector(activeUserIdSelector);
+
+	const ClassSchema = Yup.object().shape({
+		school: Yup.string().required("Введите школу"),
+		class: Yup.string().required("Введите класс"),
+		people: Yup.array()
+			.of(
+				Yup.object({
+					name: Yup.string().required("Введите имя"),
+					surname: Yup.string().required("Введите фамилия"),
+				})
+			)
+			.min(1, "Добавьте хотя бы одного ученика"),
+		authorId: Yup.string().required(),
+	});
 
 	const changeRequestData = (data: any): any => {
 		dispatch(AddClassActions.changeRequestData(data));
@@ -57,6 +74,7 @@ export default function AddClassBlock() {
 			],
 			authorId: editClassData?.authorId || activeUserId,
 		},
+		resolver: yupResolver(ClassSchema),
 	});
 
 	const onSubmit = (data: any) => {
@@ -123,10 +141,25 @@ export default function AddClassBlock() {
 					onSubmit(data);
 				})}
 			>
-				<AddClassHeader register={register} />
+				<AddClassHeader register={register} errors={errors} />
 
 				<Divider />
-				<AddStudents control={control} register={register} />
+
+				{!!errors.people?.message && (
+					<Alert severity="error">{errors.people?.message}</Alert>
+				)}
+
+				<AddStudents
+					control={control}
+					register={register}
+					errors={errors}
+				/>
+
+				{!(Object.keys(errors).length == 0) && (
+					<Alert severity="error">
+						Пожалуйста, исправьте ошибки и сохраните тест
+					</Alert>
+				)}
 			</form>
 		</Paper>
 	);

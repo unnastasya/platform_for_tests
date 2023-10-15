@@ -16,7 +16,7 @@ const styleInput = {
 	p: 0,
 };
 
-export default function AddStudents({ control, register }: any) {
+export default function AddStudents({ control, register, errors }: any) {
 	const { fields, append, remove } = useFieldArray({
 		name: "people",
 		control,
@@ -36,6 +36,8 @@ export default function AddStudents({ control, register }: any) {
 			<p className={styles.addStudent__textHeader}>Добавьте учеников</p>
 
 			{fields.map((field, index) => {
+				let studentErrors = errors.people?.[index];
+
 				return (
 					<section
 						key={field.id}
@@ -45,12 +47,16 @@ export default function AddStudents({ control, register }: any) {
 							<TextField
 								{...register(`people.${index}.name`)}
 								label="Имя"
+								error={!!studentErrors?.name?.message}
+								helperText={studentErrors?.name?.message}
 							/>
 						</FormControl>
 						<FormControl sx={styleInput}>
 							<TextField
 								{...register(`people.${index}.surname`)}
 								label="Фамилия"
+								error={!!studentErrors?.surname?.message}
+								helperText={studentErrors?.surname?.message}
 							/>
 						</FormControl>
 						<Button
