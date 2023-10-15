@@ -1,9 +1,9 @@
-.addStudent__oneSrudent {
+.addStudent__oneStudent {
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
 	gap: 20px;
-	align-items: center;
+	align-items: start;
 }
 
 .addStudents__buttonsBlock {

@@ -41,7 +41,7 @@ export default function AddStudents({ control, register, errors }: any) {
 				return (
 					<section
 						key={field.id}
-						className={styles.addStudent__oneSrudent}
+						className={styles.addStudent__oneStudent}
 					>
 						<FormControl sx={styleInput}>
 							<TextField
@@ -60,6 +60,7 @@ export default function AddStudents({ control, register, errors }: any) {
 							/>
 						</FormControl>
 						<Button
+							sx={{ height: "54px" }}
 							variant="contained"
 							type="button"
 							onClick={() => {
