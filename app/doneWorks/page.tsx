@@ -9,7 +9,7 @@ import {
 	doneWorksDataSelector,
 	doneWorksIsLoadingSelector,
 } from "@/redux/DoneWork/DoneWorks";
-import { CircularProgress, Paper } from "@mui/material";
+import { Alert, CircularProgress, Paper } from "@mui/material";
 
 import styles from "./page.module.css";
 
@@ -40,11 +40,9 @@ export default function DoneWorks() {
 	if (works.length === 0) {
 		return (
 			<Page>
-				<div className={styles.doneWorks__page}>
-					<Paper className={styles.doneWorks__noLessons}>
-						<p>Сданных работ пока нет</p>
-					</Paper>
-				</div>
+				<Alert severity="info" variant="outlined">
+					<p>Сданных работ пока нет</p>
+				</Alert>
 			</Page>
 		);
 	} else {
