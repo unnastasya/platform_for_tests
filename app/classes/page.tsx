@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect } from "react";
-import { Button, CircularProgress, Paper } from "@mui/material";
+import { Alert, Button, CircularProgress, Paper } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import ClassBage from "@/components/ClassBage/ClassBage";
 import { Page } from "@/components/Page/Page";
@@ -49,18 +49,17 @@ export default function Classes() {
 	if (classes.length === 0) {
 		return (
 			<Page>
-				<div className={styles.classes__container}>
-					<Button
-						variant="contained"
-						onClick={navigateToAddClass}
-						endIcon={<AddIcon />}
-					>
-						Добавить класс
-					</Button>
-					<Paper className={styles.classes__noLessons}>
-						<p>Классов пока нет</p>
-					</Paper>
-				</div>
+				<Button
+					variant="contained"
+					onClick={navigateToAddClass}
+					endIcon={<AddIcon />}
+					sx={{ marginBottom: "20px" }}
+				>
+					Добавить класс
+				</Button>
+				<Alert severity="info" variant="outlined">
+					<p>Классов пока нет</p>
+				</Alert>
 			</Page>
 		);
 	}
