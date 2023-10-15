@@ -157,7 +157,7 @@ export default function AddClassBlock() {
 
 				{!(Object.keys(errors).length == 0) && (
 					<Alert severity="error">
-						Пожалуйста, исправьте ошибки и сохраните тест
+						Пожалуйста, исправьте ошибки и сохраните класс
 					</Alert>
 				)}
 			</form>
