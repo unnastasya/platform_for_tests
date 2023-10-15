@@ -56,7 +56,7 @@ export default function OneStudent({ params }: OneStudentProps) {
 				</Paper>
 				{works.length === 0 ? (
 					<Alert severity="info" variant="outlined">
-						<p>У ученика пока нет сданных работ</p>
+						У ученика пока нет сданных работ
 					</Alert>
 				) : (
 					<div className={styles.oneStudents__doneWorks__page}>

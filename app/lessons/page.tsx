@@ -66,15 +66,11 @@ export default function LessonsPage() {
 						Добавить урок
 					</Button>
 				)}
-				<div className={styles.lessonsPage__container}>
-					<Alert severity="info" variant="outlined">
-						<p>
-							{activeUser.role === "teacher"
-								? "Уроков пока нет"
-								: "Доступных уроков пока нет"}
-						</p>
-					</Alert>
-				</div>
+				<Alert severity="info" variant="outlined">
+					{activeUser.role === "teacher"
+						? "Уроков пока нет"
+						: "Доступных уроков пока нет"}
+				</Alert>
 			</Page>
 		);
 	}

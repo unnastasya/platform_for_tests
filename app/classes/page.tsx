@@ -58,7 +58,7 @@ export default function Classes() {
 					Добавить класс
 				</Button>
 				<Alert severity="info" variant="outlined">
-					<p>Классов пока нет</p>
+					Классов пока нет
 				</Alert>
 			</Page>
 		);

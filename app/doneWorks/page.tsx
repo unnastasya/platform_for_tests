@@ -41,7 +41,7 @@ export default function DoneWorks() {
 		return (
 			<Page>
 				<Alert severity="info" variant="outlined">
-					<p>Сданных работ пока нет</p>
+					Сданных работ пока нет
 				</Alert>
 			</Page>
 		);
