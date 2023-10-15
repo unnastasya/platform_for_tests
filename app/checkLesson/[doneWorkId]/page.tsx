@@ -31,8 +31,8 @@ import styles from "./page.module.css";
 const whatColor = (value: number, allCriteriaRating: number) => {
 	const percentage = (value / allCriteriaRating) * 100;
 
-	if (percentage < 20) return styles.rating__question__red;
-	else if (percentage < 60) return styles.rating__question__yellow;
+	if (percentage < 50) return styles.rating__question__red;
+	else if (percentage < 80) return styles.rating__question__yellow;
 	else return styles.rating__question__green;
 };
 
