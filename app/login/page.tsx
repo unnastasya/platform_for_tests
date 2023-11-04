@@ -24,7 +24,7 @@ import {
 import { LoginUserType } from "@/types/user";
 
 import styles from "./page.module.css";
-import { LogiSchema } from "./LoginSchema.js";
+import { LoginSchema } from "./LoginSchema";
 
 export default function Page() {
 	const dispatch = useAppDispatch();
@@ -49,7 +49,7 @@ export default function Page() {
 			login: "",
 			password: "",
 		},
-		resolver: yupResolver(LogiSchema),
+		resolver: yupResolver(LoginSchema),
 	});
 
 	const onSubmit = (data: any) => {
