@@ -59,3 +59,10 @@
 .alert {
 	width: 100%;
 }
+
+.student__work > p:first-child,
+.student__work > p:nth-child(2) {
+	font-weight: 600;
+	font-size: 18px;
+	line-height: 100%;
+}

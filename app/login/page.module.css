@@ -6,9 +6,9 @@
 
 .login__block {
 	margin: 0 auto;
-	width: 600px;
+	width: 500px;
 	padding: 30px;
-	padding-top: 50px;
+	padding-top: 35px;
 	display: flex;
 	flex-direction: column;
 	position: relative;
@@ -21,7 +21,7 @@
 	top: 0;
 	right: 0;
 	bottom: 0;
-	height: 15px;
+	height: 5px;
 	width: 100%;
 	background: #82b1ff;
 	background-position: center center;
@@ -38,7 +38,7 @@
 }
 
 .login__h1 {
-	font-size: "32px";
-	line-height: "100%";
+	font-size: 32px;
+	line-height: 100%;
 	margin: 0;
 }

@@ -21,6 +21,7 @@ import { activeUserIdSelector } from "@/redux/Auth";
 
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { ClassSchema } from "./ClassSchema";
 
 export default function AddClassBlock() {
 	const dispatch = useAppDispatch();
@@ -34,20 +35,6 @@ export default function AddClassBlock() {
 	const editClassData = useAppSelector(editClassDataSelector || null);
 
 	const activeUserId = useAppSelector(activeUserIdSelector);
-
-	const ClassSchema = Yup.object().shape({
-		school: Yup.string().required("Введите школу"),
-		class: Yup.string().required("Введите класс"),
-		people: Yup.array()
-			.of(
-				Yup.object({
-					name: Yup.string().required("Введите имя"),
-					surname: Yup.string().required("Введите фамилия"),
-				})
-			)
-			.min(1, "Добавьте хотя бы одного ученика"),
-		authorId: Yup.string().required(),
-	});
 
 	const changeRequestData = (data: any): any => {
 		dispatch(AddClassActions.changeRequestData(data));

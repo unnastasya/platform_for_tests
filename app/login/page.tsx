@@ -11,7 +11,6 @@ import {
 import { Controller, useForm } from "react-hook-form";
 import { theme } from "../../src/theme.js";
 import { useRouter } from "next/navigation";
-import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
@@ -25,6 +24,7 @@ import {
 import { LoginUserType } from "@/types/user";
 
 import styles from "./page.module.css";
+import { LogiSchema } from "./LoginSchema.js";
 
 export default function Page() {
 	const dispatch = useAppDispatch();
@@ -35,11 +35,6 @@ export default function Page() {
 
 	const hasError = useAppSelector(hasErrorLoginUserDataSelector);
 	const errorMessage = useAppSelector(loginErrorMessageSelector);
-
-	const LogiSchema = Yup.object().shape({
-		login: Yup.string().required("Пожалуйста, введите логин"),
-		password: Yup.string().required("Пожалуйста, введите пароль"),
-	});
 
 	useEffect(() => {
 		dispatch(AuthActions.reset());

@@ -21,12 +21,15 @@ export default function OneTestBlock({ lesson }: OneTestBlockProps) {
 
 	return (
 		<div>
-			<Paper onClick={linkToTest} className={`${styles.oneTest__container} ${
-								lesson.isVisible
-									? styles.oneTest__container__visible
-									: styles.oneTest__container__notvisible
-							}`}>
-				<p className={styles.oneTest__lessonName}>{lesson.name}</p>
+			<Paper
+				onClick={linkToTest}
+				className={`${styles.oneTest__container} ${
+					lesson.isVisible
+						? styles.oneTest__container__visible
+						: styles.oneTest__container__notvisible
+				}`}
+			>
+				<p>{lesson.name}</p>
 				{lesson.classes[0]?.school && lesson.classes[0]?.class && (
 					<div className={styles.oneTest__classesBlock}>
 						{lesson.classes.map((oneClass: any) => (

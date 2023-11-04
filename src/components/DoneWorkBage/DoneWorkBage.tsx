@@ -41,7 +41,7 @@ export default function DoneWorkBage({ work }: DoneWorkBageProps) {
 			onClick={() => toOneWorkPage(work._id, work.isVerified)}
 		>
 			<p className={styles.student__textHeader}>{work.lessonId.name}</p>
-			<p className={styles.student__text}>
+			<p>
 				{work.student.surname} {work.student.name}
 			</p>
 			<p className={styles.student__text}>

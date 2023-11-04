@@ -38,9 +38,9 @@
 	gap: 30px;
 }
 
-.oneTest__lessonName {
-	font-weight: 500;
-	font-size: 22px;
+.oneTest__container > p:first-child {
+	font-weight: 600;
+	font-size: 18px;
 	line-height: 100%;
 }
 

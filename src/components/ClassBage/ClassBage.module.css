@@ -23,12 +23,12 @@
 	background: #2979ff;
 }
 
-.classBage__container_textHeader {
-	font-weight: 500;
-	font-size: 22px;
+.classBage__container > p:first-child {
+	font-weight: 600;
+	font-size: 18px;
 	line-height: 100%;
 }
 
-.classBage__container_studentsCountText {
+.classBage__container > p:last-child  {
 	text-decoration: 3px underline solid #2979ff;
 }
