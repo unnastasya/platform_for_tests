@@ -47,6 +47,14 @@ export default function AddLesson() {
 		fetchClasses();
 	}, []);
 
+	const getClassesForChange = (): any[] => {
+		let arr: any[] = [];
+		editLessonData?.classes.map((el) => {
+			arr.push(el._id);
+		});
+		return arr;
+	};
+
 	const {
 		register,
 		formState: { errors },
@@ -56,7 +64,7 @@ export default function AddLesson() {
 	} = useForm({
 		defaultValues: {
 			name: editLessonData?.name || "",
-			classes: [],
+			classes: editLessonData ? getClassesForChange() : [],
 			doneCount: editLessonData?.doneCount || 0,
 			questions: editLessonData?.questions || [
 				{
@@ -84,7 +92,7 @@ export default function AddLesson() {
 	const onSubmit = async (data: any) => {
 		let value = { ...data };
 		value.allCriteriaRating = allCriteriaValue(value.questions);
-		value.classes = checkedClass;
+		// value.classes = checkedClass;
 
 		await addImagesToQuestions(value);
 
@@ -114,6 +122,8 @@ export default function AddLesson() {
 						checkedClass={checkedClass}
 						classesData={classesData}
 						errors={errors}
+						control={control}
+						name="classes"
 					/>
 
 					{!!errors.questions?.message && (

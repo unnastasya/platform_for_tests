@@ -11,9 +11,10 @@ import {
 	TextField,
 } from "@mui/material";
 import { ClassType } from "@/types/class";
-import { UseFormRegister } from "react-hook-form";
+import { Controller, UseFormRegister } from "react-hook-form";
 
 import styles from "./AddLessonHeader.module.css";
+import { CheckBox } from "@mui/icons-material";
 
 interface AddLessonHeaderProps {
 	register: UseFormRegister<any>;
@@ -21,6 +22,8 @@ interface AddLessonHeaderProps {
 	checkedClass: any[];
 	setCheckedClass: (data: any) => void;
 	errors: any;
+	control: any;
+	name: any;
 }
 
 export function AddLessonHeader({
@@ -29,20 +32,9 @@ export function AddLessonHeader({
 	checkedClass,
 	classesData,
 	errors,
+	control,
+	name,
 }: AddLessonHeaderProps) {
-	const handleChange = (event: SelectChangeEvent<any[]>) => {
-		const {
-			target: { value },
-		} = event;
-		setCheckedClass(typeof value === "string" ? value.split(",") : value);
-	};
-
-	const renderSelected = (selected: any) => {
-		return selected
-			.map((option: any) => `${option.school} ${option.class}`)
-			.join(", ");
-	};
-
 	return (
 		<Paper className={styles.addLessonHeader__container}>
 			<TextField
@@ -56,24 +48,25 @@ export function AddLessonHeader({
 
 			<FormControl>
 				<InputLabel>Выбрать классы</InputLabel>
-				<Select
-					multiple
-					value={checkedClass}
-					onChange={handleChange}
-					input={<OutlinedInput label="Выбрать классы" />}
-					renderValue={(selected: any) => renderSelected(selected)}
-				>
-					{classesData.map((option: any) => (
-						<MenuItem key={option._id} value={option}>
-							<Checkbox
-								checked={checkedClass.indexOf(option) > -1}
-							/>
-							<ListItemText
-								primary={option.school + ", " + option.class}
-							/>
-						</MenuItem>
-					))}
-				</Select>
+				<Controller
+					render={({ field: { onChange, value } }) => (
+						<Select multiple value={value} onChange={onChange}>
+							{classesData.map((option: any) => {
+								console.log("option", option);
+								return (
+									<MenuItem
+										key={option._id}
+										value={option._id}
+									>
+										{option.school}, {option.class}
+									</MenuItem>
+								);
+							})}
+						</Select>
+					)}
+					control={control}
+					name={name}
+				/>
 			</FormControl>
 		</Paper>
 	);
