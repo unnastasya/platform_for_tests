@@ -5,10 +5,10 @@
 	padding: 20px;
 	height: 100%;
 	padding-top: 25px;
-	display: flex;
-	flex-direction: column;
-	gap: 15px;
-	justify-content: space-between;
+	display: grid;
+	grid-template-columns: 80% 20%;
+	grid-template-rows: repeat(4, auto);
+	row-gap: 15px;
 	cursor: pointer;
 }
 
@@ -28,9 +28,10 @@
 }
 
 .rating__question {
-	position: absolute;
-	right: 30px;
-	top: 30px;
+	height: 35px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	border-radius: 5px;
 	padding: 5px 10px;
 }
@@ -65,4 +66,11 @@
 	font-weight: 600;
 	font-size: 18px;
 	line-height: 100%;
+}
+
+.student__text,
+.student__name,
+.alert {
+	grid-column-start: 1;
+	grid-column-end: 3;
 }

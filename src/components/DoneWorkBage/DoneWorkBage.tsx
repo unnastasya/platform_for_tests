@@ -41,12 +41,6 @@ export default function DoneWorkBage({ work }: DoneWorkBageProps) {
 			onClick={() => toOneWorkPage(work._id, work.isVerified)}
 		>
 			<p className={styles.student__textHeader}>{work.lessonId.name}</p>
-			<p>
-				{work.student.surname} {work.student.name}
-			</p>
-			<p className={styles.student__text}>
-				{work.student.class?.school} {work.student.class?.class}
-			</p>
 			{(!!work.rating || work.rating == 0) && (
 				<p
 					className={`${styles.rating__question} ${whatColor(
@@ -57,6 +51,12 @@ export default function DoneWorkBage({ work }: DoneWorkBageProps) {
 					{work.rating}
 				</p>
 			)}
+			<p className={styles.student__name}>
+				{work.student.surname} {work.student.name}
+			</p>
+			<p className={styles.student__text}>
+				{work.student.class?.school} {work.student.class?.class}
+			</p>
 
 			{work.isVerified ? (
 				<Alert className={styles.alert} severity="success">
