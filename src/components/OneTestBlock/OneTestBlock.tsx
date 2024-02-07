@@ -1,10 +1,11 @@
-import { Paper } from "@mui/material";
+import { Alert, Divider, Paper } from "@mui/material";
 import { useRouter } from "next/navigation";
+
+import styles from "./OneTestBlock.module.css";
+
 import { LessonType } from "@/types/lesson";
 import { useAppSelector } from "@/redux/store";
 import { activeUserSelector } from "@/redux/Auth";
-
-import styles from "./OneTestBlock.module.css";
 
 interface OneTestBlockProps {
 	lesson: LessonType;
@@ -21,32 +22,31 @@ export default function OneTestBlock({ lesson }: OneTestBlockProps) {
 
 	return (
 		<div>
-			<Paper
-				onClick={linkToTest}
-				className={`${styles.oneTest__container} ${
-					lesson.isVisible
-						? styles.oneTest__container__visible
-						: styles.oneTest__container__notvisible
-				}`}
-			>
-				<p>{lesson.name}</p>
-				{lesson.classes[0]?.school && lesson.classes[0]?.class && (
-					<div className={styles.oneTest__classesBlock}>
-						{lesson.classes.map((oneClass: any) => (
-							<p
-								key={oneClass._id}
-								className={styles.oneTest__text}
-							>
-								{oneClass.school}, {oneClass.class}
-							</p>
-						))}
-					</div>
-				)}
+			<Paper onClick={linkToTest} className={styles.container}>
+				<div>
+					<p className={styles.header}>{lesson.name}</p>
+
+					{lesson.classes[0]?.school && lesson.classes[0]?.class && (
+						<>
+							<Divider sx={{ margin: "15px 0" }} />
+							<div className={styles.classesInfo}>
+								{lesson.classes.map((oneClass: any) => (
+									<p
+										key={oneClass._id}
+										className={styles.text}
+									>
+										{oneClass.school}, {oneClass.class}
+									</p>
+								))}
+							</div>
+						</>
+					)}
+				</div>
 
 				{activeUser.role == "teacher" && (
-					<p className={styles.oneTest__textCount}>
+					<Alert severity="info" icon={false}>
 						Сдало: {lesson.doneCount} человек
-					</p>
+					</Alert>
 				)}
 			</Paper>
 		</div>

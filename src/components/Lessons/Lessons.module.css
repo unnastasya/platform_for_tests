@@ -1,0 +1,25 @@
+.circular__container {
+	display: flex;
+	justify-content: center;
+	margin-top: 150px;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.testsBlock {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-gap: 10px;
+	align-items: stretch;
+}
+
+@media (max-width: 1064px) {
+	.testsBlock {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}

@@ -1,7 +1,8 @@
 "use client";
 
 import { useCallback, useEffect } from "react";
-import OneTestBlock from "@/components/OneTestBlock/OneTestBlock";
+import { useRouter } from "next/navigation";
+
 import { Page } from "@/components/Page/Page";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import {
@@ -9,18 +10,15 @@ import {
 	lessonsDataSelector,
 	lessonsIsLoadingSelector,
 } from "@/redux/Lesson/Lessons";
-import { Alert, Button, CircularProgress } from "@mui/material";
 import { LessonType } from "@/types/lesson";
 import { activeUserSelector } from "@/redux/Auth";
-import AddIcon from "@mui/icons-material/Add";
-import { useRouter } from "next/navigation";
 import { AddLessonActions } from "@/redux/Lesson/AddLesson";
-
-import styles from "./page.module.css";
+import { Lessons } from "@/components/Lessons/Lessons";
 
 export default function LessonsPage() {
 	const dispatch = useAppDispatch();
 	const router = useRouter();
+
 	const lessons: LessonType[] = useAppSelector(lessonsDataSelector);
 	const isLoading: boolean = useAppSelector(lessonsIsLoadingSelector);
 
@@ -34,66 +32,23 @@ export default function LessonsPage() {
 		}
 	}, [activeUser.role]);
 
-	useEffect(() => {
-		fetchLessons();
-	}, []);
-
 	const goToAddLesson = () => {
 		dispatch(AddLessonActions.changeEditLessonData({}));
 		router.push("/addLesson");
 	};
 
-	if (isLoading) {
-		return (
-			<Page>
-				<div className={styles.lessonsPage__loadingContainer}>
-					<CircularProgress />
-				</div>
-			</Page>
-		);
-	}
-
-	if (lessons.length === 0) {
-		return (
-			<Page>
-				{activeUser.role === "teacher" && (
-					<Button
-						onClick={goToAddLesson}
-						variant="contained"
-						endIcon={<AddIcon />}
-						sx={{ marginBottom: "20px" }}
-					>
-						Добавить урок
-					</Button>
-				)}
-				<Alert severity="info" variant="outlined">
-					{activeUser.role === "teacher"
-						? "Уроков пока нет"
-						: "Доступных уроков пока нет"}
-				</Alert>
-			</Page>
-		);
-	}
+	useEffect(() => {
+		fetchLessons();
+	}, []);
 
 	return (
 		<Page>
-			{activeUser.role === "teacher" && (
-				<Button
-					onClick={goToAddLesson}
-					variant="contained"
-					endIcon={<AddIcon />}
-					sx={{ marginBottom: "20px" }}
-				>
-					Добавить урок
-				</Button>
-			)}
-			<div className={styles.lessonsPage__container}>
-				<div className={styles.lessonsPage__testsBlock}>
-					{lessons.map((lesson) => (
-						<OneTestBlock key={lesson._id} lesson={lesson} />
-					))}
-				</div>
-			</div>
+			<Lessons
+				isLoading={isLoading}
+				lessons={lessons}
+				activeUser={activeUser}
+				goToAddLesson={goToAddLesson}
+			/>
 		</Page>
 	);
 }
