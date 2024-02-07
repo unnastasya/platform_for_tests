@@ -1,26 +1,20 @@
 import {
-	Checkbox,
 	FormControl,
 	InputLabel,
-	ListItemText,
 	MenuItem,
-	OutlinedInput,
 	Paper,
 	Select,
-	SelectChangeEvent,
 	TextField,
 } from "@mui/material";
-import { ClassType } from "@/types/class";
 import { Controller, UseFormRegister } from "react-hook-form";
 
 import styles from "./AddLessonHeader.module.css";
-import { CheckBox } from "@mui/icons-material";
+
+import { ClassType } from "@/types/class";
 
 interface AddLessonHeaderProps {
 	register: UseFormRegister<any>;
 	classesData: ClassType[];
-	checkedClass: any[];
-	setCheckedClass: (data: any) => void;
 	errors: any;
 	control: any;
 	name: any;
@@ -28,15 +22,13 @@ interface AddLessonHeaderProps {
 
 export function AddLessonHeader({
 	register,
-	setCheckedClass,
-	checkedClass,
 	classesData,
 	errors,
 	control,
 	name,
 }: AddLessonHeaderProps) {
 	return (
-		<Paper className={styles.addLessonHeader__container}>
+		<Paper className={styles.container}>
 			<TextField
 				{...register("name")}
 				fullWidth
@@ -52,7 +44,6 @@ export function AddLessonHeader({
 					render={({ field: { onChange, value } }) => (
 						<Select multiple value={value} onChange={onChange}>
 							{classesData.map((option: any) => {
-								console.log("option", option);
 								return (
 									<MenuItem
 										key={option._id}

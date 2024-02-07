@@ -1,13 +1,14 @@
 "use client";
 
-import { Alert, Button } from "@mui/material";
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import DoneIcon from "@mui/icons-material/Done";
-import AddQuestion from "@/components/AddQuestion/AddQuestion";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+import addImagesToQuestions from "./utils";
+import { LessonSchema } from "./LessonSchema";
+
 import { Page } from "@/components/Page/Page";
-import { AddLessonHeader } from "@/components/AddLessonHeader/AddLessonHeader";
 import { allCriteriaValue } from "@/utils/allCritariaValue";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import {
@@ -18,21 +19,16 @@ import {
 } from "@/redux/Lesson/AddLesson";
 import { ClassesActions, classesDataSelector } from "@/redux/Class/Classes";
 import LoadingBlock from "@/components/LoadingBlock/LoadingBlock";
-import addImagesToQuestions from "./utils";
-
-import styles from "./page.module.css";
 import { activeUserIdSelector } from "@/redux/Auth";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { LessonSchema } from "./LessonSchema";
+import { AddLesson } from "@/components/AddLesson/AddLesson";
 
-export default function AddLesson() {
+export default function AddLessonPage() {
 	const dispatch = useAppDispatch();
 	const router = useRouter();
 
 	const activeUserId = useAppSelector(activeUserIdSelector);
 
 	const classesData = useAppSelector(classesDataSelector);
-	const [checkedClass, setCheckedClass] = useState<any[]>([]);
 
 	const isLoading: boolean = useAppSelector(addLessonIsLoadingSelector);
 
@@ -41,14 +37,10 @@ export default function AddLesson() {
 
 	const fetchClasses = useCallback(() => {
 		dispatch(ClassesActions.requestClasses());
-	}, []);
-
-	useEffect(() => {
-		fetchClasses();
-	}, []);
+	}, [dispatch]);
 
 	const getClassesForChange = (): any[] => {
-		let arr: any[] = [];
+		const arr: any[] = [];
 		editLessonData?.classes.map((el) => {
 			arr.push(el._id);
 		});
@@ -90,9 +82,8 @@ export default function AddLesson() {
 	}, [dispatch]);
 
 	const onSubmit = async (data: any) => {
-		let value = { ...data };
+		const value = { ...data };
 		value.allCriteriaRating = allCriteriaValue(value.questions);
-		// value.classes = checkedClass;
 
 		await addImagesToQuestions(value);
 
@@ -108,45 +99,25 @@ export default function AddLesson() {
 		router.push("/lessons");
 	};
 
+	useEffect(() => {
+		fetchClasses();
+	}, [fetchClasses]);
+
 	if (isLoading) {
 		return <LoadingBlock />;
 	}
 
 	return (
 		<Page>
-			<form onSubmit={handleSubmit(onSubmit)}>
-				<div className={styles.addLesson__container}>
-					<AddLessonHeader
-						register={register}
-						setCheckedClass={setCheckedClass}
-						checkedClass={checkedClass}
-						classesData={classesData}
-						errors={errors}
-						control={control}
-						name="classes"
-					/>
-
-					{!!errors.questions?.message && (
-						<Alert severity="error">
-							{errors.questions?.message}
-						</Alert>
-					)}
-
-					<AddQuestion
-						setValue={setValue}
-						control={control}
-						register={register}
-						errors={errors}
-					/>
-				</div>
-				<Button
-					variant="contained"
-					endIcon={<DoneIcon />}
-					type="submit"
-				>
-					Сохранить тестирование
-				</Button>
-			</form>
+			<AddLesson
+				handleSubmit={handleSubmit}
+				onSubmit={onSubmit}
+				register={register}
+				classesData={classesData}
+				errors={errors}
+				control={control}
+				setValue={setValue}
+			/>
 		</Page>
 	);
 }

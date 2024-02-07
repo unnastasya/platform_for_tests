@@ -55,16 +55,14 @@ export default function AddCriteria({
 	};
 
 	return (
-		<div className={styles.addCriteria__container}>
-			<p className={styles.addCriteria__headerText}>Добавьте критерии</p>
+		<div className={styles.container}>
+			<p className={styles.header}>Добавьте критерии</p>
+
 			{fields.map((field, index) => {
 				const criteriaErrors = errors?.[index];
 
 				return (
-					<div
-						key={field.id}
-						className={styles.addCriteria__oneCriteria}
-					>
+					<div key={field.id} className={styles.oneCriteria}>
 						<FormControl sx={styleInput}>
 							<TextField
 								{...register(
@@ -90,6 +88,7 @@ export default function AddCriteria({
 						</FormControl>
 						<Button
 							sx={{ height: "56px" }}
+							color="error"
 							variant="outlined"
 							aria-label="delete"
 							onClick={() => {
@@ -112,9 +111,7 @@ export default function AddCriteria({
 			</Button>
 			<div>
 				<p style={{ display: "inline" }}>Максимальный балл:</p>
-				<p className={styles.addCriteria__totalGrade}>
-					{getTotal(questionsValues)}
-				</p>
+				<p className={styles.totalGrade}>{getTotal(questionsValues)}</p>
 			</div>
 		</div>
 	);

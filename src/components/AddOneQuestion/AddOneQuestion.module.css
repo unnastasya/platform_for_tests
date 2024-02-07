@@ -1,32 +1,25 @@
-.oneAddQuestion__container {
+.container {
 	width: 100%;
 	padding: 30px;
 	position: relative;
 	border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+}
+
+.questionBlock {
 	display: flex;
 	flex-direction: column;
-	gap: 30px;
+	gap: 15px;
 }
 
-.addQuestions__container {
-	display: flex;
-	flex-direction: column;
-	gap: 20px;
+.questionNumber {
+	color: #949494;
 }
 
-.addQuestion__nameBlock {
-	display: flex;
-	flex-direction: column;
-	gap: 20px;
-}
-
-.addQuestion__textNumber {
-	text-decoration: 3px underline solid #2979ff;
-}
-
-.addQuestion__header {
+.header {
 	wigth: 100%;
 	display: flex;
 	justify-content: space-between;
-	align-items: center;
+	align-items: top;
+	margin-bottom: 15px;
 }

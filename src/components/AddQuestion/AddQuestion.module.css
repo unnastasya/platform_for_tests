@@ -1,33 +1,6 @@
-.oneAddQuestion__container {
-	width: 100%;
-	padding: 30px;
-	position: relative;
-	border-radius: 10px;
+.container {
 	display: flex;
 	flex-direction: column;
 	gap: 30px;
-}
-
-.addQuestions__container {
-	display: flex;
-	flex-direction: column;
-	gap: 20px;
 	margin-bottom: 20px;
-}
-
-.addQuestion__nameBlock {
-	display: flex;
-	flex-direction: column;
-	gap: 20px;
-}
-
-.addQuestion__textNumber {
-	text-decoration: 3px underline solid #2979ff;
-}
-
-.addQuestion__header {
-	wigth: 100%;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
 }

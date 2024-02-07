@@ -1,8 +1,9 @@
 "use client";
 import { useFieldArray } from "react-hook-form";
 import { Button } from "@mui/material";
-import AddOneQuestion from "../AddOneQuestion/AddOneQuestion";
 import AddIcon from "@mui/icons-material/Add";
+
+import AddOneQuestion from "../AddOneQuestion/AddOneQuestion";
 
 import styles from "./AddQuestion.module.css";
 
@@ -29,7 +30,7 @@ export default function AddQuestion({
 
 	return (
 		<div>
-			<div className={styles.addQuestions__container}>
+			<div className={styles.container}>
 				{fields.map((field, index) => {
 					return (
 						<AddOneQuestion

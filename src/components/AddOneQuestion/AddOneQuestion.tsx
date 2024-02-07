@@ -1,6 +1,4 @@
 import DeleteIcon from "@mui/icons-material/Delete";
-import AddCriteria from "../AddCriteria/AddCriteria";
-import AddImage from "../AddImage/AddImage";
 import {
 	Alert,
 	Button,
@@ -9,6 +7,9 @@ import {
 	Paper,
 	TextField,
 } from "@mui/material";
+
+import AddCriteria from "../AddCriteria/AddCriteria";
+import AddImage from "../AddImage/AddImage";
 
 import styles from "./AddOneQuestion.module.css";
 
@@ -21,12 +22,11 @@ export default function AddOneQuestion({
 	errors,
 }: any) {
 	return (
-		<Paper key={index} className={styles.oneAddQuestion__container}>
-			<div className={styles.addQuestion__header}>
-				<p className={styles.addQuestion__textNumber}>
-					Вопрос {index + 1}
-				</p>
+		<Paper key={index} className={styles.container}>
+			<div className={styles.header}>
+				<p className={styles.questionNumber}>Вопрос {index + 1}</p>
 				<Button
+					color="error"
 					variant="outlined"
 					aria-label="delete"
 					onClick={() => {
@@ -36,7 +36,7 @@ export default function AddOneQuestion({
 					<DeleteIcon sx={{ height: "45px", width: "30px" }} />
 				</Button>
 			</div>
-			<div className={styles.addQuestion__nameBlock}>
+			<div className={styles.questionBlock}>
 				<TextField
 					{...register(`questions.${index}.questionText`)}
 					fullWidth
@@ -52,19 +52,11 @@ export default function AddOneQuestion({
 					questionIndex={index}
 				/>
 				<FormControl fullWidth>
-					<TextField
-						sx={{ marginBottom: "20px" }}
-						label="Поле для ввода ответа"
-						disabled
-					/>
+					<TextField label="Поле для ввода ответа" disabled />
 				</FormControl>
 			</div>
 
-			<Divider />
-
-			{errors?.criteria?.type == "min" && (
-				<Alert severity="error">{errors.criteria?.message}</Alert>
-			)}
+			<Divider sx={{ margin: "15px 0 30px" }} />
 
 			<AddCriteria
 				indexQuestion={index}
@@ -72,6 +64,12 @@ export default function AddOneQuestion({
 				control={control}
 				errors={errors?.criteria}
 			/>
+
+			{errors?.criteria?.type == "min" && (
+				<Alert sx={{ marginTop: "15px" }} severity="error">
+					{errors.criteria?.message}
+				</Alert>
+			)}
 		</Paper>
 	);
 }

@@ -1,32 +1,10 @@
-.addLessonHeader__container {
+.container {
 	width: 100%;
 	padding: 30px;
-	padding-top: 45px;
 	position: relative;
 	border-radius: 10px;
 	display: flex;
 	flex-direction: column;
-	gap: 20px;
-}
-
-.addLessonHeader__container:first-child::after {
-	content: "";
-	position: absolute;
-	left: 0;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	height: 15px;
-	width: 100%;
-	background: #82b1ff;
-	background-position: center center;
-	border-radius: 5px 5px 0 0;
-	background: #2979ff;
-}
-
-.addLessonHeader__nameBlock {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	gap: 20px;
+	gap: 15px;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
 }

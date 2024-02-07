@@ -35,7 +35,7 @@ export default function AddImage({
 	const handleChangeFiles = async (e: any) => {
 		try {
 			const files = e.target.files;
-			for (let file of files) {
+			for (const file of files) {
 				await addImage(file);
 			}
 		} catch (error) {
@@ -44,8 +44,8 @@ export default function AddImage({
 	};
 
 	return (
-		<div className={styles.addImage__container}>
-			<div className={styles.addImage__butoonsBlock}>
+		<div className={styles.container}>
+			<div className={styles.buttonsBlock}>
 				<Button
 					component="label"
 					onClick={() => inputFileRef.current?.click()}
@@ -77,23 +77,23 @@ export default function AddImage({
 				)}
 			</div>
 			{fields.length > 0 && (
-				<div className={styles.addImage__imagesBlock}>
+				<div className={styles.imagesBlock}>
 					{fields.map((field: any, index: any) => {
 						return (
 							<div
 								key={field.id}
-								className={styles.addImage__oneImage_container}
+								className={styles.oneImage__container}
 							>
 								<IconButton
 									sx={{ position: "absolute" }}
-									className={styles.addImage__oneImage_delete}
+									className={styles.oneImage__delete}
 									color="primary"
 									onClick={() => remove(index)}
 								>
 									<ClearIcon />
 								</IconButton>
 								<img
-									className={styles.addImage__image}
+									className={styles.oneImage__add}
 									src={field.file || field.url}
 								/>
 							</div>
