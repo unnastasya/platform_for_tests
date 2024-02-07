@@ -1,10 +1,11 @@
 "use client";
 
-import { Paper } from "@mui/material";
+import { Alert, Paper } from "@mui/material";
 import { useRouter } from "next/navigation";
-import { ClassType } from "@/types/class";
 
 import styles from "./ClassBage.module.css";
+
+import { ClassType } from "@/types/class";
 
 interface ClassBageProps {
 	oneClass: ClassType;
@@ -18,11 +19,14 @@ export default function ClassBage({ oneClass }: ClassBageProps) {
 	};
 
 	return (
-		<Paper onClick={toClassPage} className={styles.classBage__container}>
-			<p>
-				{oneClass.school}, {oneClass.class}
-			</p>
-			<p>Учеников: {oneClass.studentsCount} </p>
+		<Paper onClick={toClassPage} className={styles.container}>
+			<div>
+				<p>{oneClass.school}</p>
+				<p>{oneClass.class}</p>
+			</div>
+			<Alert severity="info" icon={false}>
+				Учеников: {oneClass.studentsCount}
+			</Alert>
 		</Paper>
 	);
 }

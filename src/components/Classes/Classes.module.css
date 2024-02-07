@@ -1,0 +1,25 @@
+.classesList {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-gap: 10px;
+}
+
+.container {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 30px;
+}
+
+.circular__container {
+	margin-top: 150px;
+	display: flex;
+	justify-content: center;
+}
+
+@media (max-width: 1064px) {
+	.classesList {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
