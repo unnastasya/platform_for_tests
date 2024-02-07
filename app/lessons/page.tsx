@@ -30,7 +30,7 @@ export default function LessonsPage() {
 		} else {
 			dispatch(LessonsActions.requestLessons());
 		}
-	}, [activeUser.role]);
+	}, [dispatch, activeUser.role]);
 
 	const goToAddLesson = () => {
 		dispatch(AddLessonActions.changeEditLessonData({}));
@@ -39,7 +39,7 @@ export default function LessonsPage() {
 
 	useEffect(() => {
 		fetchLessons();
-	}, []);
+	}, [fetchLessons]);
 
 	return (
 		<Page>
