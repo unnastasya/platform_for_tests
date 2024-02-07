@@ -3,19 +3,12 @@
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-import { Button, CircularProgress, Divider, Paper } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
-import AddIcon from "@mui/icons-material/Add";
-import QuestionBlock from "@/components/QuestionBlock/QuestionBlock";
-import QuestionInput from "@/components/QuestionInput/QuestionInput";
-import QuestionCriteria from "@/components/QuestionCriteria/QuestionCriteria";
+
 import { Page } from "@/components/Page/Page";
 import { DataDoneWork } from "@/types/dataDoneWork";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import {
 	AddDoneWorkActions,
-	addDoneWorkIdSelector,
-	addDoneWorkIsAddedSelector,
 	addDoneWorkIsLoadingSelector,
 } from "@/redux/DoneWork/AddDoneWork";
 import {
@@ -24,19 +17,9 @@ import {
 	oneLessonIsLoadingSelector,
 } from "@/redux/Lesson/OneLesson";
 import { activeUserSelector } from "@/redux/Auth";
-import {
-	Dialog,
-	DialogActions,
-	DialogContent,
-	DialogContentText,
-	DialogTitle,
-} from "@mui/material";
 import { LessonsActions } from "@/redux/Lesson/Lessons";
 import { AddLessonActions } from "@/redux/Lesson/AddLesson";
-import EditIcon from "@mui/icons-material/Edit";
-
-import styles from "./page.module.css";
-import { changeVisible } from "@/api/lessons";
+import { OneLesson } from "@/components/OneLesson/OneLesson";
 
 interface OneLessonProps {
 	params: {
@@ -44,15 +27,15 @@ interface OneLessonProps {
 	};
 }
 
-export default function OneLesson({ params }: OneLessonProps) {
+export default function OneLessonPage({ params }: OneLessonProps) {
 	const dispatch = useAppDispatch();
 
 	const id = params.id;
 	const router = useRouter();
 
-	const isAddedDoneWork = useAppSelector(addDoneWorkIsAddedSelector);
 	const isLoading = useAppSelector(addDoneWorkIsLoadingSelector);
-	const doneWorkId = useAppSelector(addDoneWorkIdSelector);
+
+	const [isAddedDialogOpen, setIsAddedDialogOpen] = useState(false);
 
 	const lesson = useAppSelector(oneLessonDataSelector);
 	const isLoadingLesson = useAppSelector(oneLessonIsLoadingSelector);
@@ -60,7 +43,6 @@ export default function OneLesson({ params }: OneLessonProps) {
 	const activeUser = useAppSelector(activeUserSelector);
 
 	const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false);
-	const [isAddedDialogOpen, setIsAddedDialogOpen] = useState(false);
 
 	const openConfirmDialog = () => {
 		setIsConfirmDialogOpen(true);
@@ -81,7 +63,7 @@ export default function OneLesson({ params }: OneLessonProps) {
 	useEffect(() => {
 		dispatch(OneLessonActions.changeRequestLessonId(id));
 		fetchLesson();
-	}, [id]);
+	}, [dispatch, fetchLesson, id]);
 
 	const deleteLessonFunction = () => {
 		dispatch(LessonsActions.changeDeleteLessonRequestId(id));
@@ -90,11 +72,7 @@ export default function OneLesson({ params }: OneLessonProps) {
 		router.push("/lessons");
 	};
 
-	const {
-		register,
-		formState: { errors },
-		handleSubmit,
-	} = useForm<DataDoneWork>({
+	const { register, handleSubmit } = useForm<DataDoneWork>({
 		defaultValues: {
 			answers: [],
 		},
@@ -119,16 +97,6 @@ export default function OneLesson({ params }: OneLessonProps) {
 		addOneDoneWork(data);
 	};
 
-	if (isLoading || isLoadingLesson) {
-		return (
-			<Page>
-				<div className={styles.oneLesson__loadingContainer}>
-					<CircularProgress />
-				</div>
-			</Page>
-		);
-	}
-
 	const editLesson = () => {
 		dispatch(
 			AddLessonActions.changeEditLessonData({
@@ -141,142 +109,27 @@ export default function OneLesson({ params }: OneLessonProps) {
 
 	const changeLessonVisible = () => {
 		dispatch(OneLessonActions.changeVisibleLesson());
-		// changeVisible(id);
 	};
 
 	return (
 		<Page>
-			<Dialog
-				open={isAddedDialogOpen}
-				onClose={() => setIsAddedDialogOpen(false)}
-			>
-				<DialogContent>
-					<DialogContentText>Ваша работа принята</DialogContentText>
-				</DialogContent>
-				<DialogActions>
-					<Button
-						variant="outlined"
-						onClick={() => {
-							setIsAddedDialogOpen(false);
-							router.push("/myWorks");
-						}}
-					>
-						ОК
-					</Button>
-				</DialogActions>
-			</Dialog>
-			<div>
-				<form onSubmit={handleSubmit(onSubmit)}>
-					<div className={styles.oneLesson__container}>
-						<Paper
-							className={
-								lesson.isVisible
-									? `${styles.oneLesson__infoBlock} ${styles.oneLesson__infoBlock__visible__true}`
-									: `${styles.oneLesson__infoBlock} ${styles.oneLesson__infoBlock__visible__false}`
-							}
-						>
-							{activeUser.role === "teacher" && (
-								<div
-									className={
-										styles.oneLesson__infoBlock_buttonsBlock
-									}
-								>
-									<Button
-										onClick={changeLessonVisible}
-										variant="outlined"
-										size="small"
-										sx={
-											lesson.isVisible
-												? {
-														borderColor: "#A4A9AD",
-														color: "#A4A9AD",
-												  }
-												: {}
-										}
-									>
-										{lesson.isVisible
-											? "Сделать невидимым"
-											: "Сделать видимым"}
-									</Button>
-									<Button
-										onClick={editLesson}
-										variant="outlined"
-										size="small"
-									>
-										<EditIcon />
-									</Button>
-									<Button
-										onClick={openConfirmDialog}
-										variant="outlined"
-										size="small"
-										color="error"
-									>
-										<DeleteIcon />
-									</Button>
-								</div>
-							)}
-							<h1 className={styles.oneLesson__infoBlock_header}>
-								{lesson.name}
-							</h1>
-							<p>{lesson.description}</p>
-						</Paper>
-						{lesson.questions &&
-							lesson.questions.map(
-								(question: any, index: any) => (
-									<QuestionBlock
-										index={index}
-										key={question._id}
-										question={question}
-									>
-										<QuestionInput
-											index={index}
-											register={register}
-										/>
-										<Divider />
-										<QuestionCriteria question={question} />
-									</QuestionBlock>
-								)
-							)}
-						{activeUser.role === "student" && (
-							<Button
-								variant="contained"
-								endIcon={<AddIcon />}
-								type="submit"
-							>
-								Сдать работу
-							</Button>
-						)}
-					</div>
-				</form>
-				<Dialog
-					open={isConfirmDialogOpen}
-					onClose={() => setIsConfirmDialogOpen(false)}
-				>
-					<DialogTitle>Удалить урок</DialogTitle>
-					<DialogContent>
-						<DialogContentText>
-							Вы действительно хотите удалить урок &quot;
-							{lesson.name}
-							&quot;?
-						</DialogContentText>
-					</DialogContent>
-					<DialogActions>
-						<Button
-							variant="outlined"
-							onClick={() => setIsConfirmDialogOpen(false)}
-						>
-							Отмена
-						</Button>
-						<Button
-							variant="outlined"
-							onClick={deleteLessonFunction}
-							color="error"
-						>
-							Удалить
-						</Button>
-					</DialogActions>
-				</Dialog>
-			</div>
+			<OneLesson
+				isLoading={isLoading}
+				isLoadingLesson={isLoadingLesson}
+				handleSubmit={handleSubmit}
+				onSubmit={onSubmit}
+				lesson={lesson}
+				activeUser={activeUser}
+				changeLessonVisible={changeLessonVisible}
+				editLesson={editLesson}
+				openConfirmDialog={openConfirmDialog}
+				register={register}
+				isConfirmDialogOpen={isConfirmDialogOpen}
+				setIsConfirmDialogOpen={setIsConfirmDialogOpen}
+				deleteLessonFunction={deleteLessonFunction}
+				isAddedDialogOpen={isAddedDialogOpen}
+				setIsAddedDialogOpen={setIsAddedDialogOpen}
+			/>
 		</Page>
 	);
 }

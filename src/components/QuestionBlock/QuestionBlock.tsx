@@ -1,7 +1,8 @@
 import { Paper } from "@mui/material";
-import { QuestionType } from "@/types/lesson";
 
 import styles from "./QuestionBlock.module.css";
+
+import { QuestionType } from "@/types/lesson";
 
 interface QuestionBlockProps {
 	children: React.ReactNode;
@@ -15,21 +16,16 @@ export default function QuestionBlock({
 	index,
 }: QuestionBlockProps) {
 	return (
-		<Paper className={styles.questionBlock__container}>
-			<div className={styles.questionBlock__infoBlock}>
-				<p className={styles.questionBlock__infoBlock_questionNumber}>
-					Вопрос {index + 1}
-				</p>
-				<p className={styles.questionBlock_questionText}>
-					{question.questionText}
-				</p>
-				<p>{question.description}</p>
+		<Paper className={styles.container}>
+			<div className={styles.infoBlock}>
+				<p className={styles.questionNumber}>Вопрос {index + 1}</p>
+				<p className={styles.questionText}>{question.questionText}</p>
 
 				{question.images.length > 0 && (
-					<div className={styles.questionBlock__imagesBlock}>
+					<div className={styles.imagesBlock}>
 						{question.images.map((image, index) => (
 							<img
-								className={styles.questionBlock__image}
+								className={styles.image}
 								key={index}
 								src={image.url}
 							/>

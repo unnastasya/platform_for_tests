@@ -1,21 +1,21 @@
-.questionCriteria__list {
+.criteriaList {
 	list-style: none;
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
 }
 
-.questionCriteria__container {
+.container {
 	display: flex;
 	flex-direction: column;
-	gap: 20px;
+	gap: 15px;
 }
 
-.questionCriteria__textHeader {
-	text-decoration: 3px underline solid #2979ff;
+.header {
+	color: #949494;
 }
 
-.questionCriteria__listItem {
+.listItem {
 	display: flex;
 	align-items: center;
 	gap: 10px;

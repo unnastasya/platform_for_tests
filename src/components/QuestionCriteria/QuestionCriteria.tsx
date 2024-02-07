@@ -1,8 +1,9 @@
-import { QuestionType } from "@/types/lesson";
 import DoneIcon from "@mui/icons-material/Done";
 import CloseIcon from "@mui/icons-material/Close";
 
 import styles from "./QuestionCriteria.module.css";
+
+import { QuestionType } from "@/types/lesson";
 
 interface QuestionCriteriaProps {
 	question: QuestionType;
@@ -15,16 +16,11 @@ export default function QuestionCriteria({
 }: QuestionCriteriaProps) {
 	if (!!successCriterias) {
 		return (
-			<div className={styles.questionCriteria__container}>
-				<p className={styles.questionCriteria__textHeader}>
-					Критерии оценки
-				</p>
-				<ul className={styles.questionCriteria__list}>
+			<div className={styles.container}>
+				<p className={styles.header}>Критерии оценки</p>
+				<ul className={styles.criteriaList}>
 					{question.criteria.map((criteria: any) => (
-						<li
-							className={styles.questionCriteria__listItem}
-							key={criteria.text}
-						>
+						<li className={styles.listItem} key={criteria.text}>
 							{successCriterias.includes(criteria._id) ? (
 								<DoneIcon color="success" />
 							) : (
@@ -38,16 +34,11 @@ export default function QuestionCriteria({
 		);
 	} else {
 		return (
-			<div className={styles.questionCriteria__container}>
-				<p className={styles.questionCriteria__textHeader}>
-					Критерии оценки
-				</p>
-				<ul className={styles.questionCriteria__list}>
+			<div className={styles.container}>
+				<p className={styles.header}>Критерии оценки</p>
+				<ul className={styles.criteriaList}>
 					{question.criteria.map((criteria: any) => (
-						<li
-							className={styles.questionCriteria__listItem}
-							key={criteria.text}
-						>
+						<li className={styles.listItem} key={criteria.text}>
 							{criteria.text} - {criteria.value} балла
 						</li>
 					))}
