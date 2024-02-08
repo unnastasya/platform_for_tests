@@ -1,9 +1,8 @@
 "use client";
 
-import { Alert, CircularProgress, Paper } from "@mui/material";
 import { useCallback, useEffect } from "react";
+
 import { Page } from "@/components/Page/Page";
-import DoneWorkBage from "@/components/DoneWorkBage/DoneWorkBage";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import {
 	DoneWorksActions,
@@ -11,8 +10,7 @@ import {
 	doneWorksIsLoadingSelector,
 	openUserSelector,
 } from "@/redux/DoneWork/DoneWorks";
-
-import styles from "./page.module.css";
+import { OneStudent } from "@/components/OneStudent/OneStudent";
 
 interface OneStudentProps {
 	params: {
@@ -20,7 +18,7 @@ interface OneStudentProps {
 	};
 }
 
-export default function OneStudent({ params }: OneStudentProps) {
+export default function OneStudentPage({ params }: OneStudentProps) {
 	const dispatch = useAppDispatch();
 	const studentId = params.studentId;
 	const works = useAppSelector(doneWorksDataSelector);
@@ -30,42 +28,15 @@ export default function OneStudent({ params }: OneStudentProps) {
 	const fetchStudentsDoneWorks = useCallback(() => {
 		dispatch(DoneWorksActions.changeRequestIdData(studentId));
 		dispatch(DoneWorksActions.requesOneUsersDoneWorks());
-	}, [studentId]);
+	}, [dispatch, studentId]);
 
 	useEffect(() => {
 		fetchStudentsDoneWorks();
-	}, [studentId]);
-
-	if (isLoading) {
-		return (
-			<Page>
-				<div className={styles.oneStudent__loadingContainer}>
-					<CircularProgress />
-				</div>
-			</Page>
-		);
-	}
+	}, [fetchStudentsDoneWorks]);
 
 	return (
 		<Page>
-			<div className={styles.oneStudent__container}>
-				<Paper className={styles.oneStudent__questionBlock}>
-					<p className={styles.oneStudent__header}>
-						{user?.fullName}
-					</p>
-				</Paper>
-				{works.length === 0 ? (
-					<Alert severity="info" variant="outlined">
-						У ученика пока нет сданных работ
-					</Alert>
-				) : (
-					<div className={styles.oneStudents__doneWorks__page}>
-						{works.map((work: any) => (
-							<DoneWorkBage work={work} key={work._id} />
-						))}
-					</div>
-				)}
-			</div>
+			<OneStudent isLoading={isLoading} user={user} works={works} />
 		</Page>
 	);
 }
