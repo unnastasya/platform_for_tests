@@ -1,15 +1,6 @@
 "use client";
 import { useCallback, useEffect } from "react";
-import {
-	Alert,
-	CircularProgress,
-	Divider,
-	FormControl,
-	Paper,
-	TextField,
-} from "@mui/material";
-import QuestionBlock from "@/components/QuestionBlock/QuestionBlock";
-import QuestionCriteria from "@/components/QuestionCriteria/QuestionCriteria";
+
 import { Page } from "@/components/Page/Page";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import {
@@ -19,15 +10,7 @@ import {
 	oneDoneWorksLessonSelector,
 } from "@/redux/DoneWork/OneDoneWork";
 
-import styles from "./page.module.css";
-
-const whatColor = (value: number, allCriteriaRating: number) => {
-	const percentage = (value / allCriteriaRating) * 100;
-
-	if (percentage < 50) return styles.rating__question__red;
-	else if (percentage < 80) return styles.rating__question__yellow;
-	else return styles.rating__question__green;
-};
+import { ResultLesson } from "@/components/ResultLesson/ResultLesson";
 
 interface ResultLessonProps {
 	params: {
@@ -35,7 +18,7 @@ interface ResultLessonProps {
 	};
 }
 
-export default function ResultLesson({ params }: ResultLessonProps) {
+export default function ResultLessonPage({ params }: ResultLessonProps) {
 	const dispatch = useAppDispatch();
 
 	const { doneWorkId } = params;
@@ -60,70 +43,14 @@ export default function ResultLesson({ params }: ResultLessonProps) {
 		fetchOneDoneWork();
 	}, [dispatch, fetchOneDoneWork, doneWorkId]);
 
-	if (isLoadingDoneWork) {
-		return (
-			<Page>
-				<div className={styles.resultLesson__loadingContainer}>
-					<CircularProgress />
-				</div>
-			</Page>
-		);
-	}
-
 	return (
 		<Page>
-			<div className={styles.resultLesson__pageContainer}>
-				<Paper className={styles.resultLesson__container}>
-					<p
-						className={`${styles.rating__question} ${whatColor(
-							doneWork.rating || 0,
-							lesson.allCriteriaRating
-						)}`}
-					>
-						{doneWork.rating}
-					</p>
-
-					<p className={styles.resultLesson__header}>{lesson.name}</p>
-					<p>
-						{doneWork.student.name} {doneWork.student.surname}
-					</p>
-
-					<p>
-						{doneWork.student.class?.school},{" "}
-						{doneWork.student.class?.class}
-					</p>
-					<Alert severity="success">Проверено</Alert>
-				</Paper>
-				{doneWork.comment && (
-					<Paper className={styles.resultLesson__container}>
-						<p className={styles.resultLesson__header}>
-							Комментарий к работе:
-						</p>
-						<p>{doneWork.comment}</p>
-					</Paper>
-				)}
-				{lesson.questions &&
-					lesson.questions.map((question: any, index: any) => (
-						<QuestionBlock
-							index={index}
-							key={question._id}
-							question={question}
-						>
-							<FormControl fullWidth>
-								<TextField
-									multiline
-									label="Ответ ученика"
-									value={doneWork.answers[index]}
-								/>
-							</FormControl>
-							<Divider />
-							<QuestionCriteria
-								question={question}
-								successCriterias={successCriterias}
-							/>
-						</QuestionBlock>
-					))}
-			</div>
+			<ResultLesson
+				isLoading={isLoadingDoneWork}
+				doneWork={doneWork}
+				lesson={lesson}
+				successCriterias={successCriterias}
+			/>
 		</Page>
 	);
 }

@@ -1,0 +1,70 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.card__container {
+	width: 100%;
+	padding: 30px;
+	border-radius: 10px;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+}
+
+.rating {
+	border-radius: 5px;
+	padding: 10px 15px;
+}
+
+.rating__green {
+	border: 1px solid #67ac5b;
+	background: #67ac5b;
+}
+
+.rating__yellow {
+	border: 1px solid #f6c244;
+	background: #f6c244;
+}
+
+.rating__red {
+	border: 1px solid #e15141;
+	background: #e15141;
+}
+
+.header {
+	font-size: 20px;
+}
+
+.grayText {
+	margin-bottom: 15px;
+	color: #949494;
+}
+
+.resultLesson__loadingContainer {
+	display: flex;
+	justify-content: center;
+	margin-top: 150px;
+}
+
+.studentName {
+	font-size: 20px;
+	line-height: 100%;
+	margin: 0;
+	padding-bottom: 10px;
+}
+
+.lessonInfo {
+	display: flex;
+	justify-content: space-between;
+}
+
+.studentInfo {
+	margin-bottom: 15px;
+}
+
+.comment {
+	font-size: 20px;
+}
