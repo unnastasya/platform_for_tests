@@ -4,12 +4,12 @@ import {
 	DialogActions,
 	DialogContent,
 	DialogContentText,
-	DialogTitle,
 } from "@mui/material";
 import { useRouter } from "next/navigation";
-import { User } from "@/types/user";
 
 import styles from "./PeopleListComponent.module.css";
+
+import { User } from "@/types/user";
 
 interface PeopleListComponentProps {
 	people: User[];
@@ -36,7 +36,7 @@ export default function PeopleListComponent({
 				open={isConfirmDialogOpen}
 				onClose={() => setIsConfirmDialogOpen(false)}
 			>
-				<DialogContent>
+				<DialogContent sx={{ padding: "30px" }}>
 					<DialogContentText>
 						{users.map((user) => (
 							<div key={user.login} className={styles.userData}>
@@ -60,7 +60,7 @@ export default function PeopleListComponent({
 				<div
 					onClick={() => navigateOneStudentPage(person._id)}
 					key={person._id}
-					className={styles.peopleList__oneStusent}
+					className={styles.oneStudent}
 				>
 					<p>
 						{person.name} {person.surname}

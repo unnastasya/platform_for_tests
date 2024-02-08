@@ -1,24 +1,24 @@
-.peopleList__oneStusent {
+.oneStudent {
 	width: 100%;
 	display: flex;
-	padding: 5px 10px;
+	padding: 5px 0px;
 	justify-content: space-between;
 	align-items: center;
 	position: relative;
 	transition: 0.3s linear;
 }
 
-.peopleList__oneStusent:not(:last-child)::after {
+.oneStudent:not(:last-child)::after {
 	content: "";
 	position: absolute;
 	left: 0;
 	bottom: 0;
-	height: 1px;
+	height: 0.5px;
 	width: 100%;
 	background: gray;
 }
 
-.peopleList__oneStusent:hover {
+.oneStudent:hover {
 	background: rgba(184, 184, 184, 0.3);
 }
 
@@ -27,7 +27,6 @@
 }
 
 .userData > p:first-child {
-	color: #000;
-	text-decoration: 3px underline solid #2979ff;
-	margin-bottom: 5px;
+	color: #949494;
+	font-size: 20px;
 }

@@ -1,18 +1,15 @@
 "use client";
 
-import { Page } from "@/components/Page/Page";
-import { CircularProgress, Paper } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
-import OneClassHeader from "@/components/OneClassHeader/OneClassHeader";
-import PeopleListComponent from "@/components/PeopleListComponent/PeopleListComponent";
+
+import { Page } from "@/components/Page/Page";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import {
 	OneClassActions,
 	oneClassDataSelector,
 	oneClassIsLoadingSelector,
 } from "@/redux/Class/OneClass";
-
-import styles from "./page.module.css";
+import { OneClass } from "@/components/OneClass/OneClass";
 
 interface OneClassProps {
 	params: {
@@ -20,7 +17,7 @@ interface OneClassProps {
 	};
 }
 
-export default function OneClass({ params }: OneClassProps) {
+export default function OneClassPage({ params }: OneClassProps) {
 	const dispatch = useAppDispatch();
 
 	const classId = params.classId;
@@ -31,9 +28,9 @@ export default function OneClass({ params }: OneClassProps) {
 	const [users, setUsers] = useState<any[]>([]);
 	const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false);
 
-	const changeClassId = () => {
+	const changeClassId = useCallback(() => {
 		dispatch(OneClassActions.changeRequestClassId(classId || ""));
-	};
+	}, [dispatch, classId]);
 
 	const fetchOneClass = useCallback(() => {
 		dispatch(OneClassActions.requestOneClass());
@@ -42,24 +39,20 @@ export default function OneClass({ params }: OneClassProps) {
 	useEffect(() => {
 		changeClassId();
 		fetchOneClass();
-	}, [dispatch, fetchOneClass]);
-
-	if (classIsLoading) {
-		return (
-			<Page>
-				<div className={styles.oneClass__loadingContainer}>
-					<CircularProgress />
-				</div>
-			</Page>
-		);
-	}
+	}, [changeClassId, fetchOneClass]);
 
 	return (
 		<Page>
-			<Paper className={styles.oneClass__container}>
-				<OneClassHeader classData={classData} classId={classId} setUsers={setUsers} setIsConfirmDialogOpenUsers={setIsConfirmDialogOpen}/>
-				<PeopleListComponent people={classStudents} users={users} isConfirmDialogOpen={isConfirmDialogOpen}  setIsConfirmDialogOpen={setIsConfirmDialogOpen}/>
-			</Paper>
+			<OneClass
+				isLoading={classIsLoading}
+				classData={classData}
+				classId={classId}
+				setUsers={setUsers}
+				setIsConfirmDialogOpen={setIsConfirmDialogOpen}
+				classStudents={classStudents}
+				users={users}
+				isConfirmDialogOpen={isConfirmDialogOpen}
+			/>
 		</Page>
 	);
 }

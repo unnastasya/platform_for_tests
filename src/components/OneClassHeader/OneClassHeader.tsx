@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {
+	Alert,
 	Button,
 	Dialog,
 	DialogActions,
@@ -9,13 +10,14 @@ import {
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
-import { ClassType } from "@/types/class";
 import { useRouter } from "next/navigation";
+
+import styles from "./OneClassHeader.module.css";
+
+import { ClassType } from "@/types/class";
 import { useAppDispatch } from "@/redux/store";
 import { ClassesActions } from "@/redux/Class/Classes";
 import { AddClassActions } from "@/redux/Class/AddClass";
-
-import styles from "./OneClassHeader.module.css";
 import { getClassesUsers } from "@/api/classes";
 
 interface OneClassHeaderProps {
@@ -32,9 +34,9 @@ export default function OneClassHeader({
 	setIsConfirmDialogOpenUsers,
 }: OneClassHeaderProps) {
 	const dispatch = useAppDispatch();
+	const router = useRouter();
 
 	const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false);
-	const router = useRouter();
 
 	const openConfirmDialog = () => {
 		setIsConfirmDialogOpen(true);
@@ -65,12 +67,15 @@ export default function OneClassHeader({
 	};
 
 	return (
-		<div className={styles.oneClassHeader__container}>
-			<p className={styles.oneClassHeader__textHeader}>
+		<div className={styles.container}>
+			<p className={styles.header}>
 				{classData.school}, {classData.class}
 			</p>
 
-			<div className={styles.oneClassHeader__buttonsBlock}>
+			<div className={styles.buttonsBlock}>
+				<Alert severity="info" icon={false}>
+					Учеников: {classData.students?.length}
+				</Alert>
 				<Button onClick={getPasswords} variant="outlined" size="small">
 					Данные учеников
 				</Button>
@@ -93,7 +98,7 @@ export default function OneClassHeader({
 				onClose={() => setIsConfirmDialogOpen(false)}
 			>
 				<DialogTitle>Удалить класс</DialogTitle>
-				<DialogContent>
+				<DialogContent sx={{ padding: "30px" }}>
 					<DialogContentText>
 						Вы действительно хотите удалить класс &quot;
 						{classData.school} {classData.class}&quot;?
