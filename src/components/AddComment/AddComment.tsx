@@ -6,7 +6,7 @@ import styles from "./AddComment.module.css";
 
 export default function AddComment({ setComment, comment }: any) {
 	return (
-		<div className={styles.AddComment__container}>
+		<div className={styles.container}>
 			<p>Комментарий к работе</p>
 			<FormControl fullWidth>
 				<TextField

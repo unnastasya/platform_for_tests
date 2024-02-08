@@ -1,7 +1,8 @@
 "use client";
-import { CriteriaType } from "@/types/lesson";
 import { FormControlLabel, Switch } from "@mui/material";
 import { Dispatch, SetStateAction, useState } from "react";
+
+import { CriteriaType } from "@/types/lesson";
 
 interface SelectComponentProps {
 	criterion: CriteriaType;
@@ -36,6 +37,7 @@ export default function SelectComponent({
 
 	return (
 		<FormControlLabel
+			sx={{ margin: "-12px 0" }}
 			key={criterion._id}
 			value={status}
 			control={<Switch />}

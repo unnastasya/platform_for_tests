@@ -1,0 +1,59 @@
+.centered__container {
+	display: flex;
+	justify-content: center;
+	margin-top: 150px;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+	margin-bottom: 30px;
+}
+
+.countRating {
+	z-index: 10;
+	position: fixed;
+	top: 120px;
+	right: 40px;
+	width: 50px;
+	border-radius: 5px;
+	text-align: center;
+	padding: 15px 10px;
+}
+
+.rating__green {
+	border: 1px solid #67ac5b;
+	background: #67ac5b;
+}
+
+.rating__yellow {
+	border: 1px solid #f6c244;
+	background: #f6c244;
+}
+
+.rating__red {
+	border: 1px solid #e15141;
+	background: #e15141;
+}
+
+.workInfo {
+	width: 100%;
+	padding: 30px;
+	border-radius: 10px;
+	position: relative;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+}
+
+.header {
+	font-width: 600;
+	font-size: 22px;
+	line-height: 100%;
+}
+
+.studentInfo {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin-bottom: 15px;
+}
