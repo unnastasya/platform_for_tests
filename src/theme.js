@@ -35,6 +35,12 @@ export const theme = createTheme({
 				root: {
 					height: "40px",
 					fontSize: "16px",
+					borderRadius: "10px",
+				},
+				outlined: {
+					height: "40px",
+					fontSize: "16px",
+					borderRadius: "10px",
 				},
 			},
 		},

@@ -1,5 +1,5 @@
 .header__root {
-	padding: 10px 0;
+	padding: 15px 0;
 	border-bottom: 1px solid #e0e0e0;
 	position: fixed;
 	width: 100vw;
@@ -8,6 +8,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
 }
 
 .header__inner {
@@ -21,9 +22,11 @@
 
 .header__text {
 	border: 1px solid #2979ff;
-	border-radius: 5px;
-	padding: 5px 10px;
+	border-radius: 10px;
+	font-size: 16px;
+	box-sizing: border-box;
+	padding: 10px 15px;
 	margin: 0;
-	line-height: 30px;
-	font-weight: 600;
+	/* line-height: 30px; */
+	color: #3c3c3c;
 }

@@ -1,15 +1,16 @@
-import { Button, Container, Stack } from "@mui/material";
+import { Button, Stack } from "@mui/material";
 import TaskIcon from "@mui/icons-material/Task";
 import FileCopyIcon from "@mui/icons-material/FileCopy";
 import PeopleIcon from "@mui/icons-material/People";
 import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
 import PersonIcon from "@mui/icons-material/Person";
-import { useAppDispatch, useAppSelector } from "@/redux/store";
-import { AuthActions, activeUserSelector } from "@/redux/Auth";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Link from "next/link";
 
 import styles from "./Header.module.css";
+
+import { AuthActions, activeUserSelector } from "@/redux/Auth";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
 
 const Header = () => {
 	const dispatch = useAppDispatch();
@@ -72,7 +73,7 @@ const Header = () => {
 					</Stack>
 				)}
 				<Button
-					variant="contained"
+					variant="outlined"
 					endIcon={<LogoutIcon />}
 					onClick={() => logout()}
 				>
