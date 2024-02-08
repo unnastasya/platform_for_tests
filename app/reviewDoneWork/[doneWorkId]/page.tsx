@@ -1,14 +1,7 @@
 "use client";
 
-import {
-	Alert,
-	CircularProgress,
-	Divider,
-	FormControl,
-	Paper,
-	TextField,
-} from "@mui/material";
 import { useCallback, useEffect } from "react";
+
 import { Page } from "@/components/Page/Page";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import {
@@ -17,10 +10,8 @@ import {
 	oneDoneWorkIsLoadingSelector,
 	oneDoneWorksLessonSelector,
 } from "@/redux/DoneWork/OneDoneWork";
-import QuestionBlock from "@/components/QuestionBlock/QuestionBlock";
-import QuestionCriteria from "@/components/QuestionCriteria/QuestionCriteria";
 
-import styles from "./page.module.css";
+import { ReviewDoneWork } from "@/components/ReviewDoneWork/ReviewDoneWork";
 
 interface ReviewDoneWorkProps {
 	params: {
@@ -28,15 +19,13 @@ interface ReviewDoneWorkProps {
 	};
 }
 
-export default function ReviewDoneWork({ params }: ReviewDoneWorkProps) {
+export default function ReviewDoneWorkPage({ params }: ReviewDoneWorkProps) {
 	const dispatch = useAppDispatch();
 
 	const { doneWorkId } = params;
 
 	const lesson = useAppSelector(oneDoneWorksLessonSelector);
-
 	const doneWork = useAppSelector(oneDoneWorkDataSelector);
-
 	const isLoadingDoneWork = useAppSelector(oneDoneWorkIsLoadingSelector);
 
 	const changeDoneWorkId = () => {
@@ -52,49 +41,13 @@ export default function ReviewDoneWork({ params }: ReviewDoneWorkProps) {
 		fetchOneDoneWork();
 	}, [doneWorkId]);
 
-	if (isLoadingDoneWork) {
-		return (
-			<Page>
-				<div className={styles.oneTest__loadingContainer}>
-					<CircularProgress />
-				</div>
-			</Page>
-		);
-	}
-
 	return (
 		<Page>
-			<div className={styles.oneTest__container}>
-				<Paper className={styles.oneTest__questionBlock}>
-					<p className={styles.oneTest__headerText}>{lesson.name}</p>
-					<p className={styles.oneTest__headerText}>
-						{doneWork.student.name} {doneWork.student.surname}
-					</p>
-					<p>
-						{doneWork.student.class?.school},{" "}
-						{doneWork.student.class?.class}
-					</p>
-
-					<Alert severity="warning">Ожидает проверки</Alert>
-				</Paper>
-				{lesson.questions &&
-					lesson.questions.map((question: any, index: any) => (
-						<QuestionBlock
-							index={index}
-							key={question._id}
-							question={question}
-						>
-							<FormControl fullWidth>
-								<TextField
-									multiline
-									value={doneWork.answers[index]}
-								/>
-							</FormControl>
-							<Divider />
-							<QuestionCriteria question={question} />
-						</QuestionBlock>
-					))}
-			</div>
+			<ReviewDoneWork
+				isLoading={isLoadingDoneWork}
+				lesson={lesson}
+				doneWork={doneWork}
+			/>
 		</Page>
 	);
 }

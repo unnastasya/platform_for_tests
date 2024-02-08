@@ -1,0 +1,44 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.countRating__question {
+	z-index: 10;
+	position: fixed;
+	top: 120px;
+	right: 280px;
+	width: 50px;
+	border-radius: 5px;
+	text-align: center;
+	padding: 15px 10px;
+}
+
+.questionBlock {
+	width: 100%;
+	padding: 30px;
+	border-radius: 10px;
+	position: relative;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+}
+
+.header,
+.studentInfo {
+	font-size: 20px;
+	line-height: 100%;
+}
+
+.studentInfo {
+	margin-bottom: 10px;
+}
+
+.classInfo {
+	margin-bottom: 15px;
+}
+
+.centered__container {
+	display: flex;
+	justify-content: center;
+	margin-top: 150px;
+}
