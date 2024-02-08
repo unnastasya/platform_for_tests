@@ -6,8 +6,7 @@ import styles from "./AddClassHeader.module.css";
 
 export default function AddClassHeader({ register, errors }: any) {
 	return (
-		<div className={styles.addClass__nameBlock}>
-			<p className={styles.addStudent__textHeader}>Школа</p>
+		<div className={styles.nameBlock}>
 			<TextField
 				{...register("school")}
 				multiline
@@ -16,7 +15,6 @@ export default function AddClassHeader({ register, errors }: any) {
 				error={!!errors.school?.message}
 				helperText={errors.school?.message}
 			/>
-			<p className={styles.addStudent__textHeader}>Класс</p>
 			<TextField
 				{...register("class")}
 				multiline

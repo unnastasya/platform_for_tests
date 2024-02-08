@@ -5,10 +5,11 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import GroupAddIcon from "@mui/icons-material/GroupAdd";
 import { Button, FormControl, TextField } from "@mui/material";
-import { useAppSelector } from "@/redux/store";
-import { editClassIdDataSelector } from "@/redux/Class/AddClass";
 
 import styles from "./AddStudents.module.css";
+
+import { useAppSelector } from "@/redux/store";
+import { editClassIdDataSelector } from "@/redux/Class/AddClass";
 
 const styleInput = {
 	width: "100%",
@@ -32,17 +33,14 @@ export default function AddStudents({ control, register, errors }: any) {
 	};
 
 	return (
-		<div className={styles.addStudent__container}>
-			<p className={styles.addStudent__textHeader}>Добавьте учеников</p>
+		<div className={styles.container}>
+			<p className={styles.header}>Ученики</p>
 
 			{fields.map((field, index) => {
-				let studentErrors = errors.people?.[index];
+				const studentErrors = errors.people?.[index];
 
 				return (
-					<section
-						key={field.id}
-						className={styles.addStudent__oneStudent}
-					>
+					<section key={field.id} className={styles.oneStudent}>
 						<FormControl sx={styleInput}>
 							<TextField
 								{...register(`people.${index}.name`)}
@@ -74,7 +72,7 @@ export default function AddStudents({ control, register, errors }: any) {
 					</section>
 				);
 			})}
-			<div className={styles.addStudents__buttonsBlock}>
+			<div className={styles.buttonsBlock}>
 				<Button
 					variant="outlined"
 					type="button"

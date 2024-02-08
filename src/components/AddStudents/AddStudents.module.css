@@ -1,22 +1,22 @@
-.addStudent__oneStudent {
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-	gap: 20px;
-	align-items: start;
-}
-
-.addStudents__buttonsBlock {
-	display: flex;
-	gap: 20px;
-}
-
-.addStudent__textHeader {
-	text-decoration: 3px underline solid #2979ff;
-}
-
-.addStudent__container {
+.container {
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
+}
+
+.header {
+	color: #949494;
+}
+
+.oneStudent {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	gap: 15px;
+	align-items: start;
+}
+
+.buttonsBlock {
+	display: flex;
+	gap: 15px;
 }
