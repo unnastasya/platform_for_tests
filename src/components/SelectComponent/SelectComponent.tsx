@@ -25,7 +25,7 @@ export default function SelectComponent({
 			setRaitingValue((prev: any) => prev - +criterion.value);
 			setStatus((prev) => !prev);
 			setSuccessCriterias((prev: any) =>
-				prev.filter((el: any) => el._id !== criterion._id)
+				prev.filter((el: any) => el !== criterion._id)
 			);
 		} else {
 			setCount((prev: any) => prev + +criterion.value);
