@@ -1,60 +1,34 @@
 "use client";
 
 import { useCallback, useEffect } from "react";
-import DoneWorkBage from "@/components/DoneWorkBage/DoneWorkBage";
+
 import { Page } from "@/components/Page/Page";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
-import { CircularProgress, Paper } from "@mui/material";
 import {
 	DoneWorksActions,
 	doneWorksDataSelector,
 	doneWorksIsLoadingSelector,
 } from "@/redux/DoneWork/DoneWorks";
 
-import styles from "./page.module.css";
+import { MyWorks } from "@/components/MyWorks/MyWorks";
 
-export default function MyWorks() {
+export default function MyWorksPage() {
 	const dispatch = useAppDispatch();
+
 	const works = useAppSelector(doneWorksDataSelector);
 	const isLoading = useAppSelector(doneWorksIsLoadingSelector);
 
 	const fetchWorks = useCallback(() => {
 		dispatch(DoneWorksActions.requestActiveUsersDoneWorks());
-	}, []);
+	}, [dispatch]);
 
 	useEffect(() => {
 		fetchWorks();
-	}, []);
-
-	if (isLoading) {
-		return (
-			<Page>
-				<div className={styles.myWorks__loadingContainer}>
-					<CircularProgress />
-				</div>
-			</Page>
-		);
-	}
-
-	if (works.length === 0) {
-		return (
-			<Page>
-				<div className={styles.myWorks__container}>
-					<Paper className={styles.myWorks__noLessons}>
-						<p>У вас пока нет сданных работ</p>
-					</Paper>
-				</div>
-			</Page>
-		);
-	}
+	}, [fetchWorks]);
 
 	return (
 		<Page>
-			<div className={styles.myWorks__container}>
-				{works.map((work: any) => (
-					<DoneWorkBage work={work} key={work._id} />
-				))}
-			</div>
+			<MyWorks isLoading={isLoading} works={works} />
 		</Page>
 	);
 }

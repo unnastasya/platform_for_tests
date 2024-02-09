@@ -1,0 +1,19 @@
+.container {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-gap: 10px;
+	align-items: stretch;
+}
+
+.circular__container {
+	display: flex;
+	justify-content: center;
+	margin-top: 150px;
+}
+
+@media (max-width: 1064px) {
+	.container {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
