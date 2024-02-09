@@ -30,7 +30,7 @@ export const PasswordField = ({ control, errors }: any) => {
 			control={control}
 			render={({ field }) => (
 				<FormControl
-					className={styles.passwordField}
+					sx={{marginBottom: "30px"}}
 					fullWidth
 					variant="standard"
 				>

@@ -30,7 +30,7 @@ export function Login({
 						control={control}
 						render={({ field }) => (
 							<TextField
-								className={styles.loginField}
+								sx={{marginBottom: "20px"}}
 								fullWidth
 								label="Логин"
 								variant="standard"
