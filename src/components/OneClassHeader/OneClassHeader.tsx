@@ -73,7 +73,11 @@ export default function OneClassHeader({
 			</p>
 
 			<div className={styles.buttonsBlock}>
-				<Alert severity="info" icon={false}>
+				<Alert
+					severity="info"
+					icon={false}
+					sx={{ height: "40px", alignItems: "center" }}
+				>
 					Учеников: {classData.students?.length}
 				</Alert>
 				<Button onClick={getPasswords} variant="outlined" size="small">

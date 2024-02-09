@@ -1,5 +1,6 @@
 import {
 	Button,
+	CircularProgress,
 	Dialog,
 	DialogActions,
 	DialogContent,
@@ -37,6 +38,7 @@ export default function PeopleListComponent({
 				onClose={() => setIsConfirmDialogOpen(false)}
 			>
 				<DialogContent sx={{ padding: "30px" }}>
+					{users.length === 0 && <CircularProgress />}
 					<DialogContentText>
 						{users.map((user) => (
 							<div key={user.login} className={styles.userData}>
