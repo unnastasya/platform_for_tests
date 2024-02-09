@@ -44,7 +44,7 @@ export default function DoneWorkBage({ work }: DoneWorkBageProps) {
 				<div className={styles.cardTop}>
 					<p className={styles.header}>{work.lessonId.name}</p>
 
-					{(!!work.rating || work.rating == 0) && (
+					{(!!work.rating || (work.rating == 0 && work.isVerified)) && (
 						<p
 							className={`${styles.rating} ${whatColor(
 								work.rating,

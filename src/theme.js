@@ -46,8 +46,18 @@ export const theme = createTheme({
 		},
 		MuiAlert: {
 			styleOverrides: {
+				root: {
+					borderRadius: "10px",
+				},
 				outlined: {
 					borderColor: "#2979FF",
+				},
+			},
+		},
+		MuiPaper: {
+			styleOverrides: {
+				root: {
+					borderRadius: "10px",
 				},
 			},
 		},

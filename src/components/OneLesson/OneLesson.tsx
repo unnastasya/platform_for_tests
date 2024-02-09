@@ -56,7 +56,23 @@ export const OneLesson = ({
 						<Paper className={styles.infoBlock}>
 							{activeUser.role === "teacher" && (
 								<div className={styles.buttonsBlock}>
-									<Alert severity="info" icon={false}>
+									<Alert
+										severity="info"
+										icon={false}
+										sx={
+											lesson.isVisible
+												? {
+														height: "40px",
+														alignItems: "center",
+												  }
+												: {
+														height: "40px",
+														alignItems: "center",
+                                                        backgroundColor: "#EEEEEE",
+														color: "#535353",
+												  }
+										}
+									>
 										{lesson.isVisible
 											? "Видимый"
 											: "Невидимый"}
@@ -68,8 +84,8 @@ export const OneLesson = ({
 										sx={
 											lesson.isVisible
 												? {
-													borderColor: "#A4A9AD",
-													color: "#A4A9AD",
+														borderColor: "#A4A9AD",
+														color: "#A4A9AD",
 												  }
 												: {}
 										}
